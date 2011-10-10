@@ -139,7 +139,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="ServiceTest.cs" />
     <Compile Include="TFSException_NestedExceptionReport_Test.cs" />
     <Compile Include="ExceptionTestConstants.cs" />
   </ItemGroup>

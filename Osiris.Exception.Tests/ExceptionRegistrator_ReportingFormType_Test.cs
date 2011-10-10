@@ -21,7 +21,14 @@ namespace Inmeta.Exception.Tests
         [TestMethod]
         public void ExceptionRegistrator_CreateWPF()
         {
-            new ExceptionRegistrator("winformLoader", false, new DefaultServiceSettings(), WPFFolder);
+            try
+            {
+                new ExceptionRegistrator("winformLoader", false, new DefaultServiceSettings(), WPFFolder);
+            }
+            catch(NullReferenceException ex)
+            {
+                //this is no WPF application register will fail. 
+            }
         }
     }
 

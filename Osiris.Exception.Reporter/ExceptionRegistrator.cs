@@ -19,8 +19,8 @@ namespace Inmeta.Exception.Reporter
             ReportingUI = useReportingUI;
             ApplicationName = applicationName;
             ServiceSettings = settings;
-            Register();
             MEFCatalog = mefCatalog ?? AppDomain.CurrentDomain.RelativeSearchPath;
+            Register();
         }
 
         private  CompositionContainer _container;

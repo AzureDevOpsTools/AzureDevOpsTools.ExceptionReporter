@@ -53,6 +53,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Reporter.U
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Inmeta.Exception.Reporter.Web.Setup", "Setup\Inmeta.Exception.Reporter.Web.Setup\Inmeta.Exception.Reporter.Web.vdproj", "{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test Configurations", "Test Configurations", "{27926DD6-D4D0-418F-AB51-EE9FE1A352A9}"
+	ProjectSection(SolutionItems) = preProject
+		ExceptionReporter.testsettings = ExceptionReporter.testsettings
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 16
@@ -299,7 +304,6 @@ Global
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Debug|Any CPU.ActiveCfg = Debug
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Debug|Any CPU.Build.0 = Debug
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Debug|Mixed Platforms.Build.0 = Debug
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Debug|x64.ActiveCfg = Debug
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Debug|x64.Build.0 = Debug
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Debug|x86.ActiveCfg = Debug
@@ -579,7 +583,6 @@ Global
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Debug|Any CPU.ActiveCfg = Debug
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Debug|Any CPU.Build.0 = Debug
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Debug|Mixed Platforms.Build.0 = Debug
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Debug|x64.ActiveCfg = Debug
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Debug|x64.Build.0 = Debug
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Debug|x86.ActiveCfg = Debug
