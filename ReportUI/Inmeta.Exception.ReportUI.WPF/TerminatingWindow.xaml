@@ -1,0 +1,6 @@
+﻿<Window x:Class="Inmeta.Exception.ReportUI.WPF.TerminatingWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Application Terminate" Height="131" Width="465" IsEnabled="False" Topmost="True" ResizeMode="NoResize" OverridesDefaultStyle="False" Name="TerminateWindow">
+    <Label Content="The application has reported the exception and will now terminate." Height="35" Name="label1" Width="443" FontSize="14" ClipToBounds="False" HorizontalAlignment="Center" VerticalAlignment="Center" />
+</Window>

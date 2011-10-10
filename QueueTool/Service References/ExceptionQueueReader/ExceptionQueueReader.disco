@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://vm-osiris-tfs2010:801/ExceptionQueueReader/ExceptionQueueReader.svc?wsdl" docRef="http://vm-osiris-tfs2010:801/ExceptionQueueReader/ExceptionQueueReader.svc" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+</discovery>

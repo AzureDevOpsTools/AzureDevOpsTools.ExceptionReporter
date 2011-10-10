@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Osiris.Exception.Service.Proxy.Reader.WS.ExceptionQueueReader" CodeBehind="ExceptionQueueReader.svc.cs" %>

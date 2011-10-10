@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Applications>
+  <Application Name="Osiris.My.Test.App">
+    <TFSServer>http://ptfs01.partner.master.int:8080/tfs</TFSServer>
+    <Collection>Simulation</Collection>
+    <TeamProject>NemoTest</TeamProject>
+    <Area>NemoTest\</Area>
+    <AssignedTo>Olav Nybø</AssignedTo>
+  </Application>
+  <Application Name="Default">
+    <TFSServer>http://ptfs01.partner.master.int:8080/tfs</TFSServer>
+    <Collection>Simulation</Collection>
+    <TeamProject>Nemo</TeamProject>
+    <Area>Nemo\Exceptions\</Area>
+    <AssignedTo>Kim Vedvik (KONGSBERG\Kim-V)</AssignedTo>
+  </Application>
+</Applications>

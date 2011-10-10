@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="a99b8b81-6ad8-478a-ae28-9a91185b87f2" name="Activity1" linkedPackageId="4b98e5ac-fa60-421d-9dbc-0fdc275bc298" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="65a93364-382b-4188-b29e-6cb0ecbc9703">
+      <elementDefinition Id="2d974b46-a0ad-4369-8bea-cc65f746bf3b" />
+      <body>All logs are located at:
+%PROGRAMDATA%\Inmeta\ExceptionReporter
+They are configured with Log4Net using rollingfile.
+Layout is tekst not XML. The text formating layout is: "%date [%thread] %-5level %logger - %message%newline
+</body>
+      <annotatedElements>
+        <opaqueActionMoniker Id="5a84ef23-5af8-4fab-863f-75c5fe0d6835" LastKnownName="Log Exception as Undelivered" />
+        <opaqueActionMoniker Id="0bd5d62c-4717-46cc-8399-67315950e876" LastKnownName="Log delivery failure" />
+        <opaqueActionMoniker Id="c8fed8b4-878f-4b3d-a3a6-e24a2c5f8ea8" LastKnownName="Log Delivered Exception " />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="10c12dc9-ac33-453e-8b94-8342311a2ffd" name="Activity1" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="5f335422-7dd9-4f26-bec7-bf884cab95fb" />
+        <nodes>
+          <initialNode Id="d8436381-b5a9-4209-ad3a-3a203090076e" name="ExceptionIsTrapped" isLeaf="false">
+            <elementDefinition Id="f4cb3688-1d8c-41a2-942c-14372b9ee494" />
+            <flowNodeTargets>
+              <controlFlow Id="a2c16961-46b3-42b6-8af0-beb9c68e0a5b" isLeaf="false">
+                <decisionNodeMoniker Id="ee06ee65-553d-44a8-8e74-42aad0508e83" LastKnownName="Is this exception same as previous" />
+                <elementDefinition Id="b76b9d16-a1f3-4823-9f26-848fe012a045" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <decisionNode Id="ee06ee65-553d-44a8-8e74-42aad0508e83" name="Is this exception same as previous" isLeaf="false">
+            <elementDefinition Id="f1f0befe-2fc6-4b17-b656-c1e8b1009883" />
+            <flowNodeTargets>
+              <controlFlow Id="8e586bd3-2b90-439a-a0b0-bcd3e6690399" guard="Exception is same as previous" isLeaf="false">
+                <activityFinalNodeMoniker Id="3ec5976f-ded5-4ec6-93b3-413a68ca1546" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="04ae1e28-8088-4a79-84b1-89ff5b90d4ee" />
+              </controlFlow>
+              <controlFlow Id="7e41b1c8-226e-436c-95d8-6e279f2b72bb" guard="Exception is not same as previous" isLeaf="false">
+                <decisionNodeMoniker Id="8c68e467-18fb-45a6-8a06-f37837bc33ac" LastKnownName="Decision1" />
+                <elementDefinition Id="1f474a9d-ed5c-4053-be06-e19bfaf4a64a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <activityFinalNode Id="3ec5976f-ded5-4ec6-93b3-413a68ca1546" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="58075b7b-e433-4753-84ec-eaeb550123c3" />
+          </activityFinalNode>
+          <decisionNode Id="8c68e467-18fb-45a6-8a06-f37837bc33ac" name="Decision1" isLeaf="false">
+            <elementDefinition Id="8889d9e2-12da-423f-9e1c-3fa2c8053baf" />
+            <flowNodeTargets>
+              <controlFlow Id="364e2b30-316b-4498-a83a-4a3994e841f2" guard="Not 'UseReportingUI'" isLeaf="false">
+                <callBehaviorActionMoniker Id="4d38f7fb-7a84-4226-8ad9-387f4acd5caf" LastKnownName="Post to Exception Service" />
+                <description>The UseReportingUI is either controlled through the API (ExceptionRegistrator.UseReportingUI) or through the &lt;appsettings&gt; section.
+
+During the call to ExceptionRegistrator.Register() the setting &lt;add key="ExceptionReporterUseGUI" /&gt;  in the &lt;appsettings&gt; section 
+in the hosting appliction.exe.connfig will override any previous call to ExceptionRegistrator.UseReportingUI.
+After that subsequent calls to ExceptionRegistrator.UseReportingUI will govern.
+
+</description>
+                <elementDefinition Id="288775fe-8910-47a0-91f5-4720cd721c35" />
+              </controlFlow>
+              <controlFlow Id="a5c7fd89-f900-431e-9227-46ac01c11a3f" guard="UseReportingUI is true" isLeaf="false">
+                <opaqueActionMoniker Id="f57e3de2-f261-4ee2-9fc0-72294fb4bf53" LastKnownName="Create user friendlty Exception text. " />
+                <elementDefinition Id="6c87e197-d7f9-466b-a363-3e09369da497" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="f57e3de2-f261-4ee2-9fc0-72294fb4bf53" name="Create user friendlty Exception text. " isLeaf="false">
+            <elementDefinition Id="787708bb-235e-4f5e-ba3d-19a55cb02ea6" />
+            <flowNodeTargets>
+              <controlFlow Id="32497af1-8778-4f0e-9419-b0acf0476278" isLeaf="false">
+                <opaqueActionMoniker Id="4dab2141-793a-4bca-90d7-24845ae957e6" LastKnownName="Call ReportForm to display text and capture description from user." />
+                <elementDefinition Id="efb0a4a8-79f1-46c3-b246-bad8c396dc8d" />
+              </controlFlow>
+            </flowNodeTargets>
+            <body>The user friendly text is:
+1) Exception Message 
+2) Reverse StackTrace with inner exceptions.
+
+This is the text which will be displayed to the user.</body>
+          </opaqueAction>
+          <opaqueAction Id="4dab2141-793a-4bca-90d7-24845ae957e6" name="Call ReportForm to display text and capture description from user." isLeaf="false">
+            <elementDefinition Id="de4d02b2-cb1d-401b-9273-8816af00b2ef" />
+            <flowNodeTargets>
+              <controlFlow Id="60ef0ee1-a757-4a50-b240-f3ba413c8325" isLeaf="false">
+                <forkNodeMoniker Id="748772f6-42a4-4a4e-9987-f24277689af9" LastKnownName="Fork1" />
+                <elementDefinition Id="2e404322-3db7-42f0-87c6-ab4887f416c3" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <sendSignalAction Id="6448df00-f678-49de-a0ff-1851cd2c255b" name="DoPost" isLeaf="false">
+            <description>The user click decides to post the exception</description>
+            <elementDefinition Id="47befc27-e7a8-4cba-84d7-72a1257059d0" />
+            <flowNodeTargets>
+              <controlFlow Id="9ca914e3-1621-4955-a7ce-c12928642754" isLeaf="false">
+                <acceptEventActionMoniker Id="17723b42-585f-4ab1-a76c-4d10911ddaea" LastKnownName="DoPost" />
+                <elementDefinition Id="e311dce6-55ff-40e5-9693-ee56eb90e960" />
+              </controlFlow>
+            </flowNodeTargets>
+          </sendSignalAction>
+          <forkNode Id="748772f6-42a4-4a4e-9987-f24277689af9" name="Fork1" isLeaf="false">
+            <elementDefinition Id="c14cb46c-0d48-43c5-b694-adc886cfa01f" />
+            <flowNodeTargets>
+              <controlFlow Id="f966778f-bd44-4e72-96c2-52b72859f032" isLeaf="false">
+                <sendSignalActionMoniker Id="6448df00-f678-49de-a0ff-1851cd2c255b" LastKnownName="DoPost" />
+                <elementDefinition Id="8f64097c-dec7-492e-be74-9b29652a274b" />
+              </controlFlow>
+              <controlFlow Id="fe9c169b-3e9e-4ee1-a039-cb052eaa3eb0" isLeaf="false">
+                <sendSignalActionMoniker Id="3336baaa-1a4d-4f26-8a58-0044f23a23c2" LastKnownName="DoCancel" />
+                <elementDefinition Id="b307a12f-cbf5-4a3d-b6d1-31e5b0231bca" />
+              </controlFlow>
+            </flowNodeTargets>
+          </forkNode>
+          <sendSignalAction Id="3336baaa-1a4d-4f26-8a58-0044f23a23c2" name="DoCancel" isLeaf="false">
+            <description>The user descides to not send the exception to TFS.</description>
+            <elementDefinition Id="288404b9-80f6-449c-b09b-11936682d828" />
+            <flowNodeTargets>
+              <controlFlow Id="bb46ed4b-5fba-4f7d-88b6-219f1a4ae73b" isLeaf="false">
+                <acceptEventActionMoniker Id="cde06547-ef85-4b63-8dc7-542fbdc5d183" LastKnownName="Do Cancel" />
+                <elementDefinition Id="c4e62aee-f4b5-487b-856b-ef5377b0daea" />
+              </controlFlow>
+            </flowNodeTargets>
+          </sendSignalAction>
+          <acceptEventAction Id="17723b42-585f-4ab1-a76c-4d10911ddaea" name="DoPost" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="68e8a06a-36a4-43e0-aa26-0619be47db87" />
+            <flowNodeTargets>
+              <controlFlow Id="9a057750-bb2a-486e-bd76-f321d605779f" isLeaf="false">
+                <callBehaviorActionMoniker Id="4d38f7fb-7a84-4226-8ad9-387f4acd5caf" LastKnownName="Post to Exception Service" />
+                <elementDefinition Id="31cadc29-6e6c-4b58-9059-b8955b7e0c1d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </acceptEventAction>
+          <acceptEventAction Id="cde06547-ef85-4b63-8dc7-542fbdc5d183" name="Do Cancel" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="be8f12bf-35e7-4aa1-bd99-37c2c078dedf" />
+            <flowNodeTargets>
+              <controlFlow Id="41ec6f53-d145-4dcd-9f80-5cfff6e97bec" isLeaf="false">
+                <opaqueActionMoniker Id="5a84ef23-5af8-4fab-863f-75c5fe0d6835" LastKnownName="Log Exception as Undelivered" />
+                <elementDefinition Id="905480ad-8873-4786-8c62-9e74238d3277" />
+              </controlFlow>
+            </flowNodeTargets>
+          </acceptEventAction>
+          <opaqueAction Id="5a84ef23-5af8-4fab-863f-75c5fe0d6835" name="Log Exception as Undelivered" isLeaf="false">
+            <elementDefinition Id="ad7d483c-42bc-4d1b-a897-9f7dcaac5571" />
+            <flowNodeTargets>
+              <controlFlow Id="271f8962-41e9-40ff-84e3-b265e6c5d2b3" isLeaf="false">
+                <activityFinalNodeMoniker Id="3ec5976f-ded5-4ec6-93b3-413a68ca1546" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="82208b11-2c0f-4a2d-bb2a-40d74d475658" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="be5d7d27-7966-47a6-9829-5684acad6779" name="Decision2" isLeaf="false">
+            <elementDefinition Id="06580ad0-4b30-4a27-9e7a-063bb71e149d" />
+            <flowNodeTargets>
+              <controlFlow Id="e373270e-245e-4af1-a620-6e07c58222cd" guard="Delivered to web service" isLeaf="false">
+                <opaqueActionMoniker Id="c8fed8b4-878f-4b3d-a3a6-e24a2c5f8ea8" LastKnownName="Log Delivered Exception " />
+                <elementDefinition Id="b7817926-1f8d-4606-bb91-6c3764e153a0" />
+              </controlFlow>
+              <controlFlow Id="2a0d7156-1d76-46c5-b39a-badce201ac4c" guard="Deliver Failure" isLeaf="false">
+                <opaqueActionMoniker Id="0bd5d62c-4717-46cc-8399-67315950e876" LastKnownName="Log delivery failure" />
+                <elementDefinition Id="fb026c60-0b2b-4643-b605-4378a6e2f96c" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="0bd5d62c-4717-46cc-8399-67315950e876" name="Log delivery failure" isLeaf="false">
+            <elementDefinition Id="a71874ef-3a50-4741-9c79-dc2525d790fa" />
+            <flowNodeTargets>
+              <controlFlow Id="980461fd-d08e-4e96-8279-11bea0ada04e" isLeaf="false">
+                <activityFinalNodeMoniker Id="3ec5976f-ded5-4ec6-93b3-413a68ca1546" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="ecbc80e8-c73a-4962-9a05-bd324fc18b3e" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <callBehaviorAction Id="4d38f7fb-7a84-4226-8ad9-387f4acd5caf" name="Post to Exception Service" isLeaf="false">
+            <elementDefinition Id="293aec6f-6fe9-4615-aa52-46a7d78dae74" />
+            <flowNodeTargets>
+              <controlFlow Id="4d5f93ce-7b02-45f8-899d-024506753217" isLeaf="false">
+                <decisionNodeMoniker Id="be5d7d27-7966-47a6-9829-5684acad6779" LastKnownName="Decision2" />
+                <elementDefinition Id="03c1da71-66bc-415b-8b28-79c9f71015a3" />
+              </controlFlow>
+            </flowNodeTargets>
+          </callBehaviorAction>
+          <opaqueAction Id="c8fed8b4-878f-4b3d-a3a6-e24a2c5f8ea8" name="Log Delivered Exception " isLeaf="false">
+            <elementDefinition Id="a2d6e668-6cb8-4949-a994-aaab9b9f8af6" />
+            <flowNodeTargets>
+              <controlFlow Id="05c94979-d49b-4901-8c61-0fd000e6b12b" isLeaf="false">
+                <activityFinalNodeMoniker Id="3ec5976f-ded5-4ec6-93b3-413a68ca1546" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="aed615f5-3b8f-4301-87c5-e65a7ec45348" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="4b98e5ac-fa60-421d-9dbc-0fdc275bc298" name="ExceptionReporterModels">
+    <elementDefinition Id="73612808-557f-49ba-9a35-e4e008f1a8d3" />
+    <profileInstances>
+      <packageHasProfileInstances Id="85b46b30-1425-4405-8cb6-4eebf70a1aef">
+        <profileInstance Id="1e931e4d-253c-451f-ae30-6a9af9494cf3" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="8a79461a-b348-4f73-a50d-3aebd3b876e3">
+        <profileInstance Id="84054978-770a-45fe-a719-ed9e76f08822" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</activityRootModel>

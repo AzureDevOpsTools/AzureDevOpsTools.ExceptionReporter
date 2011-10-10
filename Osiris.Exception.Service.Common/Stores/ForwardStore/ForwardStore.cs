@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Text;
+using Inmeta.Exception.Common;
+using Inmeta.Exception.Service.Common.Services;
+
+namespace Inmeta.Exception.Service.Common.Stores.ForwardStore
+{
+    public class ForwardStore
+    {
+        private Uri _serverForwardingService { get; set; }
+
+        public ForwardStore(Uri serverForwardingService)
+        {
+            _serverForwardingService = serverForwardingService;
+        }
+
+        public void Forward(ExceptionEntity ex)
+        {
+            if (_serverForwardingService != null)
+                Channel.AddNewApplicationException(ex);
+        }
+
+        private static readonly object _synch = new object();
+        private static volatile WebServiceClient<IExceptionService> _client;
+
+        private IExceptionService Channel
+        {
+            get
+            {
+                if (_client == null)
+                {
+                    lock (_synch)
+                    {
+                        if (_client == null)
+                        {
+                            //UriBuilder build = new UriBuilder(System.IO.Path.Combine(ServiceSettings.ServiceUrl, "Service.asmx"));
+                            _client = new WebServiceClient<IExceptionService>(_serverForwardingService.ToString());
+                        }
+                    }
+                }
+                return _client.Channel;
+            }
+        }
+    }
+}

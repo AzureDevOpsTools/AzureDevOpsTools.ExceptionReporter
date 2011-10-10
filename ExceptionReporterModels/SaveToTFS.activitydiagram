@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="c47e2c21-d662-4d56-a772-b33ebf769849" name="SaveToTFS" linkedPackageId="54342f1a-d8b9-4816-acaa-6b9a294655b5" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="24fe4d25-f993-4920-a6fd-503dc84fd7b6" name="SaveToTFS" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="0b25c3bd-94dc-4442-b57e-1589ef7629db" />
+        <nodes>
+          <initialNode Id="a3db99d4-0972-43cd-8754-19b816e717b7" name="Initial1" isLeaf="false">
+            <elementDefinition Id="524c076c-8e8c-4339-9746-4045ccfd6a5c" />
+            <objectFlowTargets>
+              <objectFlow Id="59234fc4-9463-4a01-82b3-6054ad70c227" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="02b19775-b785-4146-970f-62c3fe36a910" LastKnownName="ApplicationInfo" />
+                <elementDefinition Id="24090911-b67d-45df-aec5-0eeb7266d9e7" />
+              </objectFlow>
+            </objectFlowTargets>
+          </initialNode>
+          <opaqueAction Id="1a064a50-cb2b-4264-9718-1f7cf9ad164b" name="Connect to TFS." isLeaf="false">
+            <elementDefinition Id="d1669281-e24c-4831-abb1-d4eb0843d1b0" />
+            <objectFlowTargets>
+              <objectFlow Id="80a995cf-5f15-417c-bd44-c5a1ce77ed6e" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="e2ba4d88-7804-4fbd-a3bb-289a087e2559" LastKnownName="ApplicationInfo" />
+                <elementDefinition Id="8dac1ee8-c3ee-457c-b06e-57298839ba26" />
+              </objectFlow>
+            </objectFlowTargets>
+            <body>Today credentials are CredentialCache.DefaultNetworkCredentials;
+Thus the credentials the NT service/web service are executed under must have assigned access to the TFS. 
+I assume means configure AD users properly. 
+Another way of doing it is to impersonate using username/password/domain parsed from 
+&lt;appsettings&gt; parsed from the config file (app.exe.config/web.config).
+
+</body>
+          </opaqueAction>
+          <objectNode Id="02b19775-b785-4146-970f-62c3fe36a910" name="ApplicationInfo" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="34f468f5-f732-4471-8576-8d32e97fbc31" />
+            <objectFlowTargets>
+              <objectFlow Id="6101295d-51e5-487d-8fd6-d0c4ae496023" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <opaqueActionMoniker Id="1a064a50-cb2b-4264-9718-1f7cf9ad164b" LastKnownName="Connect to TFS." />
+                <elementDefinition Id="813b3590-32b2-4d0c-b707-40f4bdc84f77" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="75472b07-93d0-4d63-90dd-45978d4caf8d" name="2147483647" value="2147483647">
+                <elementDefinition Id="93b8e955-fb40-42a4-b44d-39be5891f994" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <opaqueAction Id="d6969cd7-b142-4e9f-b08c-18c62701fb6e" name="Search TFS for equal exception items" isLeaf="false">
+            <elementDefinition Id="8bda5221-ad49-49f7-b8a5-811ff186d275" />
+            <flowNodeTargets>
+              <controlFlow Id="39d74b53-95da-4a20-95e3-e3e434bdbb94" isLeaf="false">
+                <decisionNodeMoniker Id="c9a1f71f-4a91-45b1-a2dd-42c641a4ef79" LastKnownName="Decision1" />
+                <elementDefinition Id="93e325e6-a065-4279-a313-7c24eb916fd9" />
+              </controlFlow>
+            </flowNodeTargets>
+            <body>Find any existing WI with the same stacktrace CRC in the team project spesified in the application info</body>
+          </opaqueAction>
+          <objectNode Id="e2ba4d88-7804-4fbd-a3bb-289a087e2559" name="ApplicationInfo" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="c9b3f925-c330-4dd8-a8d6-9c7f71af0aac" />
+            <objectFlowTargets>
+              <objectFlow Id="0bdfcc71-0028-4336-a73a-615a575be521" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <opaqueActionMoniker Id="d6969cd7-b142-4e9f-b08c-18c62701fb6e" LastKnownName="Search TFS for equal exception items" />
+                <elementDefinition Id="d48fb930-8eed-48c4-926f-1386665eda9a" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="5cb93abf-d6cb-4afe-9cf4-c872bb1264bc" name="2147483647" value="2147483647">
+                <elementDefinition Id="e690f4dd-a9c5-49d9-9afa-f9cde4c449d5" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <decisionNode Id="c9a1f71f-4a91-45b1-a2dd-42c641a4ef79" name="Decision1" isLeaf="false">
+            <elementDefinition Id="de7e2ff1-ae6d-4d25-856a-60a52b5f6590" />
+            <flowNodeTargets>
+              <controlFlow Id="381429b5-2ceb-4c18-af8b-735593efcb50" guard="Exception does not exists in TFS" isLeaf="false">
+                <opaqueActionMoniker Id="e31229b3-b518-40d4-be30-8363135e6453" LastKnownName="Create new WI" />
+                <elementDefinition Id="234457e4-5c13-4b9b-ab3a-6baf74bb6d75" />
+              </controlFlow>
+              <controlFlow Id="350f38b1-1880-4248-928a-19d2fcfa6615" guard="Exception allready exists in TFS" isLeaf="false">
+                <opaqueActionMoniker Id="59a91054-2640-4667-a27d-68d93b8dac60" LastKnownName="Update existing WI" />
+                <elementDefinition Id="02dba894-a430-432f-bb16-dff1fd07f722" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="59a91054-2640-4667-a27d-68d93b8dac60" name="Update existing WI" isLeaf="false">
+            <elementDefinition Id="dcea5dff-1be9-48ad-b300-f7637ad3976f" />
+            <flowNodeTargets>
+              <controlFlow Id="9639ec56-4a25-4022-bdc5-3dafc7f21198" isLeaf="false">
+                <mergeNodeMoniker Id="5ae4df98-45df-4804-994c-6d735285c289" LastKnownName="Merge1" />
+                <elementDefinition Id="7a4cc71e-6578-45a1-a363-b54bc57b430f" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="e31229b3-b518-40d4-be30-8363135e6453" name="Create new WI" isLeaf="false">
+            <elementDefinition Id="5c8aa93d-a91b-4058-9d8c-4f73d3b8a9e3" />
+            <flowNodeTargets>
+              <controlFlow Id="b1f0218d-0ad0-4ac9-8499-8d349b50883a" isLeaf="false">
+                <mergeNodeMoniker Id="5ae4df98-45df-4804-994c-6d735285c289" LastKnownName="Merge1" />
+                <elementDefinition Id="f36fbd75-ab2e-4732-aa2b-e274cc55a095" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <mergeNode Id="5ae4df98-45df-4804-994c-6d735285c289" name="Merge1" isLeaf="false">
+            <elementDefinition Id="65285b81-3078-4cf4-9a09-eb022b72b719" />
+            <flowNodeTargets>
+              <controlFlow Id="6940e4b7-1dd7-431d-a314-e1278402d313" isLeaf="false">
+                <opaqueActionMoniker Id="109d5a0a-053f-4566-956e-f8e09cc27bbd" LastKnownName="Save WI" />
+                <elementDefinition Id="c4c62a01-5971-4a8c-89e5-c360c8642ced" />
+              </controlFlow>
+            </flowNodeTargets>
+          </mergeNode>
+          <opaqueAction Id="109d5a0a-053f-4566-956e-f8e09cc27bbd" name="Save WI" isLeaf="false">
+            <elementDefinition Id="27870c94-09d7-4532-8891-fb980c5ae379" />
+            <flowNodeTargets>
+              <controlFlow Id="1637ab6d-4f4c-427f-affe-9282dafcede3" isLeaf="false">
+                <decisionNodeMoniker Id="323da89e-1b91-43df-a6b7-38d028795fd1" LastKnownName="Decision2" />
+                <elementDefinition Id="331cfbec-4ac3-4eaa-bf2c-112123b6c52b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="b9d338e2-9a6a-4d27-a2d2-34b571f252b2" name="Create Event log on invalid WI" isLeaf="false">
+            <elementDefinition Id="9401780a-67c7-4c37-ad64-dc99d852a40b" />
+            <flowNodeTargets>
+              <controlFlow Id="7d12594a-86a3-4dd4-be8d-b82dd22b1f6d" isLeaf="false">
+                <activityFinalNodeMoniker Id="f2fc74df-fb02-42c0-aaf4-c441d0415bd5" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="6e3866d0-d92a-481b-bf01-8943d223fcd7" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="323da89e-1b91-43df-a6b7-38d028795fd1" name="Decision2" isLeaf="false">
+            <elementDefinition Id="71a92540-70dd-4afb-b7ba-43237d7c85df" />
+            <flowNodeTargets>
+              <controlFlow Id="419c20af-40a0-4b0c-b068-6ab264ece75d" guard="WI is invalid" isLeaf="false">
+                <opaqueActionMoniker Id="b9d338e2-9a6a-4d27-a2d2-34b571f252b2" LastKnownName="Create Event log on invalid WI" />
+                <elementDefinition Id="97e5fb2f-d141-477a-877d-ab81a2a94144" />
+              </controlFlow>
+              <controlFlow Id="7c780abd-082d-49a1-a60a-e81a5ab3fe3b" guard="WI is valid " isLeaf="false">
+                <activityFinalNodeMoniker Id="f2fc74df-fb02-42c0-aaf4-c441d0415bd5" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="6f6290ed-64e2-4e16-bee2-c73234a52fbf" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <activityFinalNode Id="f2fc74df-fb02-42c0-aaf4-c441d0415bd5" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="40f217d9-15ab-409b-ba21-4dc928a4ff0a" />
+          </activityFinalNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="54342f1a-d8b9-4816-acaa-6b9a294655b5" name="ExceptionReporterModels">
+    <elementDefinition Id="73612808-557f-49ba-9a35-e4e008f1a8d3" />
+    <profileInstances>
+      <packageHasProfileInstances Id="f822c33c-4263-4951-a394-718769fcc632">
+        <profileInstance Id="87708678-a3d3-48dd-af72-56a74c1794a1" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="07ec21ce-b250-446f-b8aa-c7f285ee8a5f">
+        <profileInstance Id="e6cac962-93b5-4bcc-b164-8ac87fa40ec8" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</activityRootModel>

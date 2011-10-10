@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b175f167-eaea-405f-b347-a9b9121c09c2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://vm-osiris-tfs2010:801/ExceptionQueueReader/ExceptionQueueReader.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ExceptionQueueReader.wsdl" MetadataType="Wsdl" ID="ddbb12a5-dd2a-4d9f-a156-3837c0286760" SourceId="1" SourceUrl="http://vm-osiris-tfs2010:801/ExceptionQueueReader/ExceptionQueueReader.svc?wsdl" />
+    <MetadataFile FileName="ExceptionQueueReader.disco" MetadataType="Disco" ID="bdab968f-cb9f-4c41-b923-0120064bc195" SourceId="1" SourceUrl="http://vm-osiris-tfs2010:801/ExceptionQueueReader/ExceptionQueueReader.svc?disco" />
+    <MetadataFile FileName="ExceptionQueueReader.xsd" MetadataType="Schema" ID="72f2cbb9-7be4-4b74-8436-f0092a4508da" SourceId="1" SourceUrl="http://vm-osiris-tfs2010:801/ExceptionQueueReader/ExceptionQueueReader.svc?xsd=xsd2" />
+    <MetadataFile FileName="ExceptionQueueReader1.xsd" MetadataType="Schema" ID="e275e4df-0a54-4031-950e-8d21b08a4449" SourceId="1" SourceUrl="http://vm-osiris-tfs2010:801/ExceptionQueueReader/ExceptionQueueReader.svc?xsd=xsd1" />
+    <MetadataFile FileName="ExceptionQueueReader2.xsd" MetadataType="Schema" ID="391041e1-5148-45e0-8531-98b015cbd9b7" SourceId="1" SourceUrl="http://vm-osiris-tfs2010:801/ExceptionQueueReader/ExceptionQueueReader.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

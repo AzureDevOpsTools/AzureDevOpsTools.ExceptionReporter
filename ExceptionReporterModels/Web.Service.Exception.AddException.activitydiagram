@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="61790864-08ce-4127-a44f-c48187d7caa6" name="Web.Service.Exception.AddException" linkedPackageId="9e9a67c6-ee86-4864-ae55-09ae5046f97b" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="6b09da8f-852c-42fb-b831-99f31331abc9" name="Web.Service.Exception.AddException" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="230e5224-b11f-4423-96e7-a250e75b5d30" />
+        <nodes>
+          <initialNode Id="ad094827-3b16-46dd-a6ee-bf3b4195a424" name="WebMethod.AddException" isLeaf="false">
+            <description>Received exception through webMethod</description>
+            <elementDefinition Id="c52c4aee-8287-47fc-89e1-6392df811402" />
+            <flowNodeTargets>
+              <controlFlow Id="2d44c308-ba2b-4e96-b282-7895e46ed384" isLeaf="false">
+                <opaqueActionMoniker Id="d669e67c-5c97-4123-ab8e-c9c12e393a6d" LastKnownName="Log To File" />
+                <elementDefinition Id="338c1d31-b0bd-4985-9d6d-86439c9b0d35" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <decisionNode Id="24e18e49-2172-444f-83fa-4d6162302e13" name="IsTFSEnabled" isLeaf="false">
+            <description>deceide if TFS logging is enabled</description>
+            <elementDefinition Id="3668adaf-e97c-4b3d-bc7b-5e6fb27cd606" />
+            <flowNodeTargets>
+              <controlFlow Id="26d88dac-c067-40fd-85ad-732febbe4a4d" guard="&lt;add key=&quot;UseTFS&quot; value=&quot;true&quot; /&gt;" isLeaf="false">
+                <callBehaviorActionMoniker Id="7962a1ba-6c20-468e-b0c9-b779421bd01a" LastKnownName="Save To TFS" />
+                <description>This key is located in web.config file</description>
+                <elementDefinition Id="4644ee0d-6c66-4d83-bea0-5acfb734cdd0" />
+              </controlFlow>
+              <controlFlow Id="278d369d-12c4-4112-baa7-cdc79ea23e45" guard="&lt;add key=&quot;UseTFS&quot; value=&quot;true&quot; /&gt;" isLeaf="false">
+                <activityFinalNodeMoniker Id="374c94b8-f0a1-4a4e-983b-2e2e468046e9" LastKnownName="ActivityFinal1" />
+                <description>This key is located in web.config file</description>
+                <elementDefinition Id="47ac9ff7-e869-4a29-9e40-8cefdf305f3d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="d669e67c-5c97-4123-ab8e-c9c12e393a6d" name="Log To File" isLeaf="false">
+            <description>Log exception in XML format</description>
+            <elementDefinition Id="039689c5-55cc-4948-aeb1-315b30f03f03" />
+            <flowNodeTargets>
+              <controlFlow Id="3ef591bb-8d40-4e79-ad07-877b60070e93" isLeaf="false">
+                <decisionNodeMoniker Id="24e18e49-2172-444f-83fa-4d6162302e13" LastKnownName="IsTFSEnabled" />
+                <elementDefinition Id="06da7f72-a8b7-48af-82de-d5b80d14a174" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="374c94b8-f0a1-4a4e-983b-2e2e468046e9" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="888fd23b-4c6c-4e6e-8283-623faf89b893" />
+          </activityFinalNode>
+          <callBehaviorAction Id="7962a1ba-6c20-468e-b0c9-b779421bd01a" name="Save To TFS" isLeaf="false">
+            <elementDefinition Id="083b556d-352c-4519-a15e-8cd370e21b26" />
+            <flowNodeTargets>
+              <controlFlow Id="d72b3120-e445-436f-b11c-f43258e54c1c" isLeaf="false">
+                <activityFinalNodeMoniker Id="374c94b8-f0a1-4a4e-983b-2e2e468046e9" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="0ae45260-ea88-4c81-8965-e8d52e4005f6" />
+              </controlFlow>
+            </flowNodeTargets>
+          </callBehaviorAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="9e9a67c6-ee86-4864-ae55-09ae5046f97b" name="ExceptionReporterModels">
+    <elementDefinition Id="73612808-557f-49ba-9a35-e4e008f1a8d3" />
+    <profileInstances>
+      <packageHasProfileInstances Id="d6927442-6a08-4ae5-8b30-d45d9c622259">
+        <profileInstance Id="91f410a9-e564-4e89-bd01-a678ca90b5b3" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="47c48cbf-ac08-4256-af00-d1de855a1d87">
+        <profileInstance Id="338f66ca-d372-46ea-83ff-650722537aff" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</activityRootModel>
