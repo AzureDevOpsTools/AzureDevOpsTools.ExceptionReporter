@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<TestSettings name="ExceptionReporter" id="88ea7571-1205-4665-836e-fcb303ba3b9a" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+<TestSettings name="Local" id="9eae92df-7306-4909-a343-9bbbbd51efbd" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
   <Description>These are default test settings for a local test run.</Description>
   <Deployment>
     <DeploymentItem filename="ReportUI\Inmeta.Exception.ReportUI.WPF\bin\Debug\Inmeta.Exception.Report.WPF.dll" />

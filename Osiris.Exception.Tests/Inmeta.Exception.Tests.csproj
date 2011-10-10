@@ -129,7 +129,6 @@
   <ItemGroup>
     <Compile Include="ExceptionRegistrator_ReportingFormType_Test.cs" />
     <Compile Include="ExceptionRegistratorTest.cs" />
-    <Compile Include="ExceptionReporterQueueTest.cs" />
     <Compile Include="ExceptionReportingTestBase.cs" />
     <Compile Include="ExceptionSettingsTest.cs" />
     <Compile Include="FileStore\FileStoreTests.cs" />

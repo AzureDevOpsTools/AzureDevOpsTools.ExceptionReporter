@@ -53,9 +53,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Reporter.U
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Inmeta.Exception.Reporter.Web.Setup", "Setup\Inmeta.Exception.Reporter.Web.Setup\Inmeta.Exception.Reporter.Web.vdproj", "{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test Configurations", "Test Configurations", "{27926DD6-D4D0-418F-AB51-EE9FE1A352A9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{27926DD6-D4D0-418F-AB51-EE9FE1A352A9}"
 	ProjectSection(SolutionItems) = preProject
-		ExceptionReporter.testsettings = ExceptionReporter.testsettings
+		Inmeta TFS Exception Reporter.vsmdi = Inmeta TFS Exception Reporter.vsmdi
+		Local.testsettings = Local.testsettings
 	EndProjectSection
 EndProject
 Global
@@ -119,6 +120,9 @@ Global
 		SccProjectTopLevelParentUniqueName15 = Inmeta\u0020TFS\u0020Exception\u0020Reporter.sln
 		SccProjectName15 = Setup/Inmeta.Exception.Reporter.Web.Setup
 		SccLocalPath15 = Setup\\Inmeta.Exception.Reporter.Web.Setup
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Inmeta TFS Exception Reporter.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
