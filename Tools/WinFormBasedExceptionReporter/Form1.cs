@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Threading;
 using System.Windows.Forms;
 using Inmeta.Exception.Reporter;
@@ -12,7 +13,7 @@ namespace ExceptionReporterTestApp
         public Form1()
         {
             InitializeComponent();
-            lblServiceUrl.Text = Program.ExceptionRegistrator.ServiceSettings.ServiceUrl.ToString();
+            lblServiceUrl.Text = ConfigurationManager.AppSettings["serviceURL"];
         }
 
         private void btnThreadFail_Click(object sender, EventArgs e)

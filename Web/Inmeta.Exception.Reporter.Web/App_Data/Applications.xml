@@ -8,10 +8,10 @@
 		<AssignedTo>Øistein Klevhus</AssignedTo>
 	</Application -->
 	<Application Name="Default">
-		<TFSServer>http://vm-osiris-tfs2010:8080/tfs</TFSServer>
-		<Collection>DefaultCollection</Collection>
-		<TeamProject>Lars_KM_sim_exception_test</TeamProject>
-		<Area>Lars_KM_sim_exception_test</Area>
-		<AssignedTo>oslabadmin</AssignedTo>
+		<TFSServer>http://tfs.osiris.no:8080/tfs</TFSServer>
+		<Collection>LabCollection</Collection>
+		<TeamProject>Natalia</TeamProject>
+		<Area>Natalia\ExceptionTestArea</Area>
+		<AssignedTo>natan</AssignedTo>
 	</Application>
 </Applications>

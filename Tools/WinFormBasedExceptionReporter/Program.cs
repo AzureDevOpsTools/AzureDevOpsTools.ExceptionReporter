@@ -19,14 +19,26 @@ namespace ExceptionReporterTestApp
         [STAThread]
         static void Main()
         {
-            //UriBuilder build = new UriBuilder(System.IO.Path.Combine(ServiceSettings.ServiceUrl, "Service.asmx"));
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
             var useGui = bool.Parse(ConfigurationManager.AppSettings["ExceptionReporterUseGUI"]);
-            
-            ExceptionRegistrator = new ExceptionRegistrator("WinFormExceptionReport", useGui,
-                new ServiceSettings(new Uri(ConfigurationManager.AppSettings["serviceURL"]), "",""));
+
+            try
+            {
+                // try to initialize granular plugin implementation
+                ExceptionRegistrator = new ExceptionRegistrator("WinFormExceptionReport", useGui,
+                new ServiceSettings(new Uri(ConfigurationManager.AppSettings["serviceURL"]), "", ""));
+            }
+            catch (ArgumentException)
+            {
+                // ok, wrong plugin, try another one
+                ExceptionRegistrator = new ExceptionRegistrator(
+                new ExceptionHandlerSettings(
+                    "KmTestWinFrom", true, true, ConfigurationManager.AppSettings["serviceURL"])
+                );
+            }
                 
             Application.Run(new Form1());
         }

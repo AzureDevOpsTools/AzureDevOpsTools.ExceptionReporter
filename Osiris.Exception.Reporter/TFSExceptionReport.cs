@@ -13,7 +13,7 @@ namespace Inmeta.Exception.Reporter
     [Serializable]
     public class TFSExceptionReport
     {
-        internal ExceptionEntity ExceptionEntity { get; private set; }
+        public ExceptionEntity ExceptionEntity { get; private set; }
 
         /// <summary>
         /// Create a new exception report item

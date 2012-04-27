@@ -1,94 +1,56 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using System.Diagnostics.Contracts;
 using System.Net;
 using System.Reflection;
-using System.Security;
-using System.Security.Principal;
-using System.Text;
+
 using Inmeta.Exception.Service.Common;
 
 namespace Inmeta.Exception.Reporter
 {
     public class ExceptionRegistrator
     {
-
         public ExceptionRegistrator(string applicationName, bool useReportingUI, ServiceSettings settings, string mefCatalog = null)
         {
             ReportingUI = useReportingUI;
             ApplicationName = applicationName;
             ServiceSettings = settings;
-            MEFCatalog = mefCatalog ?? AppDomain.CurrentDomain.RelativeSearchPath;
+            MEFCatalog = mefCatalog ?? (String.IsNullOrEmpty(AppDomain.CurrentDomain.RelativeSearchPath) ? System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) : AppDomain.CurrentDomain.RelativeSearchPath);
+
             Register();
         }
 
+        
+
+        public ExceptionRegistrator(ExceptionHandlerSettings properites, string mefCatalog = null)
+        {
+            _properites = properites;
+
+            MEFCatalog = mefCatalog ?? (String.IsNullOrEmpty(AppDomain.CurrentDomain.RelativeSearchPath) ? System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) : AppDomain.CurrentDomain.RelativeSearchPath);
+
+            Register();
+        }
+
+        private ExceptionHandlerSettings _properites = null;
+
         private  CompositionContainer _container;
+        private readonly ExceptionReportInterfaces _interfaces = new ExceptionReportInterfaces();
+        private readonly ExceptionReportPluginInterface _interfacesPl = new ExceptionReportPluginInterface();
+        public ServiceSettings ServiceSettings { get; private set; }
 
         private  readonly object _syncObject = new object();
 
         private  object PreviousException { get; set; }
         public  bool ReportingUI { get; set; }
-        private readonly ExceptionReportInterfaces _interfaces = new ExceptionReportInterfaces();
         private string MEFCatalog { get;set;}
-
         /// <summary>
         /// The application name.
         /// In nemo project this is HARD CODED TO "Instructor", should be able to report from another application name.
         /// </summary>
         private string ApplicationName { get; set; }
-
-        /// <summary>
-        /// Get Reporter, SAME AS NEMO, but more robust.
-        /// </summary>
-        private static string Reporter
-        {
-            get
-            {
-                try
-                {
-                    //same as NEMO, but with exception handling.
-                    var currentNtUser = WindowsIdentity.GetCurrent();
-                    return (currentNtUser != null) ? currentNtUser.Name : "n/a";
-                }
-                catch (SecurityException privEx)
-                {
-                    const string temp = "Insufficient privileges to extract the current user.";
-
-                    ReportLogger.Instance.LogExceptionsDuringDelivery(
-                        new System.Exception(temp, privEx));
-
-                    return temp;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Get VERSION, SAME AS NEMO, but more robust.
-        /// </summary>
-        private static string Version
-        {
-            get
-            {
-                string version;
-                try
-                {
-                    //SAME AS NEMO, but with exception handling
-                    version =
-                        Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                }
-                catch (System.Exception privEx)
-                {
-                    version =
-                        "Insufficient privileges to extract the correct assembly version";
-                    ReportLogger.Instance.LogExceptionsDuringDelivery(
-                        new System.Exception(version, privEx));
-                }
-
-                return version;
-            }
-        }
-
+        
+        
+        
         /// <summary>
         /// The exception beeing reported.
         /// </summary>
@@ -98,6 +60,8 @@ namespace Inmeta.Exception.Reporter
 
         internal  IExceptionTrappingStrategy TrappingStrategy { get { return _interfaces.TrappingStrategy; } }
 
+        internal  IExceptionHandler Handler { get { return _interfacesPl.ExceptionHandler; } }
+
         /// <summary>
         /// Call this to register the excpetion trapper. 
         /// This function should be the first function called in your application, it MUST be called before any forms are created. 
@@ -105,25 +69,34 @@ namespace Inmeta.Exception.Reporter
         /// </summary>
         private void Register()
         {
-            Contract.Ensures(_interfaces.Reportform != null);
-            Contract.Ensures(_interfaces.TrappingStrategy != null);
-
             //this code does not follow best practice in terms of compile time type checking. 
             //But this library will be used at the very low end of the component stack and we want 
             //to limit the amount of configuration bubbling up to application level to the minimum. 
 
-            //get the registered form type.
-            CreateViewAndTrapper();
+            //get the registered plugins.
+            CreatePlugins();
 
+            if ((Handler == null && _properites != null) || (Handler != null && _properites == null))
+            {
+                throw new ArgumentException(
+                    "Unable to initialize exception reporter. Plugin type mismatch at initialization.");
+            }
             //make the Trapper register unhandled exceptions. 
             //Since this is done differently depending on application type,
             //The delegate provided is the event to call when an excpetion occurs.
-            TrappingStrategy.RegisterExceptionEvents(OnException);
-
-            ReportLogger.Instance.LogExceptionReporterInfo("Registered with Trapper = " + TrappingStrategy + ", View = " + Reportform);
+            if (Handler == null)
+            {
+                TrappingStrategy.RegisterExceptionEvents(OnException);
+                ReportLogger.Instance.LogExceptionReporterInfo("Registered with Trapper = " + TrappingStrategy +
+                                                               ", View = " + Reportform);
+            }
+            else
+            {
+                Handler.Init(_properites);
+            }
         }
 
-        private  void OnException(System.Exception e, bool isTerminating)
+        private void OnException(System.Exception e, bool isTerminating)
         {
             //only report one exception at the time.
             ReportLogger.Instance.LogExceptionReporterInfo("Received exception (isTerminating = " + isTerminating + ")");
@@ -140,20 +113,19 @@ namespace Inmeta.Exception.Reporter
                 }
 
                 PreviousException = e;
-
                 TheException = e;
+
                 try
                 {
-                    //use ExceptionRegistrator.UseReportGUI to control if UI is to be used or not.
+                    //use ExceptionHandler.UseReportGUI to control if UI is to be used or not.
                     if (!ReportingUI)
                     {
-                        //Call OnPost directly
                         OnPost("Exception reported w/o description");
                         return;
                     }
 
                     //Same as NEMO project:
-                    var errorText = CreateExceptionText(e);
+                    var errorText = Common.Instance.CreateExceptionText(e);
 
                     //show the error to the user and collect a description of the error from the user.
                     try
@@ -169,7 +141,7 @@ namespace Inmeta.Exception.Reporter
                         OnCancel("THIS IS A AUTO GENERATED TEXT: Failed to show exception report.");
                         ReportLogger.Instance.LogExceptionsDuringDelivery(
                             new System.Exception("Failed to show exception report.",
-                                                 ex));
+                                                    ex));
                     }
                 }
                 finally
@@ -178,24 +150,25 @@ namespace Inmeta.Exception.Reporter
                         Reportform.ShowTerminateDialog();
                 }
             }
+            
         }
 
-        private  void OnCancel(string description)
+        private void OnCancel(string description)
         {
             //send cancel report exception to log
             var report =
                 new TFSExceptionReport(
                     ApplicationName,
-                    Reporter,
-                    Reporter,
+                    Common.Instance.Reporter,
+                    Common.Instance.Reporter,
                     TheException,
-                    Version,
+                    Common.Instance.Version,
                     description ?? "Exception reported w/o description");
 
             ReportLogger.Instance.LogUnDeliveredExceptions(report);
         }
 
-        private  void OnPost(string description)
+        private void OnPost(string description)
         {
             try
             {
@@ -203,9 +176,10 @@ namespace Inmeta.Exception.Reporter
                 var report = new TFSExceptionReport
                     (
                     ApplicationName,
-                    Reporter,
-                    Reporter, TheException,
-                    Version,
+                    Common.Instance.Reporter,
+                    Common.Instance.Reporter, 
+                    TheException,
+                    Common.Instance.Version,
                     description);
 
                 //post to service. 
@@ -229,7 +203,7 @@ namespace Inmeta.Exception.Reporter
             }
         }
 
-        private System.Exception Post(TFSExceptionReport report)
+        public System.Exception Post(TFSExceptionReport report)
         {
             try
             {
@@ -264,8 +238,41 @@ namespace Inmeta.Exception.Reporter
             return null;
         }
 
+        private void CreatePlugins()
+        {
+            var catalog = new DirectoryCatalog(MEFCatalog);
+            _container = new CompositionContainer(catalog);
 
-        private  void InvokeDeliveryFailure(string message)
+            bool registratorDiscovered = false;
+            try
+            {
+                var batch = new CompositionBatch();
+                batch.AddPart(_interfacesPl);
+                _container.Compose(batch);
+                registratorDiscovered = true;
+            }
+            catch (CompositionException)
+            {
+                // thats OK if no plugin of this type, then move on trying to load others
+                //throw new ArgumentException("Could not compose MEF Report View or Exception trapping strategy. " + Environment.NewLine + "Ensure that there exist one and only one assembly with export of IExceptionReportView and IExceptionTrappingStrategy in the runtime folder.");
+            }
+
+            if (!registratorDiscovered)
+            {
+                try
+                {
+                    var batch = new CompositionBatch();
+                    batch.AddPart(_interfaces);
+                    _container.Compose(batch);
+                }
+                catch (CompositionException ex)
+                {
+                    throw new ArgumentException("Could not compose MEF Report View or Exception trapping strategy. " + Environment.NewLine + "Ensure that there exist one and only one assembly with export of IExceptionReportView and IExceptionTrappingStrategy in the runtime folder.", ex);
+                }
+            }
+        }
+
+        private void InvokeDeliveryFailure(string message)
         {
             try
             {
@@ -278,51 +285,6 @@ namespace Inmeta.Exception.Reporter
                 //failed to show delivery failure... just log 
                 ReportLogger.Instance.LogExceptionsDuringDelivery(
                     new System.Exception("Failed to show delivery exception failure dialog.", ex));
-            }
-        }
-
-        /// <summary>
-        /// Creates a string formed by exception and inner exceptions.
-        /// It is the most inner exception that matters so I place it in front
-        /// This code is the same as from Nemo project, but more robust.
-        /// </summary>
-        private static string CreateExceptionText(System.Exception e)
-        {
-            Contract.Requires(e != null);
-
-            var errorText = new StringBuilder();
-
-            errorText.Append(FormStringFromException(e));
-
-            while (e.InnerException != null)
-            {
-                e = e.InnerException;
-                errorText.Insert(0, FormStringFromException(e));
-            }
-
-            return errorText.ToString();
-        }
-
-        private static string FormStringFromException(System.Exception ex)
-        {
-            return string.Format("{0} at: {1}" + Environment.NewLine, ex.Message, ex.StackTrace ?? "Empty stack trace");
-        }
-        
-        public  ServiceSettings ServiceSettings { get; private set; }
-
-        private  void CreateViewAndTrapper()
-        {
-            try
-            {
-                var catalog = new DirectoryCatalog(MEFCatalog);
-                _container = new CompositionContainer(catalog);
-                var batch = new CompositionBatch();
-                batch.AddPart(_interfaces);
-                _container.Compose(batch);
-            }
-            catch (CompositionException)
-            {
-                throw new ArgumentException("Could not compose MEF Report View or Exception trapping strategy. " + Environment.NewLine +"Ensure that there exist one and only one assembly with export of IExceptionReportView and IExceptionTrappingStrategy in the runtime folder.");
             }
         }
     }

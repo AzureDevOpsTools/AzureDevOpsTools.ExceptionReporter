@@ -31,6 +31,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
         private const string SourceFieldName = "Osiris.Exception.Source";
         private const string StackTraceFieldName = "Osiris.Exception.StackTrace";
         private const string StackChecksumFieldName = "Osiris.Exception.StackChecksum";
+        private const string AssemblyName = "Inmeta.AssemblyName";
 
         private TfsTeamProjectCollection tfs;
 
@@ -119,7 +120,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             if (String.IsNullOrEmpty(applicationName))
                 return;
             var currentAppName = wi.Fields[Application];
-            currentAppName.Value = applicationName;
+            currentAppName.Value = applicationName.Split('|')[0];
         }
 
         private void UpdateBuildVersion(string version, WorkItem wi)
@@ -178,7 +179,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             {
                 sComments = (string)commentField.Value;
             }
-            sComments += "\n" + username + ":\n" + comment;
+            sComments += "\r\n" + username + ":\r\n" + comment;
             commentField.Value = sComments;
 
 
@@ -244,7 +245,13 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
                 AreaPath = applicationInfo.Area
             };
 
-            wi.Fields[Application].Value = exception.ApplicationName;
+            var kmParams = exception.ApplicationName.Split('|');
+            wi.Fields[Application].Value = kmParams[0];
+            // Adding extended information to extended fields if they exists
+            if (wi.Fields.Contains(AssemblyName) && kmParams.Count() > 1)
+            {
+                wi.Fields[AssemblyName].Value = kmParams[1];
+            }
 
             wi.Fields[AssignedToFieldName].Value = applicationInfo.AssignedTo;
             wi.Fields[ExceptionReporterFieldName].Value = exception.Reporter;

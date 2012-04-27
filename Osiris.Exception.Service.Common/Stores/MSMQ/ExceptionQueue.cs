@@ -3,6 +3,7 @@ using System.Messaging;
 
 namespace Inmeta.Exception.Service.Common.Stores.MSMQ
 {
+    [Obsolete]
     public class ExceptionQueue : IDisposable
     {
         private readonly MessageQueue _messageQueue;

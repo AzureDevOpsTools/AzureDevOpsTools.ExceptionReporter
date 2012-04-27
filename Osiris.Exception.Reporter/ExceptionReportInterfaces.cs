@@ -10,4 +10,12 @@ namespace Inmeta.Exception.Reporter
         [Import]
         public IExceptionTrappingStrategy TrappingStrategy { get; private set; }
     }
+
+    public class ExceptionReportPluginInterface
+    {
+
+        [Import]
+        public IExceptionHandler ExceptionHandler { get; private set; }
+
+    }
 }
