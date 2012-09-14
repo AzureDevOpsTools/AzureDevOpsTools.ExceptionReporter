@@ -85,7 +85,7 @@ namespace Inmeta.ExceptionReporter.Km
             catch (TargetException)
             {
                 exceptionMethod = "N/A";
-                KmReportLogger.Instance.LogExceptionsDuringDelivery(new System.Exception("Class is late bound cannot determine method", ex));
+                KmReportLogger.Instance.LogExceptionsDuringDelivery(new TargetException("Class is late bound cannot determine method", ex));
             }
             return exceptionMethod;
         }
@@ -100,7 +100,7 @@ namespace Inmeta.ExceptionReporter.Km
             }
             catch (TargetException)
             {
-                KmReportLogger.Instance.LogExceptionsDuringDelivery(new System.Exception("Class is late bound cannot determine class", ex));
+                KmReportLogger.Instance.LogExceptionsDuringDelivery(new TargetException("Class is late bound cannot determine class", ex));
                 exceptionClass = "N/A";
             }
             return exceptionClass;

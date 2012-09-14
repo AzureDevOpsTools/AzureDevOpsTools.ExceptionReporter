@@ -40,8 +40,6 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
         public bool IsFixedAfterChangeset(int changeSetId)
         {
             var associatedChangesets = GetAssociatedChangeSets();
-
-
             return associatedChangesets.Any(changeset => changeset.ChangesetId > changeSetId);
         }
 
@@ -62,24 +60,6 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             var externalLinks = workItem.Links.OfType<ExternalLink>();
             return from externalLink in externalLinks let artifact = LinkingUtilities.DecodeUri(externalLink.LinkedArtifactUri) where String.Equals(artifact.ArtifactType, "Changeset", StringComparison.Ordinal) select versionControlServer.ArtifactProvider.GetChangeset(new Uri(externalLink.LinkedArtifactUri));
         }
-
-        //private IEnumerable<Changeset> GetAssociatedChangeSets()
-        //{
-        //    Contract.Ensures(Contract.Result<IEnumerable<Changeset>>() != null);
-
-        //    foreach (Link link in wi.Links)
-        //    {
-        //        var extLink = link as ExternalLink;
-        //        if (extLink != null)
-        //        {
-        //            var artifact = LinkingUtilities.DecodeUri(extLink.LinkedArtifactUri);
-        //            if (String.Equals(artifact.ArtifactType, "Changeset", StringComparison.Ordinal))
-        //            {
-        //                // Convert the artifact URI to Changeset object.
-        //                yield return versionControlServer.ArtifactProvider.GetChangeset(new Uri(extLink.LinkedArtifactUri));
-        //            }
-        //        }
-        //    }
-        //}
+       
     }
 }

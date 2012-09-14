@@ -1,9 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Inmeta.Exception.Service.Proxy.Reader.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
   <Profiles />
-  <Settings>
-    <Setting Name="Inmeta_Exception_Service_Proxy_Reader_ExceptionService_Service" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:2119/service.asmx</Value>
-    </Setting>
-  </Settings>
+  <Settings />
 </SettingsFile>

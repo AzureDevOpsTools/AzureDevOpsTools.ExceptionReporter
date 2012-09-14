@@ -107,7 +107,7 @@ namespace Inmeta.Exception.Reporter
                 if (PreviousException != null && e != null && PreviousException.ToString() == e.ToString())
                 {
                     ReportLogger.Instance.LogExceptionReporterInfo(
-                        new System.Exception("Trying to report on the same excpetion.", e).ToString());
+                        new ArgumentException("Trying to report on the same excpetion.", e).ToString());
                     //same as previous
                     return;
                 }
@@ -140,7 +140,7 @@ namespace Inmeta.Exception.Reporter
                     {
                         OnCancel("THIS IS A AUTO GENERATED TEXT: Failed to show exception report.");
                         ReportLogger.Instance.LogExceptionsDuringDelivery(
-                            new System.Exception("Failed to show exception report.",
+                            new InvalidOperationException("Failed to show exception report.",
                                                     ex));
                     }
                 }

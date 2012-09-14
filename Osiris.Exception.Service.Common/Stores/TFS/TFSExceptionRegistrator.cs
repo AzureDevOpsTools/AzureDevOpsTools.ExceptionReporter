@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using Inmeta.Exception.Service.Common.Sec;
+using Microsoft.TeamFoundation;
 using Microsoft.TeamFoundation.Client;
 using Microsoft.TeamFoundation.VersionControl.Client;
 using Microsoft.TeamFoundation.WorkItemTracking.Client;
@@ -43,6 +44,8 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
             ConnectToTfs(exceptionEntity, applicationInfo);
 
+            WorkItem wi = null;
+            WorkItem linkedWi = null;
             var workItems = new ExceptionWorkItemCollection(applicationInfo.TeamProject,
                                                             tfs.GetService<WorkItemStore>(),
                                                             tfs.GetService<VersionControlServer>(),
@@ -50,16 +53,27 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
             if (!workItems.HasOpenWorkItems && workItems.HasWorkItemsWithHigherChangeset)
             {
-                ServiceLog.DefaultLog.Info(
-                    "!workItems.HasOpenWorkItems && workItems.HasWorkItemsWithHigherChangeset. This exception will be ignored.");
-                return;
+                wi = workItems.GetWorkItemWithHigherChangeset();
+                // If not Open and new exception has higher version, we should create new wi with link to the old one
+                if (HasHigherVersion(exceptionEntity.Version, wi))
+                {
+                    linkedWi = wi;
+                    wi = null;
+                }
+            }
+            else
+            {
+                wi = workItems.OpenWorkItems.FirstOrDefault();
+                if (wi != null && HasLowerVersion(exceptionEntity.Version, wi))
+                {
+                    ServiceLog.DefaultLog.Info(String.Format("Exception with newer version already exists with ID={0}. Coming exception will be dropped.", wi.Id));
+                    return;
+                }
             }
 
-            var wi = workItems.OpenWorkItems.FirstOrDefault();
-
-            wi = wi != null
+            wi = (wi != null)
                      ? UpdateExisitingWorkItem(wi, exceptionEntity)
-                     : CreateNewException(exceptionEntity, applicationInfo);
+                     : CreateNewException(exceptionEntity, applicationInfo, linkedWi);
 
             if (wi == null)
                 return;
@@ -93,12 +107,20 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
                 ServiceLog.DefaultLog.Warn(String.Format("Links is null for work item {0}. Work Item  will not be updated", wi.Id));
                 return wi;
             }
+
+            if (IsWorkItemFixed(wi, exception))
+            {
+                //if (exception.Version >  )
+                ServiceLog.DefaultLog.Info(String.Format("Workitem {0} is fixed, update incident count, add comment ", wi.Id));
+                UpdateCommentAndRefCount(exception.Comment, wi, exception.Username);
+                return wi;
+            }
+
             //If not limit reached increment count, and append comment.
-            if (!IsLimitReached(wi) && !IsWorkItemFixed(wi, exception))
+            if (!IsLimitReached(wi))
             {
                 ServiceLog.DefaultLog.Info(String.Format("Updating existing Workitem {0}", wi.Id));
                 UpdateCommentAndRefCount(exception.Comment, wi, exception.Username);
-                
                 UpdateBuildVersion(exception.Version, wi);
                 UpdateApplication(exception.ApplicationName, wi);
             }
@@ -141,12 +163,10 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             Contract.Requires(wi.Links != null);
             Contract.Requires(exception != null);
 
+            // if no changeSet specified for exception, set to 0
             int changeSetId;
-            if (!int.TryParse(exception.ChangeSet, out changeSetId))
-            {
-                changeSetId = int.MaxValue;
-            }
-
+            int.TryParse(exception.ChangeSet, out changeSetId);
+            
             var vcs = tfs.GetService<VersionControlServer>();
             if (vcs == null)
             {
@@ -154,8 +174,37 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             }
 
             var state = new ExceptionState(wi, vcs);
-            //Check if workitem is closed/resolved.
+
+            //Check if workitem is closed/resolved with later changeset than in exception
             return !state.IsOpen && state.IsFixedAfterChangeset(changeSetId);
+        }
+
+        private bool HasHigherVersion(string buildVersion, WorkItem wi)
+        {
+            if (!wi.Fields.Contains(BuildVersionFieldName))
+                return false;
+
+            var wiVersion = wi.Fields[BuildVersionFieldName].Value.ToString();
+            return CompareVersions(buildVersion, wiVersion);
+        }
+
+        private bool HasLowerVersion(string buildVersion, WorkItem wi)
+        {
+            if (!wi.Fields.Contains(BuildVersionFieldName))
+                return false;
+
+            var wiVersion = wi.Fields[BuildVersionFieldName].Value.ToString();
+            return CompareVersions(wiVersion, buildVersion);
+        }
+
+        private bool CompareVersions(string ver1, string ver2)
+        {
+            if (String.IsNullOrEmpty(ver1)) ver1 = "0.0.0";
+            if (String.IsNullOrEmpty(ver2)) ver2 = "0.0.0";
+
+            var a = new Version(ver1);
+            var b = new Version(ver2);
+            return a > b;
         }
 
         private void UpdateCommentAndRefCount(string comment, WorkItem wi, string username)
@@ -207,9 +256,8 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             Contract.Ensures(tfs != null);
             Contract.Ensures(exception.StackTrace != null);
 
-
             //new NetworkCredential(@"os-lab\oslabadmin", "Y67uJi)9");
-            var credentials = CredentialCache.DefaultNetworkCredentials;
+            var credentials = CredentialCache.DefaultNetworkCredentials;//new NetworkCredential(@"partner\xNataliaA", "xNataliaA62");//
 
             tfs = new TfsTeamProjectCollection(new Uri(applicationInfo.TfsServer + "/" + applicationInfo.Collection), credentials);
             tfs.EnsureAuthenticated();
@@ -229,7 +277,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             return teamProject.WorkItemTypes[ExceptionWorkItemType];
         }
 
-        private WorkItem CreateNewException(ExceptionEntity exception, IApplicationInfo applicationInfo)
+        private WorkItem CreateNewException(ExceptionEntity exception, IApplicationInfo applicationInfo, WorkItem linkedWi)
         {
             Contract.Requires(exception != null);
             Contract.Requires(exception.StackTrace != null);
@@ -268,7 +316,27 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             wi.Fields[StackTraceFieldName].Value = exception.StackTrace;
             wi.Fields[StackChecksumFieldName].Value = (int)Crc32.GetStreamCrc32(exception.StackTrace);
 
+            if (linkedWi != null)
+            {
+                AddLinkedWorkItem(linkedWi, wi);
+            }
+            
             return wi;
+        }
+
+        private void AddLinkedWorkItem(WorkItem linkedWi, WorkItem wi)
+        {
+            try
+            {
+                var rl = new RelatedLink(linkedWi.Id);
+                wi.Links.Add(rl);
+            }
+            catch (System.Exception ex)
+            {
+                ServiceLog.DefaultLog.Warn(
+                    String.Format("Failed to link work item {0} while create new exception with stackTrace CRC {1}",
+                                  linkedWi.Id, wi.Fields[StackChecksumFieldName].Value) + ex.Message);
+            }
         }
 
         protected virtual void Dispose(bool disposing)

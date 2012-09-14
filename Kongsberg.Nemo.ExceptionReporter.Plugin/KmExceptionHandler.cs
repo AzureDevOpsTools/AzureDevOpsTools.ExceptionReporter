@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using System.IO;
 using System.Threading;
 using Inmeta.Exception.Reporter;
 using Inmeta.Exception.Reporter.TFSExeptionService;
@@ -40,7 +41,7 @@ namespace Inmeta.ExceptionReporter.Km
             {
                 if (_previousException != null && e != null && _previousException.GetHashCode() == e.GetHashCode())
                 {
-                    KmReportLogger.Instance.LogInfo(new System.Exception("Trying to report on the same excpetion.", e).ToString());
+                    KmReportLogger.Instance.LogInfo(new ArgumentException("Trying to report on the same excpetion.", e).ToString());
                     return;
                 }
 
@@ -106,7 +107,7 @@ namespace Inmeta.ExceptionReporter.Km
                         KmReportLogger.Instance.LogToFile(report);
 
                         KmReportLogger.Instance.LogExceptionsDuringDelivery(
-                            new System.Exception("Failed to show exception report.",
+                            new InvalidOperationException("Failed to show exception report.",
                                                  ex));
                     }
                 }
@@ -121,7 +122,7 @@ namespace Inmeta.ExceptionReporter.Km
                 {
                     //ignore...
                 }
-                KmReportLogger.Instance.LogInfo(new System.Exception("Report form is temrminating.", terminate).ToString());
+                KmReportLogger.Instance.LogInfo(new ThreadStateException("Report form is terminating.", terminate).ToString());
             }
             finally
             {
@@ -186,7 +187,7 @@ namespace Inmeta.ExceptionReporter.Km
                 if (result != null)
                 {
                     KmReportLogger.Instance.LogExceptionsDuringDelivery(
-                            new System.Exception("Failed to deliver exception to url = '" + _properties.ServiceUrl + "'", result));
+                            new FileLoadException("Failed to deliver exception to url = '" + _properties.ServiceUrl + "'", result));
                     try
                     {
                         //failed to deliver exception display for user.
@@ -197,14 +198,14 @@ namespace Inmeta.ExceptionReporter.Km
                     {
                         //failed to show delivery failure... just log 
                         KmReportLogger.Instance.LogExceptionsDuringDelivery(
-                            new System.Exception("Failed to show delivery exception", ex));
+                            new InvalidOperationException("Failed to show delivery exception", ex));
                     }
                 }
             }
             catch (System.Exception ex)
             {
                 KmReportLogger.Instance.LogExceptionsDuringDelivery(
-                    new System.Exception("Exception during TFSExceptionREport create or post", ex));
+                    new FileLoadException("Exception during TFSExceptionREport create or post", ex));
             }
         }
 
@@ -254,7 +255,7 @@ namespace Inmeta.ExceptionReporter.Km
             }
             catch (System.Exception ex)
             {
-                KmReportLogger.Instance.LogExceptionsDuringDelivery(new System.Exception("Failed to deliver exception (no GUI)", ex));
+                KmReportLogger.Instance.LogExceptionsDuringDelivery(new FileLoadException("Failed to deliver exception (no GUI)", ex));
             }
         }
     }

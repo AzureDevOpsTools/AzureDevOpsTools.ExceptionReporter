@@ -9,7 +9,7 @@
     <h2>Upload exceptions</h2>
 
     <div id="dialog" title="View exception file">
-        <% using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        <% Html.BeginForm("Upload", "Home", FormMethod.Post, new {enctype = "multipart/form-data"});
            %>
                 <p><input type="file" id="fileUpload" name="fileUpload" size="23"/> </p>
                 <p><input type="submit" value="View exception file" /></p>

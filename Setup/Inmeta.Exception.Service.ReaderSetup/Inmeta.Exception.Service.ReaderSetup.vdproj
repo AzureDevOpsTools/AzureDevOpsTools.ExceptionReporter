@@ -27,6 +27,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_13E4A9CB3524622C60B92B07915F738E"
+        "OwnerKey" = "8:_E5873AF0B1754ADA9F64AED9A0AC4AB2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_161866695C87E6337CFE22C1C765267F"
         "OwnerKey" = "8:_33D2D69C3D6E586735E95E5F2031464E"
         "MsmSig" = "8:_UNDEFINED"
@@ -40,12 +46,6 @@
         "Entry"
         {
         "MsmKey" = "8:_161866695C87E6337CFE22C1C765267F"
-        "OwnerKey" = "8:_E5873AF0B1754ADA9F64AED9A0AC4AB2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_18CB607A65AA27055362ED4BD73F3699"
         "OwnerKey" = "8:_E5873AF0B1754ADA9F64AED9A0AC4AB2"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -70,7 +70,7 @@
         "Entry"
         {
         "MsmKey" = "8:_33D2D69C3D6E586735E95E5F2031464E"
-        "OwnerKey" = "8:_9101A178BFABA2D4AF60796123455ADB"
+        "OwnerKey" = "8:_D78FCFEC67A4922B783DC96609553ED6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -87,20 +87,20 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4A16587E36CC4C4890910328CC09D133"
-        "OwnerKey" = "8:_72CDA53531AC8A80E4C6DD0E51E2303B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4A16587E36CC4C4890910328CC09D133"
+        "MsmKey" = "8:_50F0A7213ABBE2F0E3404AAF7AB3E96C"
         "OwnerKey" = "8:_E5873AF0B1754ADA9F64AED9A0AC4AB2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_4A16587E36CC4C4890910328CC09D133"
-        "OwnerKey" = "8:_9101A178BFABA2D4AF60796123455ADB"
+        "MsmKey" = "8:_50F0A7213ABBE2F0E3404AAF7AB3E96C"
+        "OwnerKey" = "8:_D78FCFEC67A4922B783DC96609553ED6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_50F0A7213ABBE2F0E3404AAF7AB3E96C"
+        "OwnerKey" = "8:_13E4A9CB3524622C60B92B07915F738E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -112,7 +112,7 @@
         "Entry"
         {
         "MsmKey" = "8:_56443E1215D239165408FBE46542B1E3"
-        "OwnerKey" = "8:_9101A178BFABA2D4AF60796123455ADB"
+        "OwnerKey" = "8:_D78FCFEC67A4922B783DC96609553ED6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -195,12 +195,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_72CDA53531AC8A80E4C6DD0E51E2303B"
-        "OwnerKey" = "8:_E5873AF0B1754ADA9F64AED9A0AC4AB2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_81D4DBFC41118A7FE704064FDCA20EA0"
         "OwnerKey" = "8:_CB76068F30E05E449F1905B3FF7570E6"
         "MsmSig" = "8:_UNDEFINED"
@@ -219,18 +213,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9101A178BFABA2D4AF60796123455ADB"
-        "OwnerKey" = "8:_72CDA53531AC8A80E4C6DD0E51E2303B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9101A178BFABA2D4AF60796123455ADB"
-        "OwnerKey" = "8:_E5873AF0B1754ADA9F64AED9A0AC4AB2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_94D1C8DFCEE61ED5569927EBBDE37860"
         "OwnerKey" = "8:_E5873AF0B1754ADA9F64AED9A0AC4AB2"
         "MsmSig" = "8:_UNDEFINED"
@@ -238,7 +220,7 @@
         "Entry"
         {
         "MsmKey" = "8:_94D1C8DFCEE61ED5569927EBBDE37860"
-        "OwnerKey" = "8:_9101A178BFABA2D4AF60796123455ADB"
+        "OwnerKey" = "8:_D78FCFEC67A4922B783DC96609553ED6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -315,6 +297,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D78FCFEC67A4922B783DC96609553ED6"
+        "OwnerKey" = "8:_13E4A9CB3524622C60B92B07915F738E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D78FCFEC67A4922B783DC96609553ED6"
+        "OwnerKey" = "8:_E5873AF0B1754ADA9F64AED9A0AC4AB2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E5873AF0B1754ADA9F64AED9A0AC4AB2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -328,7 +322,7 @@
         "Entry"
         {
         "MsmKey" = "8:_F241FC820FAEDB492630679C5160D0A4"
-        "OwnerKey" = "8:_9101A178BFABA2D4AF60796123455ADB"
+        "OwnerKey" = "8:_D78FCFEC67A4922B783DC96609553ED6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -352,25 +346,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_72CDA53531AC8A80E4C6DD0E51E2303B"
+        "OwnerKey" = "8:_13E4A9CB3524622C60B92B07915F738E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9101A178BFABA2D4AF60796123455ADB"
+        "OwnerKey" = "8:_D78FCFEC67A4922B783DC96609553ED6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4A16587E36CC4C4890910328CC09D133"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_18CB607A65AA27055362ED4BD73F3699"
+        "OwnerKey" = "8:_50F0A7213ABBE2F0E3404AAF7AB3E96C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -579,7 +567,7 @@
             "Sequence" = "3:1"
             "Identifier" = "8:_A2829F0B_CEBE_4F6B_B4B4_78A3A008F050"
             "InstallerClass" = "11:TRUE"
-            "CustomActionData" = "8:/domain=\"[EDITA4]\"  /username=\"[EDITA2]\" /password=\"[EDITA3]\" /serviceurl=\"[EDITA1]\" /targetdir=\"[TARGETDIR]\\ \""
+            "CustomActionData" = "8:/domain=\"[EDITA4]\"  /username=\"[EDITA2]\" /password=\"[EDITA3]\" /serviceurl=\"[EDITA1]\" /mailserverhost=\"[EDITB1]\" /mailserverlogin=\"[EDITB2]\" /mailserverpassword=\"[EDITB3]\" /mailserverto=\"[EDITB4]\" /targetdir=\"[TARGETDIR]\\ \""
             }
             "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_AD853941605146E197344AA9EF6917AC"
             {
@@ -649,20 +637,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_161866695C87E6337CFE22C1C765267F"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_13E4A9CB3524622C60B92B07915F738E"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Microsoft.TeamFoundation, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Inmeta.Exception.Reporter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0d2d577802d464dd, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_161866695C87E6337CFE22C1C765267F"
+                    "_13E4A9CB3524622C60B92B07915F738E"
                     {
-                    "Name" = "8:Microsoft.TeamFoundation.dll"
+                    "Name" = "8:Inmeta.Exception.Reporter.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:Microsoft.TeamFoundation.dll"
+            "SourcePath" = "8:Inmeta.Exception.Reporter.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_93528D5154A24CF2ABCF4D7E1B36FB96"
@@ -680,20 +668,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_18CB607A65AA27055362ED4BD73F3699"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_161866695C87E6337CFE22C1C765267F"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:AutoMapper, Version=1.1.0.188, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Microsoft.TeamFoundation, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_18CB607A65AA27055362ED4BD73F3699"
+                    "_161866695C87E6337CFE22C1C765267F"
                     {
-                    "Name" = "8:AutoMapper.dll"
+                    "Name" = "8:Microsoft.TeamFoundation.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:AutoMapper.dll"
+            "SourcePath" = "8:Microsoft.TeamFoundation.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_93528D5154A24CF2ABCF4D7E1B36FB96"
@@ -773,14 +761,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4A16587E36CC4C4890910328CC09D133"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_50F0A7213ABBE2F0E3404AAF7AB3E96C"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_4A16587E36CC4C4890910328CC09D133"
+                    "_50F0A7213ABBE2F0E3404AAF7AB3E96C"
                     {
                     "Name" = "8:log4net.dll"
                     "Attributes" = "3:512"
@@ -897,37 +885,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_72CDA53531AC8A80E4C6DD0E51E2303B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Inmeta.Exception.Reporter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0d2d577802d464dd, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_72CDA53531AC8A80E4C6DD0E51E2303B"
-                    {
-                    "Name" = "8:Inmeta.Exception.Reporter.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Inmeta.Exception.Reporter.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_93528D5154A24CF2ABCF4D7E1B36FB96"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_81D4DBFC41118A7FE704064FDCA20EA0"
             {
             "AssemblyRegister" = "3:1"
@@ -942,37 +899,6 @@
                     }
                 }
             "SourcePath" = "8:Microsoft.TeamFoundation.WorkItemTracking.Client.Provision.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_93528D5154A24CF2ABCF4D7E1B36FB96"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9101A178BFABA2D4AF60796123455ADB"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Inmeta.Exception.Service.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0d2d577802d464dd, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_9101A178BFABA2D4AF60796123455ADB"
-                    {
-                    "Name" = "8:Inmeta.Exception.Service.Common.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Inmeta.Exception.Service.Common.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_93528D5154A24CF2ABCF4D7E1B36FB96"
@@ -1145,6 +1071,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D78FCFEC67A4922B783DC96609553ED6"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Inmeta.Exception.Service.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0d2d577802d464dd, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_D78FCFEC67A4922B783DC96609553ED6"
+                    {
+                    "Name" = "8:Inmeta.Exception.Service.Common.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Inmeta.Exception.Service.Common.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_93528D5154A24CF2ABCF4D7E1B36FB96"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F241FC820FAEDB492630679C5160D0A4"
             {
             "AssemblyRegister" = "3:1"
@@ -1233,7 +1190,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Inmeta.Exception.Service.Reader"
         "ProductCode" = "8:{DD4F0F7A-F1BC-45EA-BEB3-7D555BF96862}"
-        "PackageCode" = "8:{12F221E4-30EB-4D84-B23F-58301C3ADB0F}"
+        "PackageCode" = "8:{D0E29754-A7DF-4EAB-BDEB-F36EE004ED34}"
         "UpgradeCode" = "8:{73A302E7-8DF0-43A9-912B-D81001670831}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1996,6 +1953,262 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_F5F6DF659BB6499584266FA6990AB591"
+                    {
+                    "Sequence" = "3:500"
+                    "DisplayName" = "8:Textboxes   (B)"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdCustomText2Dlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "BannerText"
+                            {
+                            "Name" = "8:BannerText"
+                            "DisplayName" = "8:#1014"
+                            "Description" = "8:#1114"
+                            "Type" = "3:3"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:2"
+                            "Value" = "8:Please provide information."
+                            "DefaultValue" = "8:#1214"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "BodyText"
+                            {
+                            "Name" = "8:BodyText"
+                            "DisplayName" = "8:#1015"
+                            "Description" = "8:#1115"
+                            "Type" = "3:3"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:2"
+                            "Value" = "8:This information is used to identify which mail server to use."
+                            "DefaultValue" = "8:#1215"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Edit1Label"
+                            {
+                            "Name" = "8:Edit1Label"
+                            "DisplayName" = "8:#1046"
+                            "Description" = "8:#1146"
+                            "Type" = "3:3"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:2"
+                            "Value" = "8:Mail server address"
+                            "DefaultValue" = "8:#1246"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Edit1Property"
+                            {
+                            "Name" = "8:Edit1Property"
+                            "DisplayName" = "8:#1050"
+                            "Description" = "8:#1150"
+                            "Type" = "3:14"
+                            "ContextData" = "8:Public"
+                            "Attributes" = "3:2"
+                            "Setting" = "3:2"
+                            "Value" = "8:EDITB1"
+                            "DefaultValue" = "8:EDITB1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Edit1Value"
+                            {
+                            "Name" = "8:Edit1Value"
+                            "DisplayName" = "8:#1054"
+                            "Description" = "8:#1154"
+                            "Type" = "3:3"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:1"
+                            "Value" = "8:"
+                            "DefaultValue" = "8:"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Edit1Visible"
+                            {
+                            "Name" = "8:Edit1Visible"
+                            "DisplayName" = "8:#1042"
+                            "Description" = "8:#1142"
+                            "Type" = "3:5"
+                            "ContextData" = "8:1;True=1;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:1"
+                            "DefaultValue" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Edit2Label"
+                            {
+                            "Name" = "8:Edit2Label"
+                            "DisplayName" = "8:#1047"
+                            "Description" = "8:#1147"
+                            "Type" = "3:3"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:2"
+                            "Value" = "8:Login:"
+                            "DefaultValue" = "8:#1247"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Edit2Property"
+                            {
+                            "Name" = "8:Edit2Property"
+                            "DisplayName" = "8:#1051"
+                            "Description" = "8:#1151"
+                            "Type" = "3:14"
+                            "ContextData" = "8:Public"
+                            "Attributes" = "3:2"
+                            "Setting" = "3:2"
+                            "Value" = "8:EDITB2"
+                            "DefaultValue" = "8:EDITB2"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Edit2Value"
+                            {
+                            "Name" = "8:Edit2Value"
+                            "DisplayName" = "8:#1055"
+                            "Description" = "8:#1155"
+                            "Type" = "3:3"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:1"
+                            "Value" = "8:"
+                            "DefaultValue" = "8:"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Edit2Visible"
+                            {
+                            "Name" = "8:Edit2Visible"
+                            "DisplayName" = "8:#1043"
+                            "Description" = "8:#1143"
+                            "Type" = "3:5"
+                            "ContextData" = "8:1;True=1;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:1"
+                            "DefaultValue" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Edit3Label"
+                            {
+                            "Name" = "8:Edit3Label"
+                            "DisplayName" = "8:#1048"
+                            "Description" = "8:#1148"
+                            "Type" = "3:3"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:2"
+                            "Value" = "8:Password:"
+                            "DefaultValue" = "8:#1248"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Edit3Property"
+                            {
+                            "Name" = "8:Edit3Property"
+                            "DisplayName" = "8:#1052"
+                            "Description" = "8:#1152"
+                            "Type" = "3:14"
+                            "ContextData" = "8:Public"
+                            "Attributes" = "3:2"
+                            "Setting" = "3:2"
+                            "Value" = "8:EDITB3"
+                            "DefaultValue" = "8:EDITB3"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Edit3Value"
+                            {
+                            "Name" = "8:Edit3Value"
+                            "DisplayName" = "8:#1056"
+                            "Description" = "8:#1156"
+                            "Type" = "3:3"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:1"
+                            "Value" = "8:"
+                            "DefaultValue" = "8:"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Edit3Visible"
+                            {
+                            "Name" = "8:Edit3Visible"
+                            "DisplayName" = "8:#1044"
+                            "Description" = "8:#1144"
+                            "Type" = "3:5"
+                            "ContextData" = "8:1;True=1;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:1"
+                            "DefaultValue" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Edit4Label"
+                            {
+                            "Name" = "8:Edit4Label"
+                            "DisplayName" = "8:#1049"
+                            "Description" = "8:#1149"
+                            "Type" = "3:3"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:2"
+                            "Value" = "8:Send mail to:"
+                            "DefaultValue" = "8:#1249"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Edit4Property"
+                            {
+                            "Name" = "8:Edit4Property"
+                            "DisplayName" = "8:#1053"
+                            "Description" = "8:#1153"
+                            "Type" = "3:14"
+                            "ContextData" = "8:Public"
+                            "Attributes" = "3:2"
+                            "Setting" = "3:2"
+                            "Value" = "8:EDITB4"
+                            "DefaultValue" = "8:EDITB4"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Edit4Value"
+                            {
+                            "Name" = "8:Edit4Value"
+                            "DisplayName" = "8:#1057"
+                            "Description" = "8:#1157"
+                            "Type" = "3:3"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:1"
+                            "Value" = "8:"
+                            "DefaultValue" = "8:"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Edit4Visible"
+                            {
+                            "Name" = "8:Edit4Visible"
+                            "DisplayName" = "8:#1045"
+                            "Description" = "8:#1145"
+                            "Type" = "3:5"
+                            "ContextData" = "8:1;True=1;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:1"
+                            "DefaultValue" = "3:1"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }

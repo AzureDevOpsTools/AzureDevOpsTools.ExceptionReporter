@@ -6,6 +6,7 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.ServiceModel.Web;
+using Inmeta.Exception.Service.Common;
 using Inmeta.Exception.Service.Common.Services;
 using Inmeta.Exception.Service.Proxy.Reader;
 
@@ -50,11 +51,12 @@ namespace DebugServiceReaderTool
                             new RemoteCertificateValidationCallback(OnValidate);
                         var wb = channelFactory.Endpoint.Binding as WebHttpBinding;
 
-
                         if (wb != null)
                         {
                             wb.Security.Mode = ServiceSettings.HttpSecurityMode;
                             wb.Security.Transport.ClientCredentialType = ServiceSettings.ClientCredentials;
+                            wb.MaxReceivedMessageSize = int.MaxValue;
+                            //wb.ReaderQuotas.MaxStringContentLength = 65535;
                         }
 
                         if (channelFactory.Credentials != null)
@@ -82,7 +84,9 @@ namespace DebugServiceReaderTool
 
         private static void PrintResult(IGetExceptionsService channel)
         {
-            channel.GetExceptions().ToList().ForEach((exp) => Console.WriteLine(exp.ToString()));
+            var exc = channel.GetExceptionsReliable();
+            exc.Value.ToList().ForEach((exp) => Console.WriteLine(exp.ToString()));
+            channel.AckDelivery(exc.Key);
         }
 
         public static bool OnValidate(Object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)

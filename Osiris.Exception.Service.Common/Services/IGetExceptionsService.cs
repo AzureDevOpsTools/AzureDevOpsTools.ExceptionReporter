@@ -13,5 +13,16 @@ namespace Inmeta.Exception.Service.Common.Services
     {
         [WebGet(UriTemplate = "/", ResponseFormat = WebMessageFormat.Json)]
         IList<ExceptionEntity> GetExceptions();
+
+        [OperationContract]
+        [WebGet(UriTemplate = "/rel", ResponseFormat = WebMessageFormat.Json)]
+        KeyValuePair<string, IEnumerable<ExceptionEntity>> GetExceptionsReliable();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            UriTemplate = "/ack={key}")]
+        bool AckDelivery(string key);
     }
 }

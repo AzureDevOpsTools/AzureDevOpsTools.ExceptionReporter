@@ -127,11 +127,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExceptionEntityTest.cs" />
     <Compile Include="ExceptionRegistrator_ReportingFormType_Test.cs" />
     <Compile Include="ExceptionRegistratorTest.cs" />
     <Compile Include="ExceptionReportingTestBase.cs" />
     <Compile Include="ExceptionSettingsTest.cs" />
     <Compile Include="FileStore\FileStoreTests.cs" />
+    <Compile Include="MailSenderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\ExceptionQueueReader\Reference.cs">
       <AutoGen>True</AutoGen>

@@ -88,6 +88,76 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             return result.Item1.ToArray();
         }
 
+        public ExceptionEntity[] PopExceptionsWaitAck(string key)
+        {
+            //no new exceptions. return empty list.
+            if (!File.Exists(ExceptionsFileName))
+                return new ExceptionEntity[] { };
+
+            var result = ParseExcpetions(ExceptionsFileName);
+
+            //save all failed entities into failed folder.
+            result.Item2.ForEach(MoveToFailedFolder);
+
+            try
+            {
+                if (result.Item1.Any())
+                {
+                    //Smth to ack - move current to temporary
+                    File.Move(ExceptionsFileName, TempFileName(key));
+                }
+                else
+                {
+                    //Nothing to ack
+                    //First delete old previous file
+                    File.Delete(OldPreviousExceptionsFileName);
+
+                    //move previous to old previous
+                    if (File.Exists(PreviousExceptionsFileName))
+                        File.Move(PreviousExceptionsFileName, OldPreviousExceptionsFileName);
+
+                    //move current to previous
+                    if (File.Exists(ExceptionsFileName))
+                        File.Move(ExceptionsFileName, PreviousExceptionsFileName);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                ServiceLog.DefaultLog.Error("Failed to clean up old exceptions. Due to exception: " + System.Environment.NewLine + ex);
+            }
+
+            //all successfull entities
+            return result.Item1.ToArray();
+        }
+
+        public bool Ack(string key)
+        {
+            try
+            {
+                if (!File.Exists(TempFileName(key)))
+                {
+                    ServiceLog.DefaultLog.Error("Ack delivery recieved, but nothing to ack." + System.Environment.NewLine);
+                    return false;
+                }
+
+                //First delete old previous file
+                File.Delete(OldPreviousExceptionsFileName);
+
+                //move previous to old previous
+                if (File.Exists(PreviousExceptionsFileName))
+                    File.Move(PreviousExceptionsFileName, OldPreviousExceptionsFileName);
+
+                //move current to previous
+                if (File.Exists(TempFileName(key)))
+                    File.Move(TempFileName(key), PreviousExceptionsFileName);
+            }
+            catch (System.Exception ex)
+            {
+                ServiceLog.DefaultLog.Error("Failed to clean up old exceptions. Due to exception: " + System.Environment.NewLine + ex);
+            }
+            return true;
+        }
+
         public Tuple<List<ExceptionEntity>, List<string>> ParseExcpetions(string filename)
         {
             //no namespace
@@ -160,16 +230,16 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             }
         }
 
-
         private static bool ReadExceptionFile(string filename, out string log)
         {
             log = "";
             try
             {
-                if (File.Exists(filename))
+                 if (File.Exists(filename))
                     using (var file = File.OpenText(filename))
                     {
                         log = file.ReadToEnd();
+                        file.Close();
                     }
             }
             catch (UnauthorizedAccessException)
@@ -212,6 +282,13 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             {
                 return GetPath(PathExtension);
             }
+        }
+
+        private static string TempFileName(string key)
+        {
+            string filePath= GetPath(PathExtension);
+            string path = Path.GetDirectoryName(filePath);
+            return Path.Combine(path, key);
         }
 
         private static string GetPath(string extension)

@@ -1,5 +1,5 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{0AC3630C-3866-4390-BCEE-A39CEF4DA67D}"
 EndProject
@@ -11,23 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{9992AE43-7
 		Libs\Rhino.Mocks.xml = Libs\Rhino.Mocks.xml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Reporter", "Osiris.Exception.Reporter\Inmeta.Exception.Reporter.csproj", "{5012C512-6ADD-4B9C-BA4E-1713E9B1B766}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Service.Common", "Osiris.Exception.Service.Common\Inmeta.Exception.Service.Common.csproj", "{3024D413-23B3-49F5-A70F-1CC8201BF2C3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Tests", "Osiris.Exception.Tests\Inmeta.Exception.Tests.csproj", "{860ECC19-A4A2-4E22-BCE0-939F5DCC516E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Service.Proxy.Reader", "Osiris.Exception.Service.Proxy.Reader\Inmeta.Exception.Service.Proxy.Reader.csproj", "{EB0672F1-64B4-42CF-8D39-B32867876082}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReportUI", "ReportUI", "{5D212AAF-3BA1-41A9-BB23-C409964D0975}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{7C14C671-DFF6-42DE-82DB-763265501076}"
-EndProject
-Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ExceptionReporterModels", "ExceptionReporterModels\ExceptionReporterModels.modelproj", "{05245356-640B-4631-B9E9-305326FB185C}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Inmeta.Exception.Service.Reader.Setup", "Setup\Inmeta.Exception.Service.ReaderSetup\Inmeta.Exception.Service.ReaderSetup.vdproj", "{CC91908D-ECD6-4791-B9A9-241675BFFABD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Reporter.Web", "Web\Inmeta.Exception.Reporter.Web\Inmeta.Exception.Reporter.Web.csproj", "{A259F218-627E-472E-BE73-8265DBE5CEC1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installation Documents", "Installation Documents", "{3DEF8900-887B-4FBD-9BD6-154EF3182B77}"
 	ProjectSection(SolutionItems) = preProject
@@ -36,6 +22,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Installation Documents", "I
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{CE9DE117-717C-4E59-AB65-3B6FA9A8DCA3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{27926DD6-D4D0-418F-AB51-EE9FE1A352A9}"
+	ProjectSection(SolutionItems) = preProject
+		Inmeta TFS Exception Reporter.vsmdi = Inmeta TFS Exception Reporter.vsmdi
+		Local.testsettings = Local.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Reporter", "Osiris.Exception.Reporter\Inmeta.Exception.Reporter.csproj", "{5012C512-6ADD-4B9C-BA4E-1713E9B1B766}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Service.Common", "Osiris.Exception.Service.Common\Inmeta.Exception.Service.Common.csproj", "{3024D413-23B3-49F5-A70F-1CC8201BF2C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Tests", "Osiris.Exception.Tests\Inmeta.Exception.Tests.csproj", "{860ECC19-A4A2-4E22-BCE0-939F5DCC516E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Service.Proxy.Reader", "Osiris.Exception.Service.Proxy.Reader\Inmeta.Exception.Service.Proxy.Reader.csproj", "{EB0672F1-64B4-42CF-8D39-B32867876082}"
+EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ExceptionReporterModels", "ExceptionReporterModels\ExceptionReporterModels.modelproj", "{05245356-640B-4631-B9E9-305326FB185C}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Inmeta.Exception.Service.Reader.Setup", "Setup\Inmeta.Exception.Service.ReaderSetup\Inmeta.Exception.Service.ReaderSetup.vdproj", "{CC91908D-ECD6-4791-B9A9-241675BFFABD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Reporter.Web", "Web\Inmeta.Exception.Reporter.Web\Inmeta.Exception.Reporter.Web.csproj", "{A259F218-627E-472E-BE73-8265DBE5CEC1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugServiceReaderTool", "Tools\DebugServiceReaderTool\DebugServiceReaderTool.csproj", "{AB74CA79-31D9-46D0-8746-8C7EF2F3A07E}"
 EndProject
@@ -52,12 +58,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Reporter.UI.Web", "ReportUI\Inmeta.Exception.Reporter.UI.Web\Inmeta.Exception.Reporter.UI.Web.csproj", "{29ECC9B1-44B7-4CAD-B4AD-DF8357F2169C}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Inmeta.Exception.Reporter.Web.Setup", "Setup\Inmeta.Exception.Reporter.Web.Setup\Inmeta.Exception.Reporter.Web.vdproj", "{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{27926DD6-D4D0-418F-AB51-EE9FE1A352A9}"
-	ProjectSection(SolutionItems) = preProject
-		Inmeta TFS Exception Reporter.vsmdi = Inmeta TFS Exception Reporter.vsmdi
-		Local.testsettings = Local.testsettings
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kongsberg.Nemo.ExceptionReporter.Plugin", "Kongsberg.Nemo.ExceptionReporter.Plugin\Kongsberg.Nemo.ExceptionReporter.Plugin.csproj", "{CCB7A01B-6217-4C79-9CB2-9D1DA17AAD16}"
 EndProject
@@ -221,6 +221,7 @@ Global
 		{860ECC19-A4A2-4E22-BCE0-939F5DCC516E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{860ECC19-A4A2-4E22-BCE0-939F5DCC516E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{860ECC19-A4A2-4E22-BCE0-939F5DCC516E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{860ECC19-A4A2-4E22-BCE0-939F5DCC516E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{860ECC19-A4A2-4E22-BCE0-939F5DCC516E}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{860ECC19-A4A2-4E22-BCE0-939F5DCC516E}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{860ECC19-A4A2-4E22-BCE0-939F5DCC516E}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
@@ -250,7 +251,6 @@ Global
 		{EB0672F1-64B4-42CF-8D39-B32867876082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EB0672F1-64B4-42CF-8D39-B32867876082}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB0672F1-64B4-42CF-8D39-B32867876082}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{EB0672F1-64B4-42CF-8D39-B32867876082}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{EB0672F1-64B4-42CF-8D39-B32867876082}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{EB0672F1-64B4-42CF-8D39-B32867876082}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{EB0672F1-64B4-42CF-8D39-B32867876082}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
@@ -302,72 +302,43 @@ Global
 		{05245356-640B-4631-B9E9-305326FB185C}.SingleImage|x64.ActiveCfg = Release|Any CPU
 		{05245356-640B-4631-B9E9-305326FB185C}.SingleImage|x86.ActiveCfg = Release|Any CPU
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.CD_ROM|Any CPU.ActiveCfg = Release
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.CD_ROM|Any CPU.Build.0 = Release
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.CD_ROM|Mixed Platforms.ActiveCfg = Release
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.CD_ROM|Mixed Platforms.Build.0 = Release
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.CD_ROM|x64.ActiveCfg = Release
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.CD_ROM|x64.Build.0 = Release
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.CD_ROM|x86.ActiveCfg = Release
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.CD_ROM|x86.Build.0 = Release
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Debug|Any CPU.ActiveCfg = Debug
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Debug|Any CPU.Build.0 = Debug
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Debug|Mixed Platforms.ActiveCfg = Debug
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Debug|x64.ActiveCfg = Debug
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Debug|x64.Build.0 = Debug
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Debug|x86.ActiveCfg = Debug
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Debug|x86.Build.0 = Debug
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.DVD-5|Any CPU.ActiveCfg = Debug
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.DVD-5|Any CPU.Build.0 = Debug
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.DVD-5|Mixed Platforms.ActiveCfg = Debug
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.DVD-5|Mixed Platforms.Build.0 = Debug
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.DVD-5|x64.ActiveCfg = Debug
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.DVD-5|x64.Build.0 = Debug
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.DVD-5|x86.ActiveCfg = Debug
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.DVD-5|x86.Build.0 = Debug
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Release|Any CPU.ActiveCfg = Release
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Release|Any CPU.Build.0 = Release
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Release|Mixed Platforms.ActiveCfg = Release
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Release|Mixed Platforms.Build.0 = Release
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Release|x64.ActiveCfg = Release
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Release|x64.Build.0 = Release
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Release|x86.ActiveCfg = Release
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.Release|x86.Build.0 = Release
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.SingleImage|Any CPU.ActiveCfg = Release
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.SingleImage|Any CPU.Build.0 = Release
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.SingleImage|Mixed Platforms.ActiveCfg = Release
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.SingleImage|Mixed Platforms.Build.0 = Release
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.SingleImage|x64.ActiveCfg = Release
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.SingleImage|x64.Build.0 = Release
 		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.SingleImage|x86.ActiveCfg = Release
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD}.SingleImage|x86.Build.0 = Release
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
-		{A259F218-627E-472E-BE73-8265DBE5CEC1}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.CD_ROM|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{A259F218-627E-472E-BE73-8265DBE5CEC1}.CD_ROM|Mixed Platforms.Build.0 = Release|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.CD_ROM|x64.ActiveCfg = Release|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.CD_ROM|x86.ActiveCfg = Release|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
-		{A259F218-627E-472E-BE73-8265DBE5CEC1}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.DVD-5|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{A259F218-627E-472E-BE73-8265DBE5CEC1}.DVD-5|Mixed Platforms.Build.0 = Debug|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.DVD-5|x64.ActiveCfg = Debug|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.DVD-5|x86.ActiveCfg = Debug|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Release|x64.ActiveCfg = Release|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Release|x86.ActiveCfg = Release|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
-		{A259F218-627E-472E-BE73-8265DBE5CEC1}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.SingleImage|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{A259F218-627E-472E-BE73-8265DBE5CEC1}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.SingleImage|x64.ActiveCfg = Release|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.SingleImage|x86.ActiveCfg = Release|Any CPU
 		{AB74CA79-31D9-46D0-8746-8C7EF2F3A07E}.CD_ROM|Any CPU.ActiveCfg = Release|x86
@@ -581,44 +552,25 @@ Global
 		{29ECC9B1-44B7-4CAD-B4AD-DF8357F2169C}.SingleImage|x64.ActiveCfg = Release|Any CPU
 		{29ECC9B1-44B7-4CAD-B4AD-DF8357F2169C}.SingleImage|x86.ActiveCfg = Release|Any CPU
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.CD_ROM|Any CPU.ActiveCfg = Release
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.CD_ROM|Any CPU.Build.0 = Release
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.CD_ROM|Mixed Platforms.ActiveCfg = Release
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.CD_ROM|Mixed Platforms.Build.0 = Release
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.CD_ROM|x64.ActiveCfg = Release
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.CD_ROM|x64.Build.0 = Release
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.CD_ROM|x86.ActiveCfg = Release
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.CD_ROM|x86.Build.0 = Release
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Debug|Any CPU.ActiveCfg = Debug
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Debug|Any CPU.Build.0 = Debug
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Debug|Mixed Platforms.ActiveCfg = Debug
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Debug|x64.ActiveCfg = Debug
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Debug|x64.Build.0 = Debug
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Debug|x86.ActiveCfg = Debug
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Debug|x86.Build.0 = Debug
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.DVD-5|Any CPU.ActiveCfg = Debug
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.DVD-5|Any CPU.Build.0 = Debug
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.DVD-5|Mixed Platforms.ActiveCfg = Debug
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.DVD-5|Mixed Platforms.Build.0 = Debug
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.DVD-5|x64.ActiveCfg = Debug
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.DVD-5|x64.Build.0 = Debug
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.DVD-5|x86.ActiveCfg = Debug
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.DVD-5|x86.Build.0 = Debug
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Release|Any CPU.ActiveCfg = Release
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Release|Any CPU.Build.0 = Release
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Release|Mixed Platforms.ActiveCfg = Release
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Release|Mixed Platforms.Build.0 = Release
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Release|x64.ActiveCfg = Release
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Release|x64.Build.0 = Release
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Release|x86.ActiveCfg = Release
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.Release|x86.Build.0 = Release
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.SingleImage|Any CPU.ActiveCfg = Release
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.SingleImage|Any CPU.Build.0 = Release
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.SingleImage|Mixed Platforms.ActiveCfg = Release
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.SingleImage|Mixed Platforms.Build.0 = Release
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.SingleImage|x64.ActiveCfg = Release
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.SingleImage|x64.Build.0 = Release
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.SingleImage|x86.ActiveCfg = Release
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F}.SingleImage|x86.Build.0 = Release
 		{CCB7A01B-6217-4C79-9CB2-9D1DA17AAD16}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
 		{CCB7A01B-6217-4C79-9CB2-9D1DA17AAD16}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
 		{CCB7A01B-6217-4C79-9CB2-9D1DA17AAD16}.CD_ROM|Mixed Platforms.ActiveCfg = Release|Any CPU

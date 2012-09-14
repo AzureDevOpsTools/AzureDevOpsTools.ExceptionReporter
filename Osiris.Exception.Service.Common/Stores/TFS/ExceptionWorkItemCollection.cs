@@ -17,6 +17,11 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
         private readonly WorkItemStore workItemStore;
         private readonly VersionControlServer versionControlServer;
 
+        private string TeamProject
+        {
+            get;
+            set;
+        }
         [ContractInvariantMethod]
 // ReSharper disable UnusedMember.Local
         private void Invariants()
@@ -28,7 +33,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             Contract.Invariant(workItems != null);
         }
 
-        public ExceptionWorkItemCollection(string teamProject, WorkItemStore wis, VersionControlServer vcs, ExceptionEntity exceptionEntity)
+        internal ExceptionWorkItemCollection(string teamProject, WorkItemStore wis, VersionControlServer vcs, ExceptionEntity exceptionEntity)
         {
             Contract.Requires(teamProject != null);
             Contract.Requires(exceptionEntity != null);
@@ -55,13 +60,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             SearchForStackTrace();
         }
 
-        private string TeamProject
-        {
-            get;
-            set;
-        }
-
-        public bool HasWorkItemsWithHigherChangeset
+        internal bool HasWorkItemsWithHigherChangeset
         {
             get
             {                
@@ -71,6 +70,35 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
                 //The fix will be arriving in a later release, so ignore the exception for now.
             }
         }
+
+        internal WorkItem GetWorkItemWithHigherChangeset()
+        {            
+            // get the latest work item of all registered
+            var res = FindWorkItemsWithHigherChangeSet().Aggregate((wi, x) => ((x.Id > wi.Id) ? x : wi));
+            return res;
+        }
+
+        /// <summary>
+        /// A open workitem is one that is not Resolved or Closed
+        /// </summary>
+        /// <returns></returns>
+        internal IEnumerable<WorkItem> OpenWorkItems
+        {
+            get 
+            {
+                return workItems.Where(IsOpen);
+            }
+        }
+
+        internal bool HasOpenWorkItems
+        {
+            get
+            {
+                return OpenWorkItems.Any();
+            }
+        }
+
+        #region Private
 
         private void SearchForStackTrace()
         {
@@ -90,26 +118,6 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             }
             
             workItems = items.Cast<WorkItem>();
-        }
-
-        /// <summary>
-        /// A open workitem is one that is not Resolved or Closed
-        /// </summary>
-        /// <returns></returns>
-        internal IEnumerable<WorkItem> OpenWorkItems
-        {
-            get 
-            {
-                return workItems.Where(IsOpen);
-            }
-        }
-
-        public bool HasOpenWorkItems
-        {
-            get
-            {
-                return OpenWorkItems.Any();
-            }
         }
 
         private IEnumerable<WorkItem> FindWorkItemsWithHigherChangeSet()
@@ -139,5 +147,6 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             var state = new ExceptionState(wi, versionControlServer);
             return state.IsOpen;
         }
+        #endregion
     }
 }

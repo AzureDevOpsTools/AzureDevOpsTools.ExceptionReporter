@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using System.IO;
 using System.Runtime.Serialization;
+using System.Xml;
 
 namespace Inmeta.Exception.Service.Common
 {
@@ -49,19 +51,19 @@ namespace Inmeta.Exception.Service.Common
 
         public ExceptionEntity()
         {
-            ApplicationName = string.Empty;
-            Reporter = string.Empty;
-            Comment = string.Empty;
-            Version = string.Empty;
-            ExceptionMessage = string.Empty;
-            ExceptionType = string.Empty;
-            ExceptionTitle = string.Empty;
-            StackTrace = string.Empty;
-            TheClass = string.Empty;
-            TheMethod = string.Empty;
-            TheSource = string.Empty;
-            ChangeSet = string.Empty;
-            Username = string.Empty;
+            ApplicationName = String.Empty;
+            Reporter = String.Empty;
+            Comment = String.Empty;
+            Version = String.Empty;
+            ExceptionMessage = String.Empty;
+            ExceptionType = String.Empty;
+            ExceptionTitle = String.Empty;
+            StackTrace = String.Empty;
+            TheClass = String.Empty;
+            TheMethod = String.Empty;
+            TheSource = String.Empty;
+            ChangeSet = String.Empty;
+            Username = String.Empty;
         }
 
         public ExceptionEntity(string applicationName, string reporter, string comment, string version,
@@ -116,6 +118,17 @@ namespace Inmeta.Exception.Service.Common
             Contract.Invariant(TheSource != null);
             Contract.Invariant(ChangeSet != null);
             Contract.Invariant(Username != null);
+        }
+
+        public string GetSerialized()
+        {
+            var serializer = new DataContractSerializer(typeof(ExceptionEntity));
+            var output = new StringWriter();
+            using (var writer = new XmlTextWriter(output) { Formatting = Formatting.Indented })
+            {
+                serializer.WriteObject(writer, this);
+            }
+            return output.GetStringBuilder().ToString();
         }
     }
 }

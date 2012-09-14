@@ -28,5 +28,22 @@ namespace Inmeta.Exception.Reporter.Web.ExceptionService
                 return new FileStore().PopExceptions();
             }
         }
+
+        public KeyValuePair<string, IEnumerable<ExceptionEntity>> GetExceptionsReliable()
+        {
+            lock (_fileLockObject)
+            {
+                string key = Guid.NewGuid().ToString();
+                return new KeyValuePair<string, IEnumerable<ExceptionEntity>>(key, new FileStore().PopExceptionsWaitAck(key));
+            }
+        }
+
+        public bool AckDelivery(string key)
+        {
+            lock (_fileLockObject)
+            {
+                return new FileStore().Ack(key);
+            }
+        }
     }
 }

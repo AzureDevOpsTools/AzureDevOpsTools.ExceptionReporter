@@ -31,7 +31,12 @@ namespace Inmeta.Exception.Service.Proxy.Reader
             var targetDirectory = Context.Parameters["targetdir"];
             var usernamee = Context.Parameters["username"];
             var password = Context.Parameters["password"];
-
+            var mailserverto = Context.Parameters["mailserverto"];
+            var mailserverhost = Context.Parameters["mailserverhost"];
+            var mailserverlogin = Context.Parameters["mailserverlogin"];
+            var mailserverpassword = Context.Parameters["mailserverpassword"];
+            
+            
             var exePath = Path.Combine(targetDirectory.Trim(), "Inmeta.Exception.Service.Proxy.Reader.exe");
       //      MessageBox.Show("service URL " + serviceUrl + ", Poll  " + pollIntervall + ", target = " +
         //                    targetDirectory + " exepath " + exePath + "Username  = "+ usernamee + ", password = " + password);
@@ -43,7 +48,11 @@ namespace Inmeta.Exception.Service.Proxy.Reader
                 config.AppSettings.Settings["serviceURL"].Value = serviceUrl;
                 config.AppSettings.Settings["domain"].Value = new Encryption().Encrypt(domain);
                 config.AppSettings.Settings["username"].Value = new Encryption().Encrypt(usernamee);
-                config.AppSettings.Settings["password"].Value = new Encryption().Encrypt(password);   
+                config.AppSettings.Settings["password"].Value = new Encryption().Encrypt(password);
+                config.AppSettings.Settings["mailServerTo"].Value = mailserverto;
+                config.AppSettings.Settings["mailServerHost"].Value = mailserverhost;
+                config.AppSettings.Settings["mailServerLogin"].Value = new Encryption().Encrypt(mailserverlogin);
+                config.AppSettings.Settings["mailServerPassword"].Value = new Encryption().Encrypt(mailserverpassword);   
                 config.Save();
             }
             catch (System.Exception ex)

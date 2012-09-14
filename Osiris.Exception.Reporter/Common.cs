@@ -58,7 +58,7 @@ namespace Inmeta.Exception.Reporter
                     const string temp = "Insufficient privileges to extract the current user.";
 
                     ReportLogger.Instance.LogExceptionsDuringDelivery(
-                        new System.Exception(temp, privEx));
+                        new UnauthorizedAccessException(temp, privEx));
 
                     return temp;
                 }
@@ -77,14 +77,14 @@ namespace Inmeta.Exception.Reporter
                 {
                     //SAME AS NEMO, but with exception handling
                     version =
-                        Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                        Assembly.GetEntryAssembly().GetName().Version.ToString();
                 }
                 catch (System.Exception privEx)
                 {
                     version =
                         "Insufficient privileges to extract the correct assembly version";
                     ReportLogger.Instance.LogExceptionsDuringDelivery(
-                        new System.Exception(version, privEx));
+                        new UnauthorizedAccessException(version, privEx));
                 }
 
                 return version;
