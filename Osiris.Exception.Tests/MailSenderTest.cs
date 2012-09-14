@@ -12,6 +12,7 @@ namespace Inmeta.Exception.Tests
     public class MailSenderTest
     {
         [TestMethod]
+        [Ignore]
         public void TestSendMail()
         {
             var sender = MailSender.GetSender(new EventLog("testLog"));
