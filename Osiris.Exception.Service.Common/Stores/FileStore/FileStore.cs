@@ -97,7 +97,8 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             var result = ParseExcpetions(ExceptionsFileName);
 
             //save all failed entities into failed folder.
-            result.Item2.ForEach(MoveToFailedFolder);
+            if (result.Item2.Any())
+                result.Item2.ForEach(item => MoveToFailedFolder(item, key));
 
             try
             {
@@ -108,7 +109,8 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
                 }
                 else
                 {
-                    //Nothing to ack
+                    //Nothing to ack - rearrange files now
+
                     //First delete old previous file
                     File.Delete(OldPreviousExceptionsFileName);
 
@@ -132,30 +134,35 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
 
         public bool Ack(string key)
         {
+            var res = true;
             try
             {
-                if (!File.Exists(TempFileName(key)))
+
+                if (Directory.Exists(GetFolder(GetFailedExceptionFolder(key))))
                 {
-                    ServiceLog.DefaultLog.Error("Ack delivery recieved, but nothing to ack." + System.Environment.NewLine);
-                    return false;
+                    ServiceLog.DefaultLog.Error("Ack delivery recieved, failed exception for session found." + System.Environment.NewLine);
+                    res = false;
                 }
 
-                //First delete old previous file
-                File.Delete(OldPreviousExceptionsFileName);
-
-                //move previous to old previous
-                if (File.Exists(PreviousExceptionsFileName))
-                    File.Move(PreviousExceptionsFileName, OldPreviousExceptionsFileName);
-
-                //move current to previous
                 if (File.Exists(TempFileName(key)))
-                    File.Move(TempFileName(key), PreviousExceptionsFileName);
+                {
+                    //First delete old previous file
+                    File.Delete(OldPreviousExceptionsFileName);
+
+                    //move previous to old previous
+                    if (File.Exists(PreviousExceptionsFileName))
+                        File.Move(PreviousExceptionsFileName, OldPreviousExceptionsFileName);
+
+                    //move current to previous
+                    if (File.Exists(TempFileName(key)))
+                        File.Move(TempFileName(key), PreviousExceptionsFileName);
+                }
             }
             catch (System.Exception ex)
             {
                 ServiceLog.DefaultLog.Error("Failed to clean up old exceptions. Due to exception: " + System.Environment.NewLine + ex);
             }
-            return true;
+            return res;
         }
 
         public Tuple<List<ExceptionEntity>, List<string>> ParseExcpetions(string filename)
@@ -230,6 +237,23 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             }
         }
 
+        private static void MoveToFailedFolder(string errornousXML, string key)
+        {
+            try
+            {
+                CleanFailedExceptions();
+                using (var stream = File.AppendText(GetFailedExceptionFileNameByKey(key)))
+                {
+                    stream.Write(errornousXML);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                //failed to move erronous xml to failed exceptions.
+                ServiceLog.DefaultLog.Error("Failed to move erronous XML to failed file = " + FailedExceptionsFileName, ex);
+            }
+        }
+
         private static bool ReadExceptionFile(string filename, out string log)
         {
             log = "";
@@ -257,6 +281,35 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             get
             {
                 return GetPath(Path.Combine(PathExtension, "failed"));
+            }
+        }
+
+        private static string GetFailedExceptionFileNameByKey(string key)
+        {
+            return GetPath(GetFailedExceptionFolder(key));
+        }
+
+        private static string GetFailedExceptionFolder(string key)
+        {
+            return Path.Combine(Path.Combine(PathExtension, "failed"), key);
+        }
+
+        private static void CleanFailedExceptions()
+        {
+            try
+            {
+                var dir = Directory.GetDirectories(GetFolder(Path.Combine(PathExtension, "failed"))).
+                    OrderByDescending(d => new DirectoryInfo(d).CreationTime);
+
+                int limit = 3;
+                for (int i = limit; i < dir.Count(); i++)
+                {
+                    Directory.Delete(dir.ElementAt(limit), true);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                ServiceLog.DefaultLog.Error("Failed to clean up failed files folder : ", ex);
             }
         }
 
@@ -293,6 +346,19 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
 
         private static string GetPath(string extension)
         {
+            var path = GetFolder(extension);
+
+            //ensure path exists
+            Directory.CreateDirectory(path);
+                    
+            //append filename 
+            path = System.IO.Path.Combine(path, FileName);
+
+            return path;
+        }
+
+        private static string GetFolder(string extension)
+        {
             RegistryKey localMachine = Registry.LocalMachine;
             const string keypath = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders";
 
@@ -304,15 +370,9 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
 
             if (key != null && key.GetValue("Common AppData") != null)
                 path = key.GetValue("Common AppData").ToString();
+            
 
-            //append Inmeta\ExceptionReporter to seperate from other logs.
             path = System.IO.Path.Combine(path, extension);
-                
-            //ensure path exists
-            Directory.CreateDirectory(path);
-                    
-            //append filename 
-            path = System.IO.Path.Combine(path, FileName);
 
             return path;
         }

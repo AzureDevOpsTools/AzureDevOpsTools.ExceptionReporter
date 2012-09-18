@@ -34,7 +34,8 @@ namespace Inmeta.Exception.Reporter.Web.ExceptionService
             lock (_fileLockObject)
             {
                 string key = Guid.NewGuid().ToString();
-                return new KeyValuePair<string, IEnumerable<ExceptionEntity>>(key, new FileStore().PopExceptionsWaitAck(key));
+                var res = new KeyValuePair<string, IEnumerable<ExceptionEntity>>(key, new FileStore().PopExceptionsWaitAck(key));
+                return res;
             }
         }
 

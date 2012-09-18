@@ -86,7 +86,7 @@ namespace DebugServiceReaderTool
         {
             var exc = channel.GetExceptionsReliable();
             exc.Value.ToList().ForEach((exp) => Console.WriteLine(exp.ToString()));
-            channel.AckDelivery(exc.Key);
+            Console.WriteLine(exc.Key + " : "  + channel.AckDelivery(exc.Key));
         }
 
         public static bool OnValidate(Object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
