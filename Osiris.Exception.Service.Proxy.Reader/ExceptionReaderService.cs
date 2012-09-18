@@ -136,7 +136,8 @@ namespace Inmeta.Exception.Service.Proxy.Reader
                 }
             });
 
-            if (_sendMails && !SendAck(response.Key) )
+            var ackResult = SendAck(response.Key);
+            if (!ackResult && _sendMails)
                 MailSender.GetSender(EventLog).SendMailNotification("Probably lost exceptions - acknowledgment error. Check file " + response.Key + " at Exception Service Portal");
         }
 
