@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using System;
+using System.Configuration;
+using System.Web;
 using System.Web.Services;
 using Inmeta.Exception.Service.Common;
 using Inmeta.Exception.Service.Common.Services;
@@ -57,7 +59,19 @@ namespace Inmeta.Exception.Reporter.Web
 
         private void SendToStore(ExceptionEntity exceptionEntity)
 		{
-            new ExceptionStore().StoreException(exceptionEntity,  new ExceptionSettings(exceptionEntity.ApplicationName,
+            bool storeIsTFS = true;
+            bool.TryParse(ConfigurationManager.AppSettings["UseTFS"], out storeIsTFS);
+            Uri serviceUri = null;
+            try
+            {
+                serviceUri = new Uri(ConfigurationManager.AppSettings["ServiceURL"]);
+            }
+            catch (System.Exception)
+            {
+                serviceUri = null;
+            }
+
+            new ExceptionStore(serviceUri, storeIsTFS).StoreException(exceptionEntity,  new ExceptionSettings(exceptionEntity.ApplicationName,
                                                             HttpContext.Current.Request.MapPath(".") +
                                                              @"\App_Data\Applications.xml"));                
 		}

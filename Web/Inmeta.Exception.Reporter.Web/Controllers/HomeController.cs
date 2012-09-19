@@ -67,7 +67,21 @@ namespace Inmeta.Exception.Reporter.Web.Controllers
             var exceptions = new FileStore().ParseExcpetions(GetPath(filename)).Item1;
 
             //send to store.
-            new ExceptionStore().StoreException(exceptions, HttpContext.Server.MapPath(".") + @"\..\App_Data\Applications.xml");
+            bool storeIsTFS = true;
+            bool.TryParse(ConfigurationManager.AppSettings["UseTFS"], out storeIsTFS);
+
+            Uri serviceUri = null;
+            try
+            {
+                serviceUri = new Uri( ConfigurationManager.AppSettings["ServiceURL"]);
+            }
+            catch (System.Exception)
+            {
+                serviceUri = null;
+            }
+
+
+            new ExceptionStore(serviceUri, storeIsTFS).StoreException(exceptions, HttpContext.Server.MapPath(".") + @"\..\App_Data\Applications.xml");
 
             try
             {
