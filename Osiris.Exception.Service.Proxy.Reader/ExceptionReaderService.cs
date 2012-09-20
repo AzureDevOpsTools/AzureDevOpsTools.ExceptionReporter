@@ -41,12 +41,12 @@ namespace Inmeta.Exception.Service.Proxy.Reader
             Enum.TryParse(ConfigurationManager.AppSettings["httpSecurityMode"], out webSecurityMode);
 
             var httpSecurityMode = HttpClientCredentialType.Basic;
-            Enum.TryParse(ConfigurationManager.AppSettings["httpSecurityMode"], out httpSecurityMode);
+            Enum.TryParse(ConfigurationManager.AppSettings["clientCredentialType"], out httpSecurityMode);
 
             _settings = new ProxyReaderServiceSettings(
                 new Uri(ConfigurationManager.AppSettings["serviceURL"]),
                 ConfigurationManager.AppSettings["username"],
-                ConfigurationManager.AppSettings["passord"],
+                ConfigurationManager.AppSettings["password"],
                 ConfigurationManager.AppSettings["domain"],
                 webSecurityMode,
                 httpSecurityMode);

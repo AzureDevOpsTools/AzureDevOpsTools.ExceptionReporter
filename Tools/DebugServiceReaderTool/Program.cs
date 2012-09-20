@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
@@ -33,12 +34,12 @@ namespace DebugServiceReaderTool
                         Enum.TryParse(ConfigurationManager.AppSettings["httpSecurityMode"], out webSecurityMode);
 
                         var httpSecurityMode = HttpClientCredentialType.Basic;
-                        Enum.TryParse(ConfigurationManager.AppSettings["httpSecurityMode"], out httpSecurityMode);
+                        Enum.TryParse(ConfigurationManager.AppSettings["clientCredentialType"], out httpSecurityMode);
 
                         var ServiceSettings = new ProxyReaderServiceSettings(
                             new Uri(ConfigurationManager.AppSettings["serviceURL"]),
                             ConfigurationManager.AppSettings["username"],
-                            ConfigurationManager.AppSettings["passord"],
+                            ConfigurationManager.AppSettings["password"],
                             ConfigurationManager.AppSettings["domain"],
                             webSecurityMode,
                             httpSecurityMode);
@@ -55,8 +56,9 @@ namespace DebugServiceReaderTool
                         {
                             wb.Security.Mode = ServiceSettings.HttpSecurityMode;
                             wb.Security.Transport.ClientCredentialType = ServiceSettings.ClientCredentials;
+                            
                             wb.MaxReceivedMessageSize = int.MaxValue;
-                            //wb.ReaderQuotas.MaxStringContentLength = 65535;
+                            
                         }
 
                         if (channelFactory.Credentials != null)
@@ -64,13 +66,13 @@ namespace DebugServiceReaderTool
                             channelFactory.Credentials.Windows.ClientCredential.Domain   = ServiceSettings.Domain;
                             channelFactory.Credentials.Windows.ClientCredential.Password = ServiceSettings.Password;
                             channelFactory.Credentials.Windows.ClientCredential.UserName = ServiceSettings.Username;
-
+                            
                             channelFactory.Credentials.UserName.UserName = (!String.IsNullOrEmpty(ServiceSettings.Domain) ? ServiceSettings.Domain + "\\" : String.Empty) + ServiceSettings.Username;
                             channelFactory.Credentials.UserName.Password = ServiceSettings.Password;
                         }
 
                         var channel = channelFactory.CreateChannel();
-
+                        
                         PrintResult(channel);
                     }
                 }
@@ -86,7 +88,7 @@ namespace DebugServiceReaderTool
         {
             var exc = channel.GetExceptionsReliable();
             exc.Value.ToList().ForEach((exp) => Console.WriteLine(exp.ToString()));
-            Console.WriteLine(exc.Key + " : "  + channel.AckDelivery(exc.Key));
+            Console.WriteLine(exc.Key + " : " + channel.AckDelivery(exc.Key));
         }
 
         public static bool OnValidate(Object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
