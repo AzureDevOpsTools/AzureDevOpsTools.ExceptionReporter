@@ -78,6 +78,13 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             return res;
         }
 
+        internal WorkItem GetLatestNotOpenWorkItem()
+        {
+            // get the latest work item of all registered
+            var res = workItems.Where(IsNotOpen).Aggregate((wi, x) => ((x.Id > wi.Id) ? x : wi));
+            return res;
+        }
+
         /// <summary>
         /// A open workitem is one that is not Resolved or Closed
         /// </summary>
@@ -146,6 +153,15 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
             var state = new ExceptionState(wi, versionControlServer);
             return state.IsOpen;
+        }
+
+        private bool IsNotOpen(WorkItem wi)
+        {
+            Contract.Requires(wi != null);
+            Contract.Requires(wi.Links != null);
+
+            var state = new ExceptionState(wi, versionControlServer);
+            return !state.IsOpen;
         }
         #endregion
     }

@@ -43,6 +43,12 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             return associatedChangesets.Any(changeset => changeset.ChangesetId > changeSetId);
         }
 
+        public bool HasChangeset()
+        {
+            var associatedChangesets = GetAssociatedChangeSets();
+            return associatedChangesets.Any();
+        }
+
         public bool IsOpen
         {
             get

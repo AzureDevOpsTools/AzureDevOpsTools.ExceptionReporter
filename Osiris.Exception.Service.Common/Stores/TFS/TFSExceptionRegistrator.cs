@@ -51,14 +51,21 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
                                                             tfs.GetService<VersionControlServer>(),
                                                             exceptionEntity);
 
-            if (!workItems.HasOpenWorkItems && workItems.HasWorkItemsWithHigherChangeset)
+            if (!workItems.HasOpenWorkItems)
             {
-                wi = workItems.GetWorkItemWithHigherChangeset();
-                // If not Open and new exception has higher version, we should create new wi with link to the old one
-                if (HasHigherVersion(exceptionEntity.Version, wi))
+                if (workItems.HasWorkItemsWithHigherChangeset)
                 {
-                    linkedWi = wi;
-                    wi = null;
+                    wi = workItems.GetWorkItemWithHigherChangeset();
+                    // If not Open and new exception has higher version, we should create new wi with link to the old one
+                    if (HasHigherVersion(exceptionEntity.Version, wi))
+                    {
+                        linkedWi = wi;
+                        wi = null;
+                    }
+                }
+                else
+                {
+                    wi = workItems.GetLatestNotOpenWorkItem();
                 }
             }
             else
@@ -110,9 +117,16 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
             if (IsWorkItemFixed(wi, exception))
             {
-                //if (exception.Version >  )
                 ServiceLog.DefaultLog.Info(String.Format("Workitem {0} is fixed, update incident count, add comment ", wi.Id));
                 UpdateCommentAndRefCount(exception.Comment, wi, exception.Username);
+                return wi;
+            }
+
+            if (IsWorkItemClosedButNotFixed(wi))
+            {
+                ServiceLog.DefaultLog.Info(String.Format("Workitem {0} is closed but not fixed, update incident count, add comment, reopen ", wi.Id));
+                UpdateCommentAndRefCount(exception.Comment, wi, exception.Username);
+                wi.State = "Active";
                 return wi;
             }
 
@@ -177,6 +191,21 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
             //Check if workitem is closed/resolved with later changeset than in exception
             return !state.IsOpen && state.IsFixedAfterChangeset(changeSetId);
+        }
+
+        private bool IsWorkItemClosedButNotFixed(WorkItem wi)
+        {
+            Contract.Requires(wi != null);
+            Contract.Requires(wi.Links != null);
+
+            var vcs = tfs.GetService<VersionControlServer>();
+            if (vcs == null)
+            {
+                return false;
+            }
+
+            var state = new ExceptionState(wi, vcs);
+            return !state.IsOpen && !state.HasChangeset();
         }
 
         private bool HasHigherVersion(string buildVersion, WorkItem wi)
