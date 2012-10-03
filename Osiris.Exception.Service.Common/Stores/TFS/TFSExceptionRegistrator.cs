@@ -156,7 +156,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             if (String.IsNullOrEmpty(applicationName))
                 return;
             var currentAppName = wi.Fields[Application];
-            currentAppName.Value = applicationName.Split('|')[0];
+            currentAppName.Value = applicationName;
         }
 
         private void UpdateBuildVersion(string version, WorkItem wi)
@@ -322,14 +322,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
                 AreaPath = applicationInfo.Area
             };
 
-            var kmParams = exception.ApplicationName.Split('|');
-            wi.Fields[Application].Value = kmParams[0];
-            // Adding extended information to extended fields if they exists
-            if (wi.Fields.Contains(AssemblyName) && kmParams.Count() > 1)
-            {
-                wi.Fields[AssemblyName].Value = kmParams[1];
-            }
-
+            wi.Fields[Application].Value = exception.ApplicationName;
             wi.Fields[AssignedToFieldName].Value = applicationInfo.AssignedTo;
             wi.Fields[ExceptionReporterFieldName].Value = exception.Reporter;
             wi.Fields[BuildVersionFieldName].Value = exception.Version;
@@ -339,7 +332,14 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
             wi.Fields[ExceptionMessageFieldName].Value = TFSStringUtil.GenerateValidTFSStringType(exception.ExceptionMessage);
             wi.Fields[ExceptionTypeFieldName].Value = exception.ExceptionType;
-            wi.Fields[ClassFieldName].Value = exception.TheClass;
+            
+            var kmParams = exception.TheClass.Split('|');
+            wi.Fields[ClassFieldName].Value = kmParams[0];
+
+            if (wi.Fields.Contains(AssemblyName) && kmParams.Count() > 1)
+            {
+                wi.Fields[AssemblyName].Value = kmParams[1];
+            }
             wi.Fields[MethodFieldName].Value = exception.TheMethod;
             wi.Fields[SourceFieldName].Value = exception.TheSource;
             wi.Fields[StackTraceFieldName].Value = exception.StackTrace;

@@ -81,8 +81,9 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
         internal WorkItem GetLatestNotOpenWorkItem()
         {
             // get the latest work item of all registered
-            var res = workItems.Where(IsNotOpen).Aggregate((wi, x) => ((x.Id > wi.Id) ? x : wi));
-            return res;
+            if (workItems.Where(IsNotOpen).Any())
+             return workItems.Where(IsNotOpen).Aggregate((wi, x) => ((x.Id > wi.Id) ? x : wi));
+            return null;
         }
 
         /// <summary>

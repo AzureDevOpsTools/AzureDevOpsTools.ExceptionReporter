@@ -59,12 +59,12 @@ namespace Inmeta.ExceptionReporter.Km
 
             ExceptionEntity = new ExceptionEntity
             {
-                ApplicationName = applicationName + '|' + assemblyName,
+                ApplicationName = applicationName,
                 Reporter = reporter,
                 Username = username,
                 Version = version,
                 TheSource = ex.Source ?? String.Empty,
-                TheClass = exceptionClass,
+                TheClass = exceptionClass + '|' + assemblyName,
                 TheMethod = exceptionMethod,
                 StackTrace = stackTrace,
                 Comment = description,
