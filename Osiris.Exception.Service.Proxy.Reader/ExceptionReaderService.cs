@@ -36,6 +36,8 @@ namespace Inmeta.Exception.Service.Proxy.Reader
             int interval;
             if (!int.TryParse(ConfigurationManager.AppSettings["pollintervall"], out interval))
                 interval = 60 * 1000;
+            else
+                interval = interval*1000;
 
             var webSecurityMode = WebHttpSecurityMode.TransportCredentialOnly;
             Enum.TryParse(ConfigurationManager.AppSettings["httpSecurityMode"], out webSecurityMode);
