@@ -9,6 +9,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using Inmeta.Exception.Service.Common;
 using Inmeta.Exception.Service.Common.Services;
+using Inmeta.Exception.Service.Common.Stores.TFS;
 using Inmeta.Exception.Service.Proxy.Reader;
 
 namespace DebugServiceReaderTool
@@ -44,34 +45,34 @@ namespace DebugServiceReaderTool
                             webSecurityMode,
                             httpSecurityMode);
 
+                        //var channelFactory = new WebChannelFactory<IGetExceptionsService>(ServiceSettings.ServiceUrl);
 
+                        //ServicePointManager.ServerCertificateValidationCallback =
+                        //    new RemoteCertificateValidationCallback(OnValidate);
+                        //var wb = channelFactory.Endpoint.Binding as WebHttpBinding;
 
-                        var channelFactory = new WebChannelFactory<IGetExceptionsService>(ServiceSettings.ServiceUrl);
-
-                        ServicePointManager.ServerCertificateValidationCallback =
-                            new RemoteCertificateValidationCallback(OnValidate);
-                        var wb = channelFactory.Endpoint.Binding as WebHttpBinding;
-
-                        if (wb != null)
-                        {
-                            wb.Security.Mode = ServiceSettings.HttpSecurityMode;
-                            wb.Security.Transport.ClientCredentialType = ServiceSettings.ClientCredentials;
+                        //if (wb != null)
+                        //{
+                        //    wb.Security.Mode = ServiceSettings.HttpSecurityMode;
+                        //    wb.Security.Transport.ClientCredentialType = ServiceSettings.ClientCredentials;
+                        //    //wb.MaxBufferSize = int.MaxValue;
+                        //    wb.MaxReceivedMessageSize = int.MaxValue;
                             
-                            wb.MaxReceivedMessageSize = int.MaxValue;
-                            
-                        }
+                        //}
 
-                        if (channelFactory.Credentials != null)
-                        {
-                            channelFactory.Credentials.Windows.ClientCredential.Domain   = ServiceSettings.Domain;
-                            channelFactory.Credentials.Windows.ClientCredential.Password = ServiceSettings.Password;
-                            channelFactory.Credentials.Windows.ClientCredential.UserName = ServiceSettings.Username;
+                        //if (channelFactory.Credentials != null)
+                        //{
+                        //    channelFactory.Credentials.Windows.ClientCredential.Domain   = ServiceSettings.Domain;
+                        //    channelFactory.Credentials.Windows.ClientCredential.Password = ServiceSettings.Password;
+                        //    channelFactory.Credentials.Windows.ClientCredential.UserName = ServiceSettings.Username;
                             
-                            channelFactory.Credentials.UserName.UserName = (!String.IsNullOrEmpty(ServiceSettings.Domain) ? ServiceSettings.Domain + "\\" : String.Empty) + ServiceSettings.Username;
-                            channelFactory.Credentials.UserName.Password = ServiceSettings.Password;
-                        }
+                        //    channelFactory.Credentials.UserName.UserName = (!String.IsNullOrEmpty(ServiceSettings.Domain) ? ServiceSettings.Domain + "\\" : String.Empty) + ServiceSettings.Username;
+                        //    channelFactory.Credentials.UserName.Password = ServiceSettings.Password;
+                        //}
 
-                        var channel = channelFactory.CreateChannel();
+                        //var channel = channelFactory.CreateChannel();
+
+                        var channel = GetChannel(ServiceSettings);
                         
                         PrintResult(channel);
                     }
@@ -88,12 +89,48 @@ namespace DebugServiceReaderTool
         {
             var exc = channel.GetExceptionsReliable();
             exc.Value.ToList().ForEach((exp) => Console.WriteLine(exp.ToString()));
+            foreach (var exceptionData in exc.Value)
+            {
+                using (var registrator = new TFSStore())
+                    registrator.RegisterException(exceptionData,
+                                                  new ExceptionSettings(exceptionData.ApplicationName,
+                                                                        Path.Combine(
+                                                                            AppDomain.CurrentDomain.BaseDirectory,
+                                                                            "Applications.xml")));
+            }
             Console.WriteLine(exc.Key + " : " + channel.AckDelivery(exc.Key));
         }
 
         public static bool OnValidate(Object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
             return true;
+        }
+
+        private static IGetExceptionsService GetChannel(ProxyReaderServiceSettings _settings)
+        {
+            var channelFactory = new WebChannelFactory<IGetExceptionsService>(_settings.ServiceUrl);
+
+            //allways validate certificate.
+            ServicePointManager.ServerCertificateValidationCallback = OnValidate;
+
+            var wb = channelFactory.Endpoint.Binding as WebHttpBinding;
+            wb.ReaderQuotas.MaxStringContentLength = int.MaxValue;
+            wb.MaxReceivedMessageSize = int.MaxValue;
+
+            //default no HTTPS.
+            wb.Security.Mode = _settings.HttpSecurityMode;
+            wb.Security.Transport.ClientCredentialType = _settings.ClientCredentials;
+
+            channelFactory.Credentials.Windows.ClientCredential.Password = _settings.Password;
+            channelFactory.Credentials.Windows.ClientCredential.UserName = _settings.Username;
+
+            channelFactory.Credentials.UserName.UserName = (!String.IsNullOrEmpty(_settings.Domain)
+                                                                ? _settings.Domain + "\\"
+                                                                : String.Empty) + _settings.Username;
+            channelFactory.Credentials.UserName.Password = _settings.Password;
+
+            var channel = channelFactory.CreateChannel();
+            return channel;
         }
     }
 }

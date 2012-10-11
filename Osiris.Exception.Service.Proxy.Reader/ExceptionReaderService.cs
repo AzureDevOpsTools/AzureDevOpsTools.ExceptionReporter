@@ -115,15 +115,19 @@ namespace Inmeta.Exception.Service.Proxy.Reader
             //read new exceptions from service.
             var response = ReadFromRestService();
 
+            //EventLogger.LogInformation(EventLog, "Got response doing foreach.");
+
             //store them in TFS.
             response.Value.ToList().ForEach((exceptionData) =>
             {
+                //EventLogger.LogInformation(EventLog, "Inside foreach.");
                 //if not in failed list and not null.
                 if (exceptionData == null || failedApplications.Contains(exceptionData.ApplicationName))
                     return;
 
                 try
                 {
+                    //EventLogger.LogInformation(EventLog, "Call RegisterException");
                     using (var registrator = new TFSStore())
                         registrator.RegisterException(exceptionData, new ExceptionSettings(exceptionData.ApplicationName, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Applications.xml")));
                 }
@@ -136,6 +140,7 @@ namespace Inmeta.Exception.Service.Proxy.Reader
                 }
             });
 
+            //EventLogger.LogInformation(EventLog, "Sending ack.");
             var ackResult = SendAck(response.Key);
             if (!ackResult && _sendMails)
                 MailSender.GetSender(EventLog).SendMailNotification("Probably lost exceptions - acknowledgment error. Check file " + response.Key + " at Exception Service Portal");
@@ -145,11 +150,14 @@ namespace Inmeta.Exception.Service.Proxy.Reader
         {
             try
             {
+                //EventLogger.LogInformation(EventLog, "Get channel...");
                 var channel = GetChannel();
+                //EventLogger.LogInformation(EventLog, "Call get exceptions reliable...");
                 return channel.GetExceptionsReliable();
             }
             catch (System.Exception exp)
             {
+                //EventLogger.LogError(EventLog, "GetExceptionsReliable throwed exception: "+ exp.Message);
                 throw exp;
             }
         }
@@ -175,6 +183,7 @@ namespace Inmeta.Exception.Service.Proxy.Reader
             ServicePointManager.ServerCertificateValidationCallback = OnValidate;
 
             var wb = channelFactory.Endpoint.Binding as WebHttpBinding;
+            wb.ReaderQuotas.MaxStringContentLength = int.MaxValue;
             wb.MaxReceivedMessageSize = int.MaxValue;
 
             //default no HTTPS.
