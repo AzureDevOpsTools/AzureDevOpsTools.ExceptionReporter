@@ -9,18 +9,18 @@ namespace Inmeta.Exception.Common
 
 	public class ServiceLog
 	{
-		private static ILog _log;
+		private static ILog log;
 
 		public static ILog DefaultLog
 		{
 			get
 			{
-				if (_log == null)
+				if (log == null)
 				{
 					log4net.Config.XmlConfigurator.Configure(); 
-					_log = log4net.LogManager.GetLogger("Exception Reporting");
+					log = LogManager.GetLogger("Exception Reporting");
 				}
-				return _log;
+				return log;
 			}
 		}
 	}

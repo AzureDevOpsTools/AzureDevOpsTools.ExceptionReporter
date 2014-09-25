@@ -71,7 +71,8 @@ namespace Inmeta.Exception.Reporter.Web
                 serviceUri = null;
             }
 
-            new ExceptionStore(serviceUri, storeIsTFS).StoreException(exceptionEntity,  new ExceptionSettings(exceptionEntity.ApplicationName,
+            var exceptionStore = new ExceptionStore(serviceUri, storeIsTFS);
+            exceptionStore.StoreException(exceptionEntity,  new ExceptionSettings(exceptionEntity.ApplicationName,
                                                             HttpContext.Current.Request.MapPath(".") +
                                                              @"\App_Data\Applications.xml"));                
 		}

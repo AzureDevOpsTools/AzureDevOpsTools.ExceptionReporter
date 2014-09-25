@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Applications>
+  <!-- Application Name="Osiris.My.Test.App">
+		<TFSServer>http://tfs.osiris.no:8080/tfs</TFSServer>
+		<Collection>LabCollection</Collection>
+		<TeamProject>Oistein_KM_Sim_Upgrade</TeamProject>
+		<Area>Oistein_KM_Sim_Upgrade\Modul 1\</Area>
+		<AssignedTo>Øistein Klevhus</AssignedTo>
+	</Application -->
+  <!--Application Name="Default">
+		<TFSServer>http://ptfs01.partner.master.int:8080/tfs</TFSServer>
+		<Collection>Simulation</Collection>
+		<TeamProject>Nemo</TeamProject>
+		<Area>Nemo\Exceptions</Area>
+		<AssignedTo>Natalia An</AssignedTo>
+	</Application-->
+  <Application Name="Default">
+    <TFSServer>http://tfs.osiris.no:8080/tfs</TFSServer>
+    <Collection>LabCollection</Collection>
+    <TeamProject>Natalia</TeamProject>
+    <Area>Natalia\ExceptionTestArea</Area>
+    <AssignedTo>natan</AssignedTo>
+  </Application>
+</Applications>

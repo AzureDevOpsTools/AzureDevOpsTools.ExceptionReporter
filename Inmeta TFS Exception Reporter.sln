@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2010
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{0AC3630C-3866-4390-BCEE-A39CEF4DA67D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{9992AE43-7E23-4E0B-86E8-75518A4A7867}"
@@ -27,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		Inmeta TFS Exception Reporter.vsmdi = Inmeta TFS Exception Reporter.vsmdi
 		Local.testsettings = Local.testsettings
+		Readme.md = Readme.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Reporter", "Osiris.Exception.Reporter\Inmeta.Exception.Reporter.csproj", "{5012C512-6ADD-4B9C-BA4E-1713E9B1B766}"
@@ -61,74 +64,9 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Inmeta.Exception.Reporter.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kongsberg.Nemo.ExceptionReporter.Plugin", "Kongsberg.Nemo.ExceptionReporter.Plugin\Kongsberg.Nemo.ExceptionReporter.Plugin.csproj", "{CCB7A01B-6217-4C79-9CB2-9D1DA17AAD16}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Reporter.Web2", "Inmeta.Exception.Reporter.Web2\Inmeta.Exception.Reporter.Web2.csproj", "{1F78DC45-CCA4-4C83-A971-057324261AFA}"
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 17
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://tfs.osiris.no:8080/tfs/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ExceptionReporterModels\\ExceptionReporterModels.modelproj
-		SccProjectTopLevelParentUniqueName1 = Inmeta\u0020TFS\u0020Exception\u0020Reporter.sln
-		SccProjectName1 = ExceptionReporterModels
-		SccLocalPath1 = ExceptionReporterModels
-		SccProjectUniqueName2 = Osiris.Exception.Service.Common\\Inmeta.Exception.Service.Common.csproj
-		SccProjectName2 = Osiris.Exception.Service.Common
-		SccLocalPath2 = Osiris.Exception.Service.Common
-		SccProjectUniqueName3 = Osiris.Exception.Service.Proxy.Reader\\Inmeta.Exception.Service.Proxy.Reader.csproj
-		SccProjectName3 = Osiris.Exception.Service.Proxy.Reader
-		SccLocalPath3 = Osiris.Exception.Service.Proxy.Reader
-		SccProjectUniqueName4 = Osiris.Exception.Tests\\Inmeta.Exception.Tests.csproj
-		SccProjectName4 = Osiris.Exception.Tests
-		SccLocalPath4 = Osiris.Exception.Tests
-		SccProjectUniqueName5 = Osiris.Exception.Reporter\\Inmeta.Exception.Reporter.csproj
-		SccProjectName5 = Osiris.Exception.Reporter
-		SccLocalPath5 = Osiris.Exception.Reporter
-		SccProjectUniqueName6 = Setup\\Inmeta.Exception.Service.ReaderSetup\\Inmeta.Exception.Service.ReaderSetup.vdproj
-		SccProjectTopLevelParentUniqueName6 = Inmeta\u0020TFS\u0020Exception\u0020Reporter.sln
-		SccProjectName6 = Setup/Inmeta.Exception.Service.ReaderSetup
-		SccLocalPath6 = Setup\\Inmeta.Exception.Service.ReaderSetup
-		SccProjectUniqueName7 = Web\\Inmeta.Exception.Reporter.Web\\Inmeta.Exception.Reporter.Web.csproj
-		SccProjectName7 = Web/Inmeta.Exception.Reporter.Web
-		SccLocalPath7 = Web\\Inmeta.Exception.Reporter.Web
-		SccProjectUniqueName8 = Tools\\DebugServiceReaderTool\\DebugServiceReaderTool.csproj
-		SccProjectTopLevelParentUniqueName8 = Inmeta\u0020TFS\u0020Exception\u0020Reporter.sln
-		SccProjectName8 = Tools/DebugServiceReaderTool
-		SccLocalPath8 = Tools\\DebugServiceReaderTool
-		SccProjectUniqueName9 = Tools\\UsernameAndPasswordEncryption\\UsernameAndPasswordEncryption.csproj
-		SccProjectTopLevelParentUniqueName9 = Inmeta\u0020TFS\u0020Exception\u0020Reporter.sln
-		SccProjectName9 = Tools/UsernameAndPasswordEncryption
-		SccLocalPath9 = Tools\\UsernameAndPasswordEncryption
-		SccProjectUniqueName10 = Tools\\WinFormBasedExceptionReporter\\WinFormBasedExceptionReporterTestApp.csproj
-		SccProjectTopLevelParentUniqueName10 = Inmeta\u0020TFS\u0020Exception\u0020Reporter.sln
-		SccProjectName10 = Tools/WinFormBasedExceptionReporter
-		SccLocalPath10 = Tools\\WinFormBasedExceptionReporter
-		SccProjectUniqueName11 = Tools\\WPFBasedExceptionReporter\\WPFBasedExceptionReporterTestApp.csproj
-		SccProjectTopLevelParentUniqueName11 = Inmeta\u0020TFS\u0020Exception\u0020Reporter.sln
-		SccProjectName11 = Tools/WPFBasedExceptionReporter
-		SccLocalPath11 = Tools\\WPFBasedExceptionReporter
-		SccProjectUniqueName12 = ReportUI\\Inmeta.Exception.ReportUI.WPF\\Inmeta.Exception.Report.WPF.csproj
-		SccProjectTopLevelParentUniqueName12 = Inmeta\u0020TFS\u0020Exception\u0020Reporter.sln
-		SccProjectName12 = ReportUI/Inmeta.Exception.ReportUI.WPF
-		SccLocalPath12 = ReportUI\\Inmeta.Exception.ReportUI.WPF
-		SccProjectUniqueName13 = ReportUI\\Inmeta.Exception.ReportUI.Winform\\Inmeta.Exception.Report.WinForm.csproj
-		SccProjectTopLevelParentUniqueName13 = Inmeta\u0020TFS\u0020Exception\u0020Reporter.sln
-		SccProjectName13 = ReportUI/Inmeta.Exception.ReportUI.Winform
-		SccLocalPath13 = ReportUI\\Inmeta.Exception.ReportUI.Winform
-		SccProjectUniqueName14 = ReportUI\\Inmeta.Exception.Reporter.UI.Web\\Inmeta.Exception.Reporter.UI.Web.csproj
-		SccProjectTopLevelParentUniqueName14 = Inmeta\u0020TFS\u0020Exception\u0020Reporter.sln
-		SccProjectName14 = ReportUI/Inmeta.Exception.Reporter.UI.Web
-		SccLocalPath14 = ReportUI\\Inmeta.Exception.Reporter.UI.Web
-		SccProjectUniqueName15 = Setup\\Inmeta.Exception.Reporter.Web.Setup\\Inmeta.Exception.Reporter.Web.vdproj
-		SccProjectTopLevelParentUniqueName15 = Inmeta\u0020TFS\u0020Exception\u0020Reporter.sln
-		SccProjectName15 = Setup/Inmeta.Exception.Reporter.Web.Setup
-		SccLocalPath15 = Setup\\Inmeta.Exception.Reporter.Web.Setup
-		SccProjectUniqueName16 = Kongsberg.Nemo.ExceptionReporter.Plugin\\Kongsberg.Nemo.ExceptionReporter.Plugin.csproj
-		SccProjectName16 = Kongsberg.Nemo.ExceptionReporter.Plugin
-		SccLocalPath16 = Kongsberg.Nemo.ExceptionReporter.Plugin
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Inmeta TFS Exception Reporter.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
 		CD_ROM|Mixed Platforms = CD_ROM|Mixed Platforms
@@ -330,7 +268,6 @@ Global
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.CD_ROM|x86.ActiveCfg = Release|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{A259F218-627E-472E-BE73-8265DBE5CEC1}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
@@ -611,23 +548,53 @@ Global
 		{CCB7A01B-6217-4C79-9CB2-9D1DA17AAD16}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
 		{CCB7A01B-6217-4C79-9CB2-9D1DA17AAD16}.SingleImage|x64.ActiveCfg = Release|Any CPU
 		{CCB7A01B-6217-4C79-9CB2-9D1DA17AAD16}.SingleImage|x86.ActiveCfg = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.CD_ROM|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.CD_ROM|Mixed Platforms.Build.0 = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.CD_ROM|x64.ActiveCfg = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.CD_ROM|x86.ActiveCfg = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.DVD-5|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.DVD-5|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.DVD-5|x64.ActiveCfg = Debug|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.DVD-5|x86.ActiveCfg = Debug|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.Release|x64.ActiveCfg = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.Release|x86.ActiveCfg = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.SingleImage|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.SingleImage|Mixed Platforms.Build.0 = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.SingleImage|x64.ActiveCfg = Release|Any CPU
+		{1F78DC45-CCA4-4C83-A971-057324261AFA}.SingleImage|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{CC91908D-ECD6-4791-B9A9-241675BFFABD} = {0AC3630C-3866-4390-BCEE-A39CEF4DA67D}
-		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F} = {0AC3630C-3866-4390-BCEE-A39CEF4DA67D}
-		{0AB51FBE-12E2-468D-B81C-992284D799B4} = {5D212AAF-3BA1-41A9-BB23-C409964D0975}
-		{9BFC1D53-6FFE-4280-A3C5-500DA6CD767A} = {5D212AAF-3BA1-41A9-BB23-C409964D0975}
-		{29ECC9B1-44B7-4CAD-B4AD-DF8357F2169C} = {5D212AAF-3BA1-41A9-BB23-C409964D0975}
 		{05245356-640B-4631-B9E9-305326FB185C} = {7C14C671-DFF6-42DE-82DB-763265501076}
+		{CC91908D-ECD6-4791-B9A9-241675BFFABD} = {0AC3630C-3866-4390-BCEE-A39CEF4DA67D}
 		{AB74CA79-31D9-46D0-8746-8C7EF2F3A07E} = {CE9DE117-717C-4E59-AB65-3B6FA9A8DCA3}
 		{CEF88904-3E93-43CA-AD19-369EF9E18513} = {CE9DE117-717C-4E59-AB65-3B6FA9A8DCA3}
 		{A898606F-00DE-4E88-BDB5-55A13295D9CA} = {CE9DE117-717C-4E59-AB65-3B6FA9A8DCA3}
 		{6CA1B49C-5AF9-4672-B04C-768F18B00604} = {CE9DE117-717C-4E59-AB65-3B6FA9A8DCA3}
+		{0AB51FBE-12E2-468D-B81C-992284D799B4} = {5D212AAF-3BA1-41A9-BB23-C409964D0975}
+		{9BFC1D53-6FFE-4280-A3C5-500DA6CD767A} = {5D212AAF-3BA1-41A9-BB23-C409964D0975}
+		{29ECC9B1-44B7-4CAD-B4AD-DF8357F2169C} = {5D212AAF-3BA1-41A9-BB23-C409964D0975}
+		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F} = {0AC3630C-3866-4390-BCEE-A39CEF4DA67D}
 	EndGlobalSection
-	GlobalSection(NDepend) = preSolution
-		Project = ".\Osiris TFS Exception Reporter.ndproj"
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Inmeta TFS Exception Reporter.vsmdi
 	EndGlobalSection
 EndGlobal
