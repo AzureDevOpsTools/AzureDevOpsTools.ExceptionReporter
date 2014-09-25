@@ -4,25 +4,28 @@
 
 <div class="jumbotron">
     <h1>Inmeta Exception Reporter Web</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <p class="lead"></p>
+    <p></p>
 </div>
 
 <div class="row">
-    <h2>Upload exceptions</h2>
+    <h1>Upload exceptions</h1>
 
     <div id="dialog" title="View exception file">
-        <% Html.BeginForm("Upload", "Home", FormMethod.Post, new {enctype = "multipart/form-data"});
-        %>
-        <p><input type="file" id="fileUpload" name="fileUpload" size="23" /> </p>
-        <p><input type="submit" value="View exception file" /></p>
-        <% Html.EndForm(); %>
-    </div>
+        @using (Html.BeginForm("Upload", "Home", FormMethod.Post, new {enctype = "multipart/form-data"}))
+    {
+    
+        
+        <input type = "file" id = "fileUpload" name = "fileUpload" size = "23" />
+        <input type = "submit" value = "View exception file"/>
+        
+    }
+            </div>
     <br />
     <br />
     <br />
-    <p>
-        <%= "There are " + Model.Exceptions.Count + " exceptions in the file." %>
+    <p >
+        There are @Model.Exceptions.Count exceptions in the file.
     </p>
     <table width="100%">
         <tr>
@@ -42,40 +45,41 @@
         <tr>
             <td>
                 <div id="CommitItemsTop" title="Commit">
-                    <% using (Html.BeginForm("Commit", "Home", FormMethod.Post))
-                    {%>
-                    <%=Html.Hidden("filename", Model.FileName)%>
-                    <p><input type="submit" value="Upload Exceptions." /></p>
-                    <%
+                    @using (Html.BeginForm("Commit", "Home", FormMethod.Post))
+                    {
+                        @Html.TextBox("Filename");
+                    <input type="submit" value="Upload Exceptions." />
+                    
                     }
-                    %>
+                    
                 </div>
             </td>
         </tr>
-        <% foreach (var item in Model.Exceptions) {
-        %>
-        <tr>
-            <td style="vertical-align:middle">
-                <%= Html.Encode(item.Reporter) %>
-            </td>
-            <td style="vertical-align:middle">
-                <%= Html.Encode(item.Comment) %>
-            </td>
-            <td style="vertical-align:middle">
-                <%= Html.Encode(item.ExceptionMessage) %>
-            </td>
-            <td style="vertical-align:middle">
-                <%= Html.Encode("[" + item.TheClass + "].[" + item.TheMethod + "]") %>
-            </td>
-        </tr>
-        <% } %>
+        @foreach (var item in Model.Exceptions)
+        {
+
+            <tr>
+                <td style="vertical-align: middle">
+                    @Html.Encode(item.Reporter);
+                </td>
+                <td style="vertical-align: middle">
+                    @Html.Encode(item.Comment);
+                </td>
+                <td style="vertical-align: middle">
+                    @Html.Encode(item.ExceptionMessage);
+                </td>
+                <td style="vertical-align: middle">
+                    @Html.Encode("[" + item.TheClass + "].[" + item.TheMethod + "]");
+                </td>
+            </tr>
+        }
     </table>
-    <%  using (Html.BeginForm("Commit", "Home", FormMethod.Post))
+    @using (Html.BeginForm("Commit", "Home", FormMethod.Post))
     {
-    %>
-    <%=Html.Hidden("filename", Model.FileName)%>
-    <p><input type="submit" value="Upload Exceptions" /></p>
-    <%
+    
+        Html.TextBox("filename");
+      <input type="submit" value="Upload Exceptions" />
+    
     }
-    %>
+    
 </div>
