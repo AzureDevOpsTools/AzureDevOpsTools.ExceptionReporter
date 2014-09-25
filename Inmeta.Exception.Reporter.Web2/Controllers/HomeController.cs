@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using Inmeta.Exception.Reporter.Web.Models;
@@ -81,7 +82,8 @@ namespace Inmeta.Exception.Reporter.Web.Controllers
             }
 
 
-            new ExceptionStore(serviceUri, storeIsTFS).StoreException(exceptions, HttpContext.Server.MapPath(".") + @"\..\App_Data\Applications.xml");
+            var exceptionstore = new ExceptionStore(serviceUri, storeIsTFS);
+            exceptionstore.StoreException(exceptions, HttpContext.Server.MapPath(".") + @"\..\App_Data\Applications.xml");
 
             try
             {
@@ -94,6 +96,12 @@ namespace Inmeta.Exception.Reporter.Web.Controllers
             }
 
             return RedirectToAction("Index", new { filename = String.Empty });
+        }
+        public ActionResult About()
+        {
+            ViewBag.Message = "Inmeta Exception Web,  version "+Assembly.GetExecutingAssembly().GetName().Version;
+
+            return View();
         }
     }
 
