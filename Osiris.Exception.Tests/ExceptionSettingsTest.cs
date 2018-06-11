@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Xml.Linq;
 using Inmeta.Exception.Service.Common.Stores.TFS;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Inmeta.ExceptionService.TFS.Utils.Tests
@@ -12,46 +12,12 @@ namespace Inmeta.ExceptionService.TFS.Utils.Tests
     ///This is a test class for ExceptionSettingsTest and is intended
     ///to contain all ExceptionSettingsTest Unit Tests
     ///</summary>
-    [TestClass]
+    
     public class ExceptionSettingsTest
     {
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext { get; set; }
+        
 
-        #region Additional test attributes
-        // 
-        //You can use the following additional attributes as you write your tests:
-        //
-        //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
-        //public static void MyClassInitialize(TestContext testContext)
-        //{
-        //}
-        //
-        //Use ClassCleanup to run code after all tests in a class have run
-        //[ClassCleanup()]
-        //public static void MyClassCleanup()
-        //{
-        //}
-        //
-        //Use TestInitialize to run code before running each test
-        //[TestInitialize()]
-        //public void MyTestInitialize()
-        //{
-        //}
-        //
-        //Use TestCleanup to run code after each test has run
-        //[TestCleanup()]
-        //public void MyTestCleanup()
-        //{
-        //}
-        //
-        #endregion
-
-        private const string SettingsFileUri = "Applications.xml";
+     private const string SettingsFileUri = "Applications.xml";
         private const string XmlContent = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
                     <Applications>
                         <Application Name=""Default"">
@@ -77,7 +43,7 @@ namespace Inmeta.ExceptionService.TFS.Utils.Tests
                         </Application>
                     </Applications>";
 
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {            
             var finfo = new FileInfo(SettingsFileUri);
@@ -86,7 +52,7 @@ namespace Inmeta.ExceptionService.TFS.Utils.Tests
             writer.Close();
         }
 
-        [TestCleanup]
+        [TearDown]
         public void MyTestCleanup()
         {
             new FileInfo(SettingsFileUri).Delete();
@@ -96,14 +62,14 @@ namespace Inmeta.ExceptionService.TFS.Utils.Tests
         /// <summary>
         ///A test for ExceptionSettings Constructor
         ///</summary>
-        [TestMethod]
+        [Test]
         public void ExceptionSettingsConstructorTest()
         {
             var settings = new ExceptionSettings(string.Empty, SettingsFileUri);
             Assert.IsNotNull(settings);
         }
 
-        [TestMethod]
+        [Test]
         public void AssignedTo_Is_Default_User_When_Exception_Has_No_Id()
         {
             var target = new ExceptionSettings(string.Empty, SettingsFileUri);
@@ -111,7 +77,7 @@ namespace Inmeta.ExceptionService.TFS.Utils.Tests
             Assert.AreEqual("Default user", target.AssignedTo);
         }
 
-        [TestMethod]
+        [Test]
         public void AssignedTo_Is_Jakob_Ehn_When_Application_Is_MyApp()
         {
             var target = new ExceptionSettings("My.App", SettingsFileUri);

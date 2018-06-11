@@ -2,24 +2,24 @@
 using System.IO;
 using Inmeta.Exception.Service.Common;
 using Inmeta.Exception.Service.Common.Stores.TFS;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics.Contracts;
 using System;
 using Inmeta.Exception.Reporter;
 using System.Linq;
 using Fasterflect;
 using log4net.Repository.Hierarchy;
+using NUnit.Framework;
 using Osiris.Exception.Tests;
 
 namespace Inmeta.Exception.Tests
 {
 
-    [TestClass]
+    
     public class ExceptionRegistratorTest : ExceptionReportingTestBase
     {
         internal readonly string SettingsFileUri = System.IO.Path.GetTempFileName();
 
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
             Contract.Requires(!String.IsNullOrEmpty(SettingsFileUri));
@@ -30,15 +30,15 @@ namespace Inmeta.Exception.Tests
             writer.Close();
         }
 
-        [TestCleanup]
+        [TearDown]
         public void MyTestCleanup()
         {
             Contract.Requires(!String.IsNullOrEmpty(SettingsFileUri));
             new FileInfo(SettingsFileUri).Delete();
         }
 
-        [TestCategory("Integration")]
-        [TestMethod]
+        [Category("Integration")]
+        [Test]
         public void TFSExceptionRegistrator_RegisterExceptionTest()
         {
             var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
@@ -51,8 +51,8 @@ namespace Inmeta.Exception.Tests
         /// If the exception-workitem type is ever updated, the new version should be uploaded 
         /// to the TFSExceptionReporterTest-project on VM-TFS-TEST, to ensure the exception service doesn't choke on it.
         /// </summary>
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Test]
+        [Category("Integration")]
         public void TFSExceptionRegistrator_Creation_with_new_line()
         {
             var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
@@ -77,8 +77,8 @@ namespace Inmeta.Exception.Tests
         /// If the exception-workitem type is ever updated, the new version should be uploaded 
         /// to the TFSExceptionReporterTest-project on VM-TFS-TEST, to ensure the exception service doesn't choke on it.
         /// </summary>
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Test]
+        [Category("Integration")]
         public void TFSExceptionRegistrator_Creation_with_message_GT_255()
         {
             var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
@@ -102,8 +102,8 @@ namespace Inmeta.Exception.Tests
         /// If the exception-workitem type is ever updated, the new version should be uploaded 
         /// to the TFSExceptionReporterTest-project on VM-TFS-TEST, to ensure the exception service doesn't choke on it.
         /// </summary>
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Test]
+        [Category("Integration")]
         public void TFSExceptionRegistrator_Creation_with_Tab()
         {
             var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
@@ -128,8 +128,8 @@ namespace Inmeta.Exception.Tests
         /// If the exception-workitem type is ever updated, the new version should be uploaded 
         /// to the TFSExceptionReporterTest-project on VM-TFS-TEST, to ensure the exception service doesn't choke on it.
         /// </summary>
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Test]
+        [Category("Integration")]
         public void TFSExceptionRegistrator_Creation_with_Carriage_return()
         {
             var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
@@ -153,8 +153,8 @@ namespace Inmeta.Exception.Tests
         /// If the exception-workitem type is ever updated, the new version should be uploaded 
         /// to the TFSExceptionReporterTest-project on VM-TFS-TEST, to ensure the exception service doesn't choke on it.
         /// </summary>
-        [TestMethod]
-        [TestCategory("Integration")]
+        [Test]
+        [Category("Integration")]
         public void TFSExceptionRegistrator_with_message_With_LineShift()
         {
             var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
@@ -173,7 +173,7 @@ namespace Inmeta.Exception.Tests
                );
         }
 
-        [TestMethod]
+        [Test]
         public void ReportLogger_EnsureLogFilesExists()
         {
             var reportLogger = typeof(ExceptionRegistrator).Assembly.

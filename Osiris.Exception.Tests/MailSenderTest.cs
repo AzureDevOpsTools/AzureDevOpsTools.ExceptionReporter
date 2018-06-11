@@ -1,18 +1,14 @@
-﻿using System;
-using System.Diagnostics;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Diagnostics;
 using Inmeta.Exception.Service.Proxy.Reader;
+using NUnit.Framework;
 
 namespace Inmeta.Exception.Tests
 {
-    [TestClass]
+    
     public class MailSenderTest
     {
-        [TestMethod]
-        [Ignore]
+        [Test]
+        [Ignore("for now")]
         public void TestSendMail()
         {
             var sender = MailSender.GetSender(new EventLog("testLog"));

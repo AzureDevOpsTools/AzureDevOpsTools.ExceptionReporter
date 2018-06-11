@@ -14,41 +14,41 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
     {
         private const string FileName = "Exceptions.txt";
         private const string PathExtension = @"Inmeta\Exceptions\";
-        private static readonly byte[] _newLineBytes;
-        private readonly object _fileLockObject = new object();
+        private static readonly byte[] NewLineBytes;
+        private readonly object fileLockObject = new object();
         
         //in MBs
-        private static float _maxFileSize = 10;
+        public static float MaxFileSize { get; set; } = 10;
 
         static FileStore()
         {
-            _newLineBytes = UTF8Encoding.Default.GetBytes(System.Environment.NewLine);
+            NewLineBytes = UTF8Encoding.Default.GetBytes(System.Environment.NewLine);
 
             //try to parse max size from application config.
-            float.TryParse(ConfigurationManager.AppSettings["ExceptionFileSizeInMB"], out _maxFileSize);
-
-            if (_maxFileSize == 0.0)
-                _maxFileSize = 10;
+            float.TryParse(ConfigurationManager.AppSettings["ExceptionFileSizeInMB"], out var mfs);
+            MaxFileSize = mfs;
+            if (MaxFileSize < 10.0)
+                MaxFileSize = 10;
         }
 
         public void SaveException(ExceptionEntity exception)
         {
             var ser = new XmlSerializer(typeof(ExceptionEntity));
-            lock (_fileLockObject)
+            lock (fileLockObject)
             {
                 using (
                     var file = File.Open(ExceptionsFileName, FileMode.Append, FileAccess.Write, FileShare.None)
                     )
                 {
-                    if (file.Length > _maxFileSize * 1000000)
+                    if (file.Length > MaxFileSize * 1000000)
                     {
-                        throw new FileLoadException("The log file at " + ExceptionsFileName + " has exceeded max size of " + _maxFileSize + " MB. Exception will be discarded.");
+                        throw new FileLoadException("The log file at " + ExceptionsFileName + " has exceeded max size of " + MaxFileSize + " MB. Exception will be discarded.");
                     }
                     //write xml 
                     ser.Serialize(file, exception);
 
                     //write a line break for readability
-                    file.Write(_newLineBytes, 0, _newLineBytes.Count());
+                    file.Write(NewLineBytes, 0, NewLineBytes.Count());
                 }
             }
         }
@@ -172,7 +172,7 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
 
             var exceptions = new List<ExceptionEntity>();
             var failed = new List<string>();
-            lock (_fileLockObject)
+            lock (fileLockObject)
             {
                 string log;
 
@@ -220,14 +220,14 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             }
         }
 
-        private static void MoveToFailedFolder(string errornousXML)
+        private static void MoveToFailedFolder(string errornousXml)
         {
             try
             {
 
                 using (var stream = File.CreateText(FailedExceptionsFileName))
                 {
-                    stream.Write(errornousXML);
+                    stream.Write(errornousXml);
                 }
             }
             catch (System.Exception ex)
@@ -237,14 +237,14 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             }
         }
 
-        private static void MoveToFailedFolder(string errornousXML, string key)
+        private static void MoveToFailedFolder(string errornousXml, string key)
         {
             try
             {
                 CleanFailedExceptions();
                 using (var stream = File.AppendText(GetFailedExceptionFileNameByKey(key)))
                 {
-                    stream.Write(errornousXML);
+                    stream.Write(errornousXml);
                 }
             }
             catch (System.Exception ex)
@@ -276,13 +276,7 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             return log.Length > 0;
         }
 
-        private static string FailedExceptionsFileName
-        {
-            get
-            {
-                return GetPath(Path.Combine(PathExtension, "failed"));
-            }
-        }
+        private static string FailedExceptionsFileName => GetPath(Path.Combine(PathExtension, "failed"));
 
         private static string GetFailedExceptionFileNameByKey(string key)
         {
@@ -313,29 +307,11 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             }
         }
 
-        private static string OldPreviousExceptionsFileName
-        {
-            get
-            {
-                return Path.ChangeExtension(GetPath(Path.Combine(PathExtension, "old")), "old");
-            }
-        }        
+        private static string OldPreviousExceptionsFileName => Path.ChangeExtension(GetPath(Path.Combine(PathExtension, "old")), "old");
 
-        private static string PreviousExceptionsFileName
-        {
-            get 
-            {
-                return GetPath(Path.Combine(PathExtension, "old"));
-            }
-        }        
+        public static string PreviousExceptionsFileName => GetPath(Path.Combine(PathExtension, "old"));
 
-        private static string ExceptionsFileName
-        {
-            get
-            {
-                return GetPath(PathExtension);
-            }
-        }
+        public static string ExceptionsFileName => GetPath(PathExtension);
 
         private static string TempFileName(string key)
         {
@@ -359,16 +335,16 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
 
         private static string GetFolder(string extension)
         {
-            RegistryKey localMachine = Registry.LocalMachine;
+            var localMachine = Registry.LocalMachine;
             const string keypath = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders";
 
             //default location to 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
             //override with Registry settings if available.
-            RegistryKey key = localMachine.OpenSubKey(keypath);
+            var key = localMachine.OpenSubKey(keypath);
 
-            if (key != null && key.GetValue("Common AppData") != null)
+            if (key?.GetValue("Common AppData") != null)
                 path = key.GetValue("Common AppData").ToString();
             
 

@@ -1,21 +1,15 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Text;
-using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
-using System.Xml.Serialization;
 using Fasterflect;
-using Inmeta.Exception.Service.Common.Stores.FileStore;
-using Inmeta.Exception.Tests;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Inmeta.Exception.Tests.FileStore
 {
-    [TestClass]
+    
     public class FileStoreTests
     {
-        [TestMethod]
+        [Test]
         public void FileStore_EnsureExceptionFileIsRemovedAfterPop()
         {
             for (var i = 0; i < 10; i++)
@@ -42,16 +36,17 @@ namespace Inmeta.Exception.Tests.FileStore
                 new Service.Common.Stores.FileStore.FileStore().SaveException(ex);
             }
 
-            var ent = new Service.Common.Stores.FileStore.FileStore().PopExceptions();
+            var ent = new Service.Common.Stores.FileStore.FileStore();
+            var res = ent.PopExceptions();
 
             //check if log folder is empty 
-            Assert.IsFalse(File.Exists(FileStore_Accessor.ExceptionsFileName), "File exists after popExceptions, After PopExceptions should log file be moved to previous = " + FileStore_Accessor.ExceptionsFileName);
+            Assert.IsFalse(File.Exists(Service.Common.Stores.FileStore.FileStore.ExceptionsFileName), "File exists after popExceptions, After PopExceptions should log file be moved to previous = " + Service.Common.Stores.FileStore.FileStore.ExceptionsFileName);
             
             //previous log file is moved to previous folder.
-            Assert.IsTrue(File.Exists(FileStore_Accessor.PreviousExceptionsFileName), "Previous do not exist, After PopExceptions should log file be moved to previous folder = "  + FileStore_Accessor.PreviousExceptionsFileName);
+            Assert.IsTrue(File.Exists(Service.Common.Stores.FileStore.FileStore.PreviousExceptionsFileName), "Previous do not exist, After PopExceptions should log file be moved to previous folder = "  + Service.Common.Stores.FileStore.FileStore.PreviousExceptionsFileName);
         }
 
-        [TestMethod]
+        [Test]
         public void FileStore_SaveOneExceptionToFile()
         {
             //clean up old exceptions 
@@ -86,7 +81,7 @@ namespace Inmeta.Exception.Tests.FileStore
                ); 
         }
 
-        [TestMethod]
+        [Test]
         public void FileStore_RestorInvalidXML()
         {
             //clean up old exceptions 
@@ -113,13 +108,13 @@ namespace Inmeta.Exception.Tests.FileStore
 
             var modified = "";
             //load file and remove some stuff
-            using (var stream = File.OpenText(FileStore_Accessor.ExceptionsFileName))
+            using (var stream = File.OpenText(Service.Common.Stores.FileStore.FileStore.ExceptionsFileName))
             {
                 modified = stream.ReadToEnd().Replace("xml version", "sdfds");
             }
 
             //rewrite file 
-            using (var rewrite = File.OpenWrite(FileStore_Accessor.ExceptionsFileName))
+            using (var rewrite = File.OpenWrite(Service.Common.Stores.FileStore.FileStore.ExceptionsFileName))
             {
                 var bytes = ASCIIEncoding.Default.GetBytes(modified);
                 rewrite.Write(bytes, 0, bytes.Length);
@@ -129,7 +124,7 @@ namespace Inmeta.Exception.Tests.FileStore
         }
 
 
-        [TestMethod]
+        [Test]
         public void FileStore_LogFileIsToBig()
         {
             new Service.Common.Stores.FileStore.FileStore().PopExceptions();
@@ -151,10 +146,11 @@ namespace Inmeta.Exception.Tests.FileStore
                 Version = ExceptionTestConstants.RndStrLength(1000)
             };
 
-            new Service.Common.Stores.FileStore.FileStore().SaveException(ex);
+            var ent = new Service.Common.Stores.FileStore.FileStore();
+            ent.SaveException(ex);
 
             //0.01 MB = 10K
-            FileStore_Accessor._maxFileSize = 0.01F;
+            Service.Common.Stores.FileStore.FileStore.MaxFileSize = 0.01F;
 
             ex = new Inmeta.Exception.Service.Common.ExceptionEntity()
             {

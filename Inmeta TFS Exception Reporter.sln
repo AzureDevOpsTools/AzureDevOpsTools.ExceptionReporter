@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{0AC3630C-3866-4390-BCEE-A39CEF4DA67D}"
 EndProject
@@ -27,8 +27,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{CE9DE117
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{27926DD6-D4D0-418F-AB51-EE9FE1A352A9}"
 	ProjectSection(SolutionItems) = preProject
-		Inmeta TFS Exception Reporter.vsmdi = Inmeta TFS Exception Reporter.vsmdi
-		Local.testsettings = Local.testsettings
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
@@ -593,6 +591,9 @@ Global
 		{9BFC1D53-6FFE-4280-A3C5-500DA6CD767A} = {5D212AAF-3BA1-41A9-BB23-C409964D0975}
 		{29ECC9B1-44B7-4CAD-B4AD-DF8357F2169C} = {5D212AAF-3BA1-41A9-BB23-C409964D0975}
 		{E2F5E062-DE7B-4D0C-8919-0E2C7451DB1F} = {0AC3630C-3866-4390-BCEE-A39CEF4DA67D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25F2FA7E-3970-4F9A-8EAF-6F94B9F9C85A}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Inmeta TFS Exception Reporter.vsmdi

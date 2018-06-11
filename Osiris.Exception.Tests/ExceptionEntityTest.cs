@@ -1,19 +1,16 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.IO;
 using System.Xml;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 using Inmeta.Exception.Service.Common;
 using System.Runtime.Serialization;
+using NUnit.Framework;
 
 namespace Inmeta.Exception.Tests
 {
-    [TestClass]
+    
     public class ExceptionEntityTest
     {
-        [TestMethod]
+        [Test]
         public void TestDataContractSerialization()
         {
             var entity = new ExceptionEntity
