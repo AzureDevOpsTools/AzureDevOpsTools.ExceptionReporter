@@ -310,3 +310,8 @@ OpenCover/
 ASALocalRun/
 # MSBuild Binary and Structured Log
 *.binlog
+/.paket/paket.bootstrapper.exe
+.tools-packages/
+Inmeta.Exception.Reporter.Web2/Content/
+Inmeta.Exception.Reporter.Web2/Scripts/
+Inmeta.Exception.Reporter.Web2/Scripts/

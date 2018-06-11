@@ -10,13 +10,14 @@ namespace Inmeta.Exception.Tests
     
     public class ExceptionRegistrator_ReportingFormType_Test  : ExceptionReportingTestBase
     {
-
+        [Ignore("Possibly outdated")]
         [Test]
         public void ExceptionRegistrator_CreateWinForm_As_Default()
         {
             new ExceptionRegistrator("winformLoader", false, new DefaultServiceSettings(), WinformFolder);
         }
 
+        [Ignore("Possibly outdated")]
         [Test]
         public void ExceptionRegistrator_CreateWPF()
         {

@@ -15,9 +15,10 @@ namespace Inmeta.ExceptionService.TFS.Utils.Tests
     
     public class ExceptionSettingsTest
     {
-        
+        private string SettingsFileUri;
 
-     private const string SettingsFileUri = "Applications.xml";
+
+        private const string settingsFileUri = "Applications.xml";
         private const string XmlContent = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
                     <Applications>
                         <Application Name=""Default"">
@@ -45,7 +46,8 @@ namespace Inmeta.ExceptionService.TFS.Utils.Tests
 
         [SetUp]
         public void MyTestInitialize()
-        {            
+        {
+            SettingsFileUri = Path.Combine(TestContext.CurrentContext.TestDirectory, settingsFileUri);
             var finfo = new FileInfo(SettingsFileUri);
             var writer = finfo.CreateText();
             writer.Write(XmlContent);

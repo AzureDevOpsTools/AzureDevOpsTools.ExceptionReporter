@@ -1,0 +1,20 @@
+{
+  "PreRequisites": [
+    {
+      "Name": "DotNetFramework",
+      "Version": "4.6.2"
+    },
+  ],
+  "Builds": [
+    {
+      "Solution": "InmetaTFSExceptionReporter.sln"
+    }
+  ],
+  "Pack" : "false",
+    "FileVersion": 
+    {
+      "ProductName": "Inmeta TFS Exception Reporter server",
+      "Description": "Inmeta TFS Exception Reporter server components",
+      "CopyrightYearFrom": 2018
+    }
+}

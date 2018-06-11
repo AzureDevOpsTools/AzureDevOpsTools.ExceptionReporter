@@ -33,6 +33,7 @@
     <IISExpressUseClassicPipelineMode />
     <Use64BitIISExpress />
     <UseGlobalApplicationHostFile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,9 +55,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -85,6 +83,63 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-icons_222222_256x240.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-icons_444444_256x240.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-icons_454545_256x240.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-icons_555555_256x240.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-icons_777620_256x240.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-icons_777777_256x240.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-icons_888888_256x240.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-icons_cc0000_256x240.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png">
+      <Paket>True</Paket>
+    </Resource>
+    <Resource Include="Content\themes\base\images\ui-icons_ffffff_256x240.png">
+      <Paket>True</Paket>
+    </Resource>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WebTestException.cs" />
@@ -97,6 +152,75 @@
     <Compile Include="WPFExceptionReporterView.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="README.jQuery.vsdoc.txt">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\accordion.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\all.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\autocomplete.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\base.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\button.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\core.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\datepicker.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\dialog.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\draggable.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\jquery-ui.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\jquery-ui.min.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\menu.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\progressbar.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\resizable.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\selectable.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\selectmenu.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\slider.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\sortable.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\spinner.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\tabs.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\theme.css">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Content\themes\base\tooltip.css">
+      <Paket>True</Paket>
+    </Content>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -125,14 +249,50 @@
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-3.3.1-vsdoc.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery-3.3.1.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery-3.3.1.min.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery-3.3.1.min.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery-3.3.1.slim.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery-ui-1.12.1.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\modernizr-2.8.3.js">
+      <Paket>True</Paket>
+    </Content>
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
-    <Content Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery.validate.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery.validate.min.js">
+      <Paket>True</Paket>
+    </Content>
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <Content Include="Web.config" />
@@ -169,7 +329,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="paket.references" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Osiris.Exception.Reporter\Inmeta.Exception.Reporter.csproj">
@@ -216,4 +376,35 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\..\.paket\paket.targets" />
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.0' Or $(TargetFrameworkVersion) == 'v4.0.3')">
+      <ItemGroup>
+        <Reference Include="EntityFramework">
+          <HintPath>..\..\packages\EntityFramework\lib\net40\EntityFramework.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+        <Reference Include="EntityFramework.SqlServer">
+          <HintPath>..\..\packages\EntityFramework\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3' Or $(TargetFrameworkVersion) == 'v4.7' Or $(TargetFrameworkVersion) == 'v4.7.1' Or $(TargetFrameworkVersion) == 'v4.7.2')">
+      <ItemGroup>
+        <Reference Include="EntityFramework">
+          <HintPath>..\..\packages\EntityFramework\lib\net45\EntityFramework.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+        <Reference Include="EntityFramework.SqlServer">
+          <HintPath>..\..\packages\EntityFramework\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
 </Project>
