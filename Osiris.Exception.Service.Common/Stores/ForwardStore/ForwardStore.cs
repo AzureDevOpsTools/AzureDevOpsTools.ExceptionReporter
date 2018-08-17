@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using Inmeta.Exception.Common;
 using Inmeta.Exception.Service.Common.Services;
 
 namespace Inmeta.Exception.Service.Common.Stores.ForwardStore

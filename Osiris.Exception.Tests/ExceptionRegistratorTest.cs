@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using System.IO;
+﻿using System.IO;
 using Inmeta.Exception.Service.Common;
 using Inmeta.Exception.Service.Common.Stores.TFS;
 using System.Diagnostics.Contracts;
@@ -22,7 +21,6 @@ namespace Inmeta.Exception.Tests
         [SetUp]
         public void MyTestInitialize()
         {
-            Contract.Requires(!String.IsNullOrEmpty(SettingsFileUri));
             var xmlContent = ExceptionTestConstants.APPLICATION_CONFIG;
             var finfo = new FileInfo(SettingsFileUri);
             var writer = finfo.CreateText();
@@ -33,7 +31,6 @@ namespace Inmeta.Exception.Tests
         [TearDown]
         public void MyTestCleanup()
         {
-            Contract.Requires(!String.IsNullOrEmpty(SettingsFileUri));
             new FileInfo(SettingsFileUri).Delete();
         }
 
@@ -42,7 +39,7 @@ namespace Inmeta.Exception.Tests
         public void TFSExceptionRegistrator_RegisterExceptionTest()
         {
             var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
-            var registrator = new TFSStore();
+            var registrator = new TFSStoreWithBug();
             registrator.RegisterException(ExceptionEntityTestData.MyExceptionEntity, settings);
         }
 
@@ -56,7 +53,7 @@ namespace Inmeta.Exception.Tests
         public void TFSExceptionRegistrator_Creation_with_new_line()
         {
             var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
-            var registrator = new TFSStore();
+            var registrator = new TFSStoreWithBug();
             var exceptionEntity = ExceptionEntityTestData.ExceptionEntity_WITH_NEWLINE;
 
             registrator.RegisterException(exceptionEntity, settings);
@@ -82,7 +79,7 @@ namespace Inmeta.Exception.Tests
         public void TFSExceptionRegistrator_Creation_with_message_GT_255()
         {
             var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
-            var registrator = new TFSStore();
+            var registrator = new TFSStoreWithBug();
             var exceptionEntity = ExceptionEntityTestData.MyExceptionEntityMessageGT255;
 
             registrator.RegisterException(exceptionEntity, settings);
@@ -107,7 +104,7 @@ namespace Inmeta.Exception.Tests
         public void TFSExceptionRegistrator_Creation_with_Tab()
         {
             var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
-            var registrator = new TFSStore();
+            var registrator = new TFSStoreWithBug();
             var exceptionEntity = ExceptionEntityTestData.ExceptionEntity_WITH_TABULATOR;
 
             registrator.RegisterException(exceptionEntity, settings);
@@ -133,7 +130,7 @@ namespace Inmeta.Exception.Tests
         public void TFSExceptionRegistrator_Creation_with_Carriage_return()
         {
             var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
-            var registrator = new TFSStore();
+            var registrator = new TFSStoreWithBug();
             var exceptionEntity = ExceptionEntityTestData.ExceptionEntity_WITH_CARRIAGE_RETURN;
 
             registrator.RegisterException(exceptionEntity, settings);
@@ -158,7 +155,7 @@ namespace Inmeta.Exception.Tests
         public void TFSExceptionRegistrator_with_message_With_LineShift()
         {
             var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
-            var registrator = new TFSStore();
+            var registrator = new TFSStoreWithBug();
             var exceptionEntity = ExceptionEntityTestData.ExceptionEntity_WITHLINESHIFT;
 
             registrator.RegisterException(exceptionEntity, settings);

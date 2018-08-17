@@ -1,11 +1,7 @@
-﻿using System;using System.Collections.Generic;
+﻿using System;
 using System.Configuration;
-using System.IO;
-using System.Linq;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 using Inmeta.Exception.Reporter;
-using Inmeta.Exception.Reporter.TFSExeptionService;
 using Inmeta.Exception.Service.Common;
 
 namespace ExceptionReporterTestApp

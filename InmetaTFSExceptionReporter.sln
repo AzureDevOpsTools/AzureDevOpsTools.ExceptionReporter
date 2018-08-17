@@ -64,6 +64,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kongsberg.Nemo.ExceptionRep
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Reporter.Web2", "Inmeta.Exception.Reporter.Web2\Inmeta.Exception.Reporter.Web2.csproj", "{1F78DC45-CCA4-4C83-A971-057324261AFA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inmeta.Exception.Service.Common.Tests", "Inmeta.Exception.Service.Common.Tests\Inmeta.Exception.Service.Common.Tests.csproj", "{D436ED0B-D040-40C8-B015-82152DAAB458}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -124,6 +126,10 @@ Global
 		{1F78DC45-CCA4-4C83-A971-057324261AFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F78DC45-CCA4-4C83-A971-057324261AFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F78DC45-CCA4-4C83-A971-057324261AFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D436ED0B-D040-40C8-B015-82152DAAB458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D436ED0B-D040-40C8-B015-82152DAAB458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D436ED0B-D040-40C8-B015-82152DAAB458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D436ED0B-D040-40C8-B015-82152DAAB458}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

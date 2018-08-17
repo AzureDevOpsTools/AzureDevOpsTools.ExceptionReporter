@@ -4,7 +4,6 @@ using System.IO;
 using System.Threading;
 using Inmeta.Exception.Reporter;
 using Inmeta.Exception.Reporter.TFSExeptionService;
-using Kongsberg.Nemo.ExceptionReporter.Plugin;
 using Kongsberg.Nemo.ExceptionReporter.Plugin.UI;
 
 namespace Inmeta.ExceptionReporter.Km

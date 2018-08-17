@@ -2,9 +2,7 @@
 using System.Configuration;
 using System.Threading;
 using System.Windows.Forms;
-using Inmeta.Exception.Reporter;
 using System.Linq;
-using Inmeta.Exception.Service.Common;
 
 namespace ExceptionReporterTestApp
 {

@@ -15,10 +15,10 @@
 		<AssignedTo>Natalia An</AssignedTo>
 	</Application-->
   <Application Name="Default">
-    <TFSServer>http://tfs.osiris.no:8080/tfs</TFSServer>
-    <Collection>LabCollection</Collection>
-    <TeamProject>Natalia</TeamProject>
-    <Area>Natalia\ExceptionTestArea</Area>
-    <AssignedTo>natan</AssignedTo>
+    <TFSServer>https://kongsberg.visualstudio.com</TFSServer>
+    <Collection></Collection>
+    <TeamProject>CloudExceptions</TeamProject>
+    <Area>CloudExceptions</Area>
+    <AssignedTo>OsirisTerje</AssignedTo>
   </Application>
 </Applications>

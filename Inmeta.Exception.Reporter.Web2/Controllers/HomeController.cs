@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
 using Inmeta.Exception.Reporter.Web.Models;
-using Inmeta.Exception.Service.Common;
 using Inmeta.Exception.Service.Common.Stores;
 using Inmeta.Exception.Service.Common.Stores.FileStore;
-using Inmeta.Exception.Service.Common.Stores.TFS;
 
 namespace Inmeta.Exception.Reporter.Web.Controllers
 {

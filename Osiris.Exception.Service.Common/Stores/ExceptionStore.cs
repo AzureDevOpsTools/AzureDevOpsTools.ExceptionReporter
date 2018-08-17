@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Text;
-using System.Web;
 using Inmeta.Exception.Common;
 using Inmeta.Exception.Service.Common.Stores.TFS;
 
@@ -21,10 +18,10 @@ namespace Inmeta.Exception.Service.Common.Stores
             _storeIsTFS = useTFS;
         }
 
-        public void StoreException(List<ExceptionEntity> exptions, string applicationLocation)
+        public void StoreException(List<ExceptionEntity> exceptions, string applicationLocation)
         {
             //iterate over all exceptions and store. We need to create a new application settings each time since application name might change. 
-            exptions.ToList().ForEach((exception) => StoreException(exception, new ExceptionSettings(exception.ApplicationName, applicationLocation)));
+            exceptions.ToList().ForEach((exception) => StoreException(exception, new ExceptionSettings(exception.ApplicationName, applicationLocation)));
         }
 
         public void StoreException(ExceptionEntity exp, IApplicationInfo settings)
@@ -38,7 +35,7 @@ namespace Inmeta.Exception.Service.Common.Stores
             }
             catch (System.Exception ex)
             {
-                ServiceLog.DefaultLog.Error("Failed to save exception to local file.", ex);
+               // ServiceLog.DefaultLog.Error("Failed to save exception to local file.", ex);
             }
 
             //STORE IN TFS
@@ -46,7 +43,7 @@ namespace Inmeta.Exception.Service.Common.Stores
             {
                 try
                 {
-                    using (var registrator = new TFSStore())
+                    using (var registrator = new TFSStoreWithBug())
                     {
                         registrator.RegisterException(exp, settings);
                     }

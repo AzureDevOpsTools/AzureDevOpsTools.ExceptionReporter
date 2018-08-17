@@ -2,9 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Threading;
-using Inmeta.Exception.Reporter;
 using System.Windows.Threading;
-using Inmeta.Exception.Service.Common;
 
 namespace WPFBasedExceptionReporter
 {

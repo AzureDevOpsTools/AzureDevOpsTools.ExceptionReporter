@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.ComponentModel;
 using System.Configuration;
-using System.Configuration.Install;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
-using Inmeta.Exception.Service.Common;
 using Inmeta.Exception.Service.Common.Sec;
 
 

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using Inmeta.Exception.Reporter.TFSExeptionService;
-using Kongsberg.Nemo.ExceptionReporter.Plugin;
 using log4net;
 using log4net.Repository.Hierarchy;
 using System.Xml;

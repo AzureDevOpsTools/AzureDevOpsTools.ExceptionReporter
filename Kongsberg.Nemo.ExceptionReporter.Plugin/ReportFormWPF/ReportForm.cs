@@ -3,9 +3,7 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Threading;
 using Inmeta.Exception.Reporter;
-using Inmeta.ExceptionReporter.Km;
 using Kongsberg.Nemo.ExceptionReporter.Plugin.UI;
-using Application = System.Windows.Forms.Application;
 
 namespace Inmeta.ExceptionReporter.Km
 {

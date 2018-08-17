@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Configuration;
-using System.ServiceModel;
 using Inmeta.Exception.Service.Common.Sec;
 
 namespace Inmeta.Exception.Service.Common

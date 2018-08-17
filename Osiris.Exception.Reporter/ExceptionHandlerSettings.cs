@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Inmeta.Exception.Reporter
+﻿namespace Inmeta.Exception.Reporter
 {
     public class ExceptionHandlerSettings
     {

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.ComponentModel.Composition;
-using System.Reflection;
-using System.Security.Principal;
-using System.Windows;
-using System.Windows.Threading;
 
 namespace Inmeta.Exception.ReportUI.WPF 
 {

@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
-using System.Linq;
 using System.Net.Mail;
-using System.ServiceModel;
-using System.ServiceProcess;
-using System.Text;
 using Inmeta.Exception.Service.Common.Sec;
 
 namespace Inmeta.Exception.Service.Proxy.Reader

@@ -27,32 +27,14 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
         private void Invariants()
 // ReSharper restore UnusedMember.Local
         {
-            Contract.Invariant(workItemStore != null);
-            Contract.Invariant(versionControlServer != null);
-            Contract.Invariant(exception != null);
-            Contract.Invariant(workItems != null);
+            
         }
 
         internal ExceptionWorkItemCollection(string teamProject, WorkItemStore wis, VersionControlServer vcs, ExceptionEntity exceptionEntity)
         {
-            Contract.Requires(teamProject != null);
-            Contract.Requires(exceptionEntity != null);
-            Contract.Requires(exceptionEntity.StackTrace != null);
-            Contract.Ensures(workItems != null);
-
-            if (wis == null)
-            {
-                throw new ArgumentNullException("wis");
-            }
-            
-            if (vcs == null)
-            {
-                throw new ArgumentNullException("vcs");
-            }
-
             TeamProject = teamProject;
-            workItemStore = wis;
-            versionControlServer = vcs;
+            workItemStore = wis ?? throw new ArgumentNullException(nameof(wis));
+            versionControlServer = vcs ?? throw new ArgumentNullException(nameof(vcs));
             exception = exceptionEntity;
 
             workItems = new List<WorkItem>();
@@ -60,51 +42,39 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             SearchForStackTrace();
         }
 
-        internal bool HasWorkItemsWithHigherChangeset
-        {
-            get
-            {                
-                //All workitem are closed, check if any of them has solved the issue with a higher
-                //changeset number.).
-                return FindWorkItemsWithHigherChangeSet().Any();
-                //The fix will be arriving in a later release, so ignore the exception for now.
-            }
-        }
-
+        /// <summary>
+        /// All workitems are closed, check if any of them has solved the issue with a higher
+        /// changeset number.).
+        /// </summary>
+        internal bool HasWorkItemsWithHigherChangeset => FindWorkItemsWithHigherChangeSet().Any();
+        
+        /// <summary>
+        /// get the latest work item of all registered
+        /// </summary>
+        /// <returns></returns>
         internal WorkItem GetWorkItemWithHigherChangeset()
         {            
-            // get the latest work item of all registered
+            // 
             var res = FindWorkItemsWithHigherChangeSet().Aggregate((wi, x) => ((x.Id > wi.Id) ? x : wi));
             return res;
         }
 
+        /// <summary>
+        /// get the latest work item of all registered
+        /// </summary>
+        /// <returns></returns>
         internal WorkItem GetLatestNotOpenWorkItem()
         {
-            // get the latest work item of all registered
-            if (workItems.Where(IsNotOpen).Any())
-             return workItems.Where(IsNotOpen).Aggregate((wi, x) => ((x.Id > wi.Id) ? x : wi));
-            return null;
+            return workItems.Where(IsNotOpen).Any() ? workItems.Where(IsNotOpen).Aggregate((wi, x) => ((x.Id > wi.Id) ? x : wi)) : null;
         }
 
         /// <summary>
         /// A open workitem is one that is not Resolved or Closed
         /// </summary>
         /// <returns></returns>
-        internal IEnumerable<WorkItem> OpenWorkItems
-        {
-            get 
-            {
-                return workItems.Where(IsOpen);
-            }
-        }
+        internal IEnumerable<WorkItem> OpenWorkItems => workItems.Where(IsOpen);
 
-        internal bool HasOpenWorkItems
-        {
-            get
-            {
-                return OpenWorkItems.Any();
-            }
-        }
+        internal bool HasOpenWorkItems => OpenWorkItems.Any();
 
         #region Private
 
@@ -130,38 +100,25 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private IEnumerable<WorkItem> FindWorkItemsWithHigherChangeSet()
         {
-            Contract.Ensures(Contract.Result<IEnumerable<WorkItem>>() != null);
-
             return workItems.Where(wi => IsExceptionFixed(wi, exception.ChangeSet));
         }
 
         private bool IsExceptionFixed(WorkItem wi, string sChangeSet)
         {
-            Contract.Requires(wi != null);
-            Contract.Requires(wi.Links != null);
-
-            int changeSetId; //= int.MaxValue; TODO: Commented out because it has no effect. int.TryParse() sets the out-parameter to 0 if parsing fails. If this method was commented, i could have fixed it instead...
-            int.TryParse(sChangeSet, out changeSetId);
-
+            int.TryParse(sChangeSet, out var changeSetId);
             var state = new ExceptionState(wi, versionControlServer);
             return state.IsFixedAfterChangeset(changeSetId);            
         }
 
         private bool IsOpen(WorkItem wi)
         {
-            Contract.Requires(wi != null);
-            Contract.Requires(wi.Links != null);
-
-            var state = new ExceptionState(wi, versionControlServer);
+           var state = new ExceptionState(wi, versionControlServer);
             return state.IsOpen;
         }
 
         private bool IsNotOpen(WorkItem wi)
         {
-            Contract.Requires(wi != null);
-            Contract.Requires(wi.Links != null);
-
-            var state = new ExceptionState(wi, versionControlServer);
+           var state = new ExceptionState(wi, versionControlServer);
             return !state.IsOpen;
         }
         #endregion

@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Xml.Linq;
 using Inmeta.Exception.Service.Common.Stores.TFS;
 using NUnit.Framework;
 

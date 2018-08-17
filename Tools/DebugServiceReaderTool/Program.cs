@@ -7,7 +7,6 @@ using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.ServiceModel.Web;
-using Inmeta.Exception.Service.Common;
 using Inmeta.Exception.Service.Common.Services;
 using Inmeta.Exception.Service.Common.Stores.TFS;
 using Inmeta.Exception.Service.Proxy.Reader;
@@ -91,7 +90,7 @@ namespace DebugServiceReaderTool
             exc.Value.ToList().ForEach((exp) => Console.WriteLine(exp.ToString()));
             foreach (var exceptionData in exc.Value)
             {
-                using (var registrator = new TFSStore())
+                using (var registrator = new TFSStoreWithException())
                     registrator.RegisterException(exceptionData,
                                                   new ExceptionSettings(exceptionData.ApplicationName,
                                                                         Path.Combine(

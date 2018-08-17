@@ -3,7 +3,6 @@ using System.Reflection;
 using System;
 using System.Diagnostics.Contracts;
 using System.Text;
-using Inmeta.Exception.Reporter;
 using Inmeta.Exception.Reporter.TFSExeptionService;
 
 namespace Inmeta.ExceptionReporter.Km

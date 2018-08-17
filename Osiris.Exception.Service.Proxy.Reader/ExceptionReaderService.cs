@@ -130,7 +130,7 @@ namespace Inmeta.Exception.Service.Proxy.Reader
                 try
                 {
                     //EventLogger.LogInformation(EventLog, "Call RegisterException");
-                    using (var registrator = new TFSStore())
+                    using (var registrator = new TFSStoreWithException())
                         registrator.RegisterException(exceptionData, new ExceptionSettings(exceptionData.ApplicationName, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Applications.xml")));
                 }
                 catch (System.Exception ex)
