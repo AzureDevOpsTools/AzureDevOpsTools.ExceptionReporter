@@ -13,7 +13,7 @@ namespace Inmeta.Exception.Service.Common.Services
     public interface IExceptionService
     {
         [OperationContract(
-             Action = "http://tempuri.org/AddNewException"
+             Action = "http://exceptions.maritimesim.com/AddNewException"
              ),
         DataContractFormat(Style = OperationFormatStyle.Document)]
         void AddNewException(string teamProject, string reporter, string comment, string version,
@@ -21,7 +21,7 @@ namespace Inmeta.Exception.Service.Common.Services
                              string theClass, string theMethod, string theSource, string changeSet, string username);
 
         [OperationContract(
-             Action = "http://tempuri.org/AddNewApplicationException"
+             Action = "http://exceptions.maritimesim.com/AddNewApplicationException"
              ),
         DataContractFormat(Style = OperationFormatStyle.Document)]
         void AddNewApplicationException(ExceptionEntity exceptionEntity);

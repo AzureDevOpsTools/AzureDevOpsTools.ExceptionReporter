@@ -254,7 +254,7 @@ namespace Inmeta.Exception.Tests.ExceptionQueueReader {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ExceptionQueueReader.IExceptionQueueReader")]
     public interface IExceptionQueueReader {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IExceptionQueueReader/GetException", ReplyAction="http://tempuri.org/IExceptionQueueReader/GetExceptionResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://exceptions.maritimesim.com/IExceptionQueueReader/GetException", ReplyAction="http://exceptions.maritimesim.com/IExceptionQueueReader/GetExceptionResponse")]
         Inmeta.Exception.Tests.ExceptionQueueReader.ExceptionEntity GetException();
     }
     

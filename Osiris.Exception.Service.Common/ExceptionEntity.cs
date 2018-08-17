@@ -7,7 +7,7 @@ using System.Xml;
 namespace Inmeta.Exception.Service.Common
 {
     [Serializable]
-    [DataContract (Namespace = "http://tempuri.org/")]
+    [DataContract (Namespace = "http://exceptions.maritimesim.com/")]
     public class ExceptionEntity
     {
         [DataMember]

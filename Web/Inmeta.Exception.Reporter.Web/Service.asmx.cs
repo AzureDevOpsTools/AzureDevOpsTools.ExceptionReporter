@@ -15,7 +15,7 @@ namespace Inmeta.Exception.Reporter.Web
 	///         The text before the semicolon should be stripped away, it is used for TFS server routing (See Exception Service Proxy Reader).
 	/// 
 	/// </summary>
-	[WebService(Namespace = "http://tempuri.org/")]
+	[WebService(Namespace = "http://exceptions.maritimesim.com/")]
 	[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
 	[System.ComponentModel.ToolboxItem(false)]
 	public class Service : WebService, IExceptionService

@@ -196,8 +196,8 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
                             //prepend with splitpart to generate valid xml.
                             entity = splitPart + entity;
 
-                            //remove tempuri.org from namespace. This could be normalizing by using of exception entities, but for now quick fix.
-                            entity = entity.Replace("http://tempuri.org/", "");
+                            //remove exceptions.maritimesim.com from namespace. This could be normalizing by using of exception entities, but for now quick fix.
+                            entity = entity.Replace("http://exceptions.maritimesim.com/", "");
                             
                             var reader = new StringReader(entity.Trim());
 

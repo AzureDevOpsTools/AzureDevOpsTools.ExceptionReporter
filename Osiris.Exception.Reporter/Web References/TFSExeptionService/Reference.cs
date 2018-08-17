@@ -26,7 +26,7 @@ namespace Inmeta.Exception.Reporter.TFSExeptionService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.34209")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Web.Services.WebServiceBindingAttribute(Name="ServiceSoap", Namespace="http://tempuri.org/")]
+    [System.Web.Services.WebServiceBindingAttribute(Name="ServiceSoap", Namespace="http://exceptions.maritimesim.com/")]
     public partial class Service : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private System.Threading.SendOrPostCallback AddNewExceptionOperationCompleted;
@@ -83,7 +83,7 @@ namespace Inmeta.Exception.Reporter.TFSExeptionService {
         public event GetExceptionsCompletedEventHandler GetExceptionsCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddNewException", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://exceptions.maritimesim.com/AddNewException", RequestNamespace="http://exceptions.maritimesim.com/", ResponseNamespace="http://exceptions.maritimesim.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void AddNewException(string teamProject, string reporter, string comment, string version, string exceptionMessage, string exceptionType, string exceptionTitle, string stackTrace, string theClass, string theMethod, string theSource, string changeSet, string username) {
             this.Invoke("AddNewException", new object[] {
                         teamProject,
@@ -135,7 +135,7 @@ namespace Inmeta.Exception.Reporter.TFSExeptionService {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AddNewApplicationException", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://exceptions.maritimesim.com/AddNewApplicationException", RequestNamespace="http://exceptions.maritimesim.com/", ResponseNamespace="http://exceptions.maritimesim.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void AddNewApplicationException(ExceptionEntity exceptionEntity) {
             this.Invoke("AddNewApplicationException", new object[] {
                         exceptionEntity});
@@ -163,7 +163,7 @@ namespace Inmeta.Exception.Reporter.TFSExeptionService {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetExceptions", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://exceptions.maritimesim.com/GetExceptions", RequestNamespace="http://exceptions.maritimesim.com/", ResponseNamespace="http://exceptions.maritimesim.com/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public ExceptionEntity[] GetExceptions() {
             object[] results = this.Invoke("GetExceptions", new object[0]);
             return ((ExceptionEntity[])(results[0]));
@@ -213,7 +213,7 @@ namespace Inmeta.Exception.Reporter.TFSExeptionService {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://exceptions.maritimesim.com/")]
     public partial class ExceptionEntity {
         
         private string applicationNameField;
