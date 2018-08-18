@@ -9,7 +9,7 @@ using Microsoft.TeamFoundation.WorkItemTracking.Client;
 
 namespace Inmeta.Exception.Service.Common.Stores.TFS
 {
-    
+
     public class ExceptionWorkItemCollection
     {
         private IEnumerable<WorkItem> workItems;
@@ -20,16 +20,9 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
         private string TeamProject
         {
             get;
-            set;
-        }
-        [ContractInvariantMethod]
-// ReSharper disable UnusedMember.Local
-        private void Invariants()
-// ReSharper restore UnusedMember.Local
-        {
-            
         }
 
+       
         internal ExceptionWorkItemCollection(string teamProject, WorkItemStore wis, VersionControlServer vcs, ExceptionEntity exceptionEntity)
         {
             TeamProject = teamProject;
@@ -47,15 +40,14 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
         /// changeset number.).
         /// </summary>
         internal bool HasWorkItemsWithHigherChangeset => FindWorkItemsWithHigherChangeSet().Any();
-        
+
         /// <summary>
         /// get the latest work item of all registered
         /// </summary>
         /// <returns></returns>
         internal WorkItem GetWorkItemWithHigherChangeset()
-        {            
-            // 
-            var res = FindWorkItemsWithHigherChangeSet().Aggregate((wi, x) => ((x.Id > wi.Id) ? x : wi));
+        {
+            var res = FindWorkItemsWithHigherChangeSet().Aggregate((wi, x) => x.Id > wi.Id ? x : wi);
             return res;
         }
 
@@ -65,7 +57,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
         /// <returns></returns>
         internal WorkItem GetLatestNotOpenWorkItem()
         {
-            return workItems.Where(IsNotOpen).Any() ? workItems.Where(IsNotOpen).Aggregate((wi, x) => ((x.Id > wi.Id) ? x : wi)) : null;
+            return workItems.Where(IsNotOpen).Any() ? workItems.Where(IsNotOpen).Aggregate((wi, x) => x.Id > wi.Id ? x : wi) : null;
         }
 
         /// <summary>
@@ -76,12 +68,10 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         internal bool HasOpenWorkItems => OpenWorkItems.Any();
 
-        #region Private
+    
 
         private void SearchForStackTrace()
         {
-            Contract.Ensures(workItems != null);
-           
             var parameters = new Hashtable { { "project", TeamProject } };
             var crc = (int)Crc32.GetStreamCrc32(exception.StackTrace);
             parameters.Add("checksum", crc);
@@ -94,7 +84,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             {
                 throw new ExceptionReporterException("WorkItemStore unexpectedly returned null for query: " + query);
             }
-            
+
             workItems = items.Cast<WorkItem>();
         }
 
@@ -107,20 +97,20 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
         {
             int.TryParse(sChangeSet, out var changeSetId);
             var state = new ExceptionState(wi, versionControlServer);
-            return state.IsFixedAfterChangeset(changeSetId);            
+            return state.IsFixedAfterChangeset(changeSetId);
         }
 
         private bool IsOpen(WorkItem wi)
         {
-           var state = new ExceptionState(wi, versionControlServer);
+            var state = new ExceptionState(wi, versionControlServer);
             return state.IsOpen;
         }
 
         private bool IsNotOpen(WorkItem wi)
         {
-           var state = new ExceptionState(wi, versionControlServer);
+            var state = new ExceptionState(wi, versionControlServer);
             return !state.IsOpen;
         }
-        #endregion
+     
     }
 }

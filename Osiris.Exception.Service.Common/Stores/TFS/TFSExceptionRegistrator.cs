@@ -37,10 +37,6 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         public void RegisterException(ExceptionEntity exceptionEntity, IApplicationInfo applicationInfo)
         {
-            Contract.Requires(exceptionEntity != null);
-            Contract.Requires(exceptionEntity.StackTrace != null);
-            Contract.Requires(applicationInfo != null);
-
             ConnectToTfs(exceptionEntity, applicationInfo);
 
             WorkItem wi = null;
@@ -78,7 +74,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
                 }
             }
 
-            wi = (wi != null)
+            wi = wi != null
                      ? UpdateExisitingWorkItem(wi, exceptionEntity)
                      : CreateNewException(exceptionEntity, applicationInfo, linkedWi);
 
@@ -149,10 +145,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private void UpdateApplication(string applicationName, WorkItem wi)
         {
-            Contract.Requires(!String.IsNullOrEmpty(applicationName));
-            Contract.Requires(wi != null);
-
-            if (String.IsNullOrEmpty(applicationName))
+            if (string.IsNullOrEmpty(applicationName))
                 return;
             var currentAppName = wi.Fields[Application];
             currentAppName.Value = applicationName;
@@ -160,10 +153,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private void UpdateBuildVersion(string version, WorkItem wi)
         {
-            Contract.Requires(!String.IsNullOrEmpty(version));
-            Contract.Requires(wi != null);
-
-            if (String.IsNullOrEmpty(version))
+            if (string.IsNullOrEmpty(version))
                 return;
 
             var currentVersion = wi.Fields[BuildVersionFieldName];
@@ -172,13 +162,8 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private bool IsWorkItemFixed(WorkItem wi, ExceptionEntity exception)
         {
-            Contract.Requires(wi != null);
-            Contract.Requires(wi.Links != null);
-            Contract.Requires(exception != null);
-
             // if no changeSet specified for exception, set to 0
-            int changeSetId;
-            int.TryParse(exception.ChangeSet, out changeSetId);
+            int.TryParse(exception.ChangeSet, out var changeSetId);
 
             var vcs = tfs.GetService<VersionControlServer>();
             if (vcs == null)
@@ -194,9 +179,6 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private bool IsWorkItemClosedButNotFixed(WorkItem wi)
         {
-            Contract.Requires(wi != null);
-            Contract.Requires(wi.Links != null);
-
             var vcs = tfs.GetService<VersionControlServer>();
             if (vcs == null)
             {
@@ -227,8 +209,8 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private bool CompareVersions(string ver1, string ver2)
         {
-            if (String.IsNullOrEmpty(ver1)) ver1 = "0.0.0";
-            if (String.IsNullOrEmpty(ver2)) ver2 = "0.0.0";
+            if (string.IsNullOrEmpty(ver1)) ver1 = "0.0.0";
+            if (string.IsNullOrEmpty(ver2)) ver2 = "0.0.0";
 
             var a = new Version(ver1);
             var b = new Version(ver2);
@@ -237,10 +219,6 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private void UpdateCommentAndRefCount(string comment, WorkItem wi, string username)
         {
-            Contract.Requires(comment != null);
-            Contract.Requires(wi != null);
-            Contract.Requires(username != null);
-
             var f = wi.Fields[RefCountFieldName];
             var nRefCount = 0;
             if (f.Value != null)
@@ -264,12 +242,8 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private bool IsLimitReached(WorkItem wi)
         {
-            Contract.Requires(wi != null);
-            Contract.Requires(wi.Links != null);
-            Contract.Ensures(wi.Links != null);
-
             var f = wi.Fields[RefCountFieldName];
-            var nRefCount = (f != null && f.Value != null) ? (int)f.Value : 0;
+            var nRefCount = (int?) f?.Value ?? 0;
 
             var sLimit = System.Configuration.ConfigurationManager.AppSettings["Limit"];
             int nLimit; //= m_nLimit; TODO: Commented out because it has no effect. int.TryParse() sets the out-parameter to 0 if parsing fails. If this method was commented, i could have fixed it instead...
@@ -279,11 +253,6 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private void ConnectToTfs(ExceptionEntity exception, IApplicationInfo applicationInfo)
         {
-            Contract.Requires(exception != null);
-            Contract.Requires(applicationInfo != null);
-            Contract.Ensures(tfs != null);
-            Contract.Ensures(exception.StackTrace != null);
-
             //new NetworkCredential(@"os-lab\oslabadmin", "Y67uJi)9");
             var credentials = CredentialCache.DefaultNetworkCredentials;//new NetworkCredential(@"partner\xNataliaA", "xNataliaA62");//
 
@@ -297,9 +266,6 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private WorkItemType GetWorkItemType(ExceptionEntity exception, IApplicationInfo applicationInfo)
         {
-            Contract.Requires(exception != null);
-            Contract.Requires(applicationInfo != null);
-
             var store = tfs.GetService<WorkItemStore>();
             var teamProject = store.Projects[applicationInfo.TeamProject];
             return teamProject.WorkItemTypes[ExceptionWorkItemType];
@@ -307,13 +273,8 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private WorkItem CreateNewException(ExceptionEntity exception, IApplicationInfo applicationInfo, WorkItem linkedWi)
         {
-            Contract.Requires(exception != null);
-            Contract.Requires(exception.StackTrace != null);
-            Contract.Requires(applicationInfo != null);
-
             //ensure no problem with string NG 255
-            Contract.Requires(exception.ExceptionTitle.Length < 256);
-
+            
             var wi = new WorkItem(GetWorkItemType(exception, applicationInfo))
             {
                 Title = TFSStringUtil.GenerateValidTFSStringType(exception.ExceptionTitle),
@@ -371,10 +332,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             if (disposing)
             {
                 // dispose managed resources
-                if (tfs != null)
-                {
-                    tfs.Dispose();
-                }
+                tfs?.Dispose();
             }
             // free native resources
         }
@@ -587,7 +545,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
                 }
             }
 
-            wi = (wi != null)
+            wi = wi != null
                      ? UpdateExisitingWorkItem(wi, exceptionEntity)
                      : CreateNewException(exceptionEntity, applicationInfo, linkedWi);
 
@@ -658,10 +616,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private void UpdateApplication(string applicationName, WorkItem wi)
         {
-            Contract.Requires(!String.IsNullOrEmpty(applicationName));
-            Contract.Requires(wi != null);
-
-            if (String.IsNullOrEmpty(applicationName))
+            if (string.IsNullOrEmpty(applicationName))
                 return;
             var currentAppName = wi.Fields[Description/*Application*/];
             currentAppName.Value = applicationName;
@@ -669,10 +624,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private void UpdateBuildVersion(string version, WorkItem wi)
         {
-            Contract.Requires(!String.IsNullOrEmpty(version));
-            Contract.Requires(wi != null);
-
-            if (String.IsNullOrEmpty(version))
+            if (string.IsNullOrEmpty(version))
                 return;
 
             var currentVersion = wi.Fields[Description /*BuildVersionFieldName*/];
@@ -683,8 +635,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
         {
            
             // if no changeSet specified for exception, set to 0
-            int changeSetId;
-            int.TryParse(exception.ChangeSet, out changeSetId);
+            int.TryParse(exception.ChangeSet, out var changeSetId);
 
             var vcs = tfs.GetService<VersionControlServer>();
             if (vcs == null)
@@ -700,9 +651,6 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private bool IsWorkItemClosedButNotFixed(WorkItem wi)
         {
-            Contract.Requires(wi != null);
-            Contract.Requires(wi.Links != null);
-
             var vcs = tfs.GetService<VersionControlServer>();
             if (vcs == null)
             {
@@ -735,8 +683,8 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private bool CompareVersions(string ver1, string ver2)
         {
-            if (String.IsNullOrEmpty(ver1)) ver1 = "0.0.0";
-            if (String.IsNullOrEmpty(ver2)) ver2 = "0.0.0";
+            if (string.IsNullOrEmpty(ver1)) ver1 = "0.0.0";
+            if (string.IsNullOrEmpty(ver2)) ver2 = "0.0.0";
 
             var a = new Version(ver1);
             var b = new Version(ver2);
@@ -745,10 +693,6 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private void UpdateCommentAndRefCount(string comment, WorkItem wi, string username)
         {
-            Contract.Requires(comment != null);
-            Contract.Requires(wi != null);
-            Contract.Requires(username != null);
-
             //var f = wi.Fields[RefCountFieldName];
             //var nRefCount = 0;
             //if (f.Value != null)
@@ -772,30 +716,21 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private bool IsLimitReached(WorkItem wi)
         {
-            Contract.Requires(wi != null);
-            Contract.Requires(wi.Links != null);
-            Contract.Ensures(wi.Links != null);
-
             var f = wi.Fields[Description/*RefCountFieldName*/];
-            var nRefCount = (f != null && f.Value != null) ? (int)f.Value : 0;
+            var nRefCount = f != null && f.Value != null ? (int)f.Value : 0;
 
             var sLimit = System.Configuration.ConfigurationManager.AppSettings["Limit"];
             int nLimit; //= m_nLimit; TODO: Commented out because it has no effect. int.TryParse() sets the out-parameter to 0 if parsing fails. If this method was commented, i could have fixed it instead...
 
-            return int.TryParse(sLimit, out nLimit) ? nRefCount < nLimit : false;
+            return int.TryParse(sLimit, out nLimit) && nRefCount < nLimit;
         }
 
         private void ConnectToTfs(ExceptionEntity exception, IApplicationInfo applicationInfo)
         {
-            Contract.Requires(exception != null);
-            Contract.Requires(applicationInfo != null);
-            Contract.Ensures(tfs != null);
-            Contract.Ensures(exception.StackTrace != null);
-
             //new NetworkCredential(@"os-lab\oslabadmin", "Y67uJi)9");
             var credentials = CredentialCache.DefaultNetworkCredentials;//new NetworkCredential(@"partner\xNataliaA", "xNataliaA62");//
 
-            tfs = new TfsTeamProjectCollection(new Uri(applicationInfo.TfsServer + "/" + applicationInfo.Collection), credentials);
+            tfs = new TfsTeamProjectCollection(new Uri(applicationInfo.TfsServer + "/" + applicationInfo.TeamProject), credentials);
             tfs.EnsureAuthenticated();
             if (!tfs.HasAuthenticated)
             {
@@ -805,9 +740,6 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private WorkItemType GetWorkItemType(ExceptionEntity exception, IApplicationInfo applicationInfo)
         {
-            Contract.Requires(exception != null);
-            Contract.Requires(applicationInfo != null);
-
             var store = tfs.GetService<WorkItemStore>();
             var teamProject = store.Projects[applicationInfo.TeamProject];
             return teamProject.WorkItemTypes[ExceptionWorkItemType];
@@ -815,13 +747,8 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private WorkItem CreateNewException(ExceptionEntity exception, IApplicationInfo applicationInfo, WorkItem linkedWi)
         {
-            Contract.Requires(exception != null);
-            Contract.Requires(exception.StackTrace != null);
-            Contract.Requires(applicationInfo != null);
-
             //ensure no problem with string NG 255
-            Contract.Requires(exception.ExceptionTitle.Length < 256);
-
+            
             var wi = new WorkItem(GetWorkItemType(exception, applicationInfo))
             {
                 Title = TFSStringUtil.GenerateValidTFSStringType(exception.ExceptionTitle),
@@ -879,10 +806,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             if (disposing)
             {
                 // dispose managed resources
-                if (tfs != null)
-                {
-                    tfs.Dispose();
-                }
+                tfs?.Dispose();
             }
             // free native resources
         }

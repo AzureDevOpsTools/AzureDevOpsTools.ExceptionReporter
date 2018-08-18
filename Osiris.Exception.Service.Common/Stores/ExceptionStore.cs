@@ -27,7 +27,7 @@ namespace Inmeta.Exception.Service.Common.Stores
         public void StoreException(ExceptionEntity exp, IApplicationInfo settings)
         {
             //Lars TODO: all these stores should have been IOC injected... this function has to much logic...  
-
+#if OLD
             //allways store in LOCAL FILE STORE
             try
             {
@@ -37,7 +37,8 @@ namespace Inmeta.Exception.Service.Common.Stores
             {
                // ServiceLog.DefaultLog.Error("Failed to save exception to local file.", ex);
             }
-
+#endif
+            _storeIsTFS = true;
             //STORE IN TFS
             if (_storeIsTFS)
             {
@@ -55,6 +56,7 @@ namespace Inmeta.Exception.Service.Common.Stores
                 }
             }
 
+            return;
             //forward to server.
             try
             {
