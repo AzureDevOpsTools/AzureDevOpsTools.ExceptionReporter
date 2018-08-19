@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="utf-8"?>
+<witd:WITD application="Work item type editor" version="1.0" xmlns:witd="http://schemas.microsoft.com/VisualStudio/2008/workitemtracking/typedef">
+  <WORKITEMTYPE name="Exception">
+    <DESCRIPTION>Includes information to track the work to resolve the exception and to verify its resolution</DESCRIPTION>
+    <FIELDS>
+      <FIELD name="Iteration Path" refname="System.IterationPath" type="TreePath" reportable="dimension">
+        <HELPTEXT>The iteration of the product with which this bug is associated</HELPTEXT>
+      </FIELD>
+      <FIELD name="Iteration ID" refname="System.IterationId" type="Integer" />
+      <FIELD name="External Link Count" refname="System.ExternalLinkCount" type="Integer" reportable="measure" formula="sum" />
+      <FIELD name="Team Project" refname="System.TeamProject" type="String" reportable="dimension" />
+      <FIELD name="Hyperlink Count" refname="System.HyperLinkCount" type="Integer" reportable="measure" formula="sum" />
+      <FIELD name="Attached File Count" refname="System.AttachedFileCount" type="Integer" reportable="measure" formula="sum" />
+      <FIELD name="Node Name" refname="System.NodeName" type="String" />
+      <FIELD name="Area Path" refname="System.AreaPath" type="TreePath" reportable="dimension">
+        <HELPTEXT>The area of the product with which this bug is associated</HELPTEXT>
+      </FIELD>
+      <FIELD name="Revised Date" refname="System.RevisedDate" type="DateTime" reportable="detail" />
+      <FIELD name="Changed Date" refname="System.ChangedDate" type="DateTime" reportable="dimension" />
+      <FIELD name="ID" refname="System.Id" type="Integer" reportable="dimension" />
+      <FIELD name="Area Id" refname="System.AreaId" type="Integer" />
+      <FIELD name="Authorized As" refname="System.AuthorizedAs" type="String" syncnamechanges="true" />
+      <FIELD name="Title" refname="System.Title" type="String" reportable="dimension">
+        <HELPTEXT>Short description of the bug used to differentiate it in a list or report</HELPTEXT>
+        <REQUIRED />
+      </FIELD>
+      <FIELD name="State" refname="System.State" type="String" reportable="dimension">
+        <HELPTEXT>The workflow state of the bug</HELPTEXT>
+      </FIELD>
+      <FIELD name="Authorized Date" refname="System.AuthorizedDate" type="DateTime" />
+      <FIELD name="Watermark" refname="System.Watermark" type="Integer" />
+      <FIELD name="Rev" refname="System.Rev" type="Integer" reportable="dimension" />
+      <FIELD name="Changed By" refname="System.ChangedBy" type="String" syncnamechanges="true" reportable="dimension">
+        <VALIDUSER />
+      </FIELD>
+      <FIELD name="Reason" refname="System.Reason" type="String" reportable="dimension">
+        <HELPTEXT>The reason why the bug is in the current state</HELPTEXT>
+      </FIELD>
+      <FIELD name="Assigned To" refname="System.AssignedTo" type="String" syncnamechanges="true" reportable="dimension">
+        <HELPTEXT>The person assigned to act on the bug, either to fix it or to verify the fix</HELPTEXT>
+        <VALIDUSER />
+        <ALLOWEXISTINGVALUE />
+        <VALIDUSER />
+      </FIELD>
+      <FIELD name="Work Item Type" refname="System.WorkItemType" type="String" reportable="dimension" />
+      <FIELD name="Created Date" refname="System.CreatedDate" type="DateTime" reportable="dimension" />
+      <FIELD name="Created By" refname="System.CreatedBy" type="String" syncnamechanges="true" reportable="dimension" />
+      <FIELD name="Description" refname="System.Description" type="HTML" />
+      <FIELD name="History" refname="System.History" type="History">
+        <HELPTEXT>Discussion thread and other historical information</HELPTEXT>
+      </FIELD>
+      <FIELD name="Related Link Count" refname="System.RelatedLinkCount" type="Integer" />
+      <FIELD name="Tags" refname="System.Tags" type="PlainText" />
+      <FIELD name="Board Column" refname="System.BoardColumn" type="String" reportable="dimension" />
+      <FIELD name="Board Column Done" refname="System.BoardColumnDone" type="Boolean" reportable="dimension" />
+      <FIELD name="Board Lane" refname="System.BoardLane" type="String" reportable="dimension" />
+      <FIELD name="Issue" refname="Microsoft.VSTS.Common.Issue" type="String" reportable="dimension">
+        <HELPTEXT>Used to highlight the work item, e.g., to mark it as an issue.</HELPTEXT>
+        <REQUIRED />
+        <DEFAULT from="value" value="No" />
+        <ALLOWEDVALUES expanditems="true">
+          <LISTITEM value="No" />
+          <LISTITEM value="Yes" />
+        </ALLOWEDVALUES>
+      </FIELD>
+      <FIELD name="State Change Date" refname="Microsoft.VSTS.Common.StateChangeDate" type="DateTime">
+        <WHENCHANGED field="System.State">
+          <SERVERDEFAULT from="clock" />
+        </WHENCHANGED>
+        <WHENNOTCHANGED field="System.State">
+          <READONLY />
+        </WHENNOTCHANGED>
+      </FIELD>
+      <FIELD name="Activated Date" refname="Microsoft.VSTS.Common.ActivatedDate" type="DateTime" reportable="dimension">
+        <WHENNOTCHANGED field="System.State">
+          <READONLY />
+        </WHENNOTCHANGED>
+      </FIELD>
+      <FIELD name="Activated By" refname="Microsoft.VSTS.Common.ActivatedBy" type="String" syncnamechanges="true" reportable="dimension">
+        <VALIDUSER />
+        <WHENNOTCHANGED field="System.State">
+          <READONLY />
+        </WHENNOTCHANGED>
+      </FIELD>
+      <FIELD name="Resolved Date" refname="Microsoft.VSTS.Common.ResolvedDate" type="DateTime" reportable="dimension">
+        <WHENNOTCHANGED field="System.State">
+          <READONLY />
+        </WHENNOTCHANGED>
+      </FIELD>
+      <FIELD name="Resolved By" refname="Microsoft.VSTS.Common.ResolvedBy" type="String" syncnamechanges="true" reportable="dimension">
+        <WHENNOTCHANGED field="System.State">
+          <ALLOWEXISTINGVALUE />
+          <READONLY />
+        </WHENNOTCHANGED>
+      </FIELD>
+      <FIELD name="Resolved Reason" refname="Microsoft.VSTS.Common.ResolvedReason" type="String" reportable="dimension">
+        <HELPTEXT>The reason why the bug was resolved</HELPTEXT>
+        <ALLOWEDVALUES expanditems="true">
+          <LISTITEM value="As Designed" />
+          <LISTITEM value="Cannot Reproduce" />
+          <LISTITEM value="Deferred" />
+          <LISTITEM value="Duplicate" />
+          <LISTITEM value="Fixed" />
+          <LISTITEM value="Obsolete" />
+        </ALLOWEDVALUES>
+      </FIELD>
+      <FIELD name="Closed Date" refname="Microsoft.VSTS.Common.ClosedDate" type="DateTime" reportable="dimension">
+        <WHENNOTCHANGED field="System.State">
+          <READONLY />
+        </WHENNOTCHANGED>
+      </FIELD>
+      <FIELD name="Closed By" refname="Microsoft.VSTS.Common.ClosedBy" type="String" syncnamechanges="true" reportable="dimension">
+        <VALIDUSER />
+        <WHENNOTCHANGED field="System.State">
+          <READONLY />
+        </WHENNOTCHANGED>
+      </FIELD>
+      <FIELD name="Priority" refname="Microsoft.VSTS.Common.Priority" type="Integer" reportable="dimension">
+        <HELPTEXT>Importance to business</HELPTEXT>
+        <DEFAULT from="value" value="2" />
+        <ALLOWEDVALUES expanditems="true">
+          <LISTITEM value="1" />
+          <LISTITEM value="2" />
+          <LISTITEM value="3" />
+          <LISTITEM value="4" />
+        </ALLOWEDVALUES>
+      </FIELD>
+      <FIELD name="Integration Build" refname="Microsoft.VSTS.Build.IntegrationBuild" type="String" reportable="dimension">
+        <HELPTEXT>The build in which the bug was fixed</HELPTEXT>
+        <SUGGESTEDVALUES expanditems="true">
+          <LISTITEM value="&lt;None&gt;" />
+        </SUGGESTEDVALUES>
+      </FIELD>
+      <FIELD name="Remaining Work" refname="Microsoft.VSTS.Scheduling.RemainingWork" type="Double" reportable="measure" formula="sum">
+        <HELPTEXT>An estimate of the number of units of work remaining to complete this task</HELPTEXT>
+      </FIELD>
+      <FIELD name="Completed Work" refname="Microsoft.VSTS.Scheduling.CompletedWork" type="Double" reportable="measure" formula="sum">
+        <HELPTEXT>The number of units of work that have been spent on this task</HELPTEXT>
+      </FIELD>
+      <FIELD name="Severity" refname="Microsoft.VSTS.Common.Severity" type="String" reportable="dimension">
+        <HELPTEXT>Assessment of the effect of the exception on the project</HELPTEXT>
+        <DEFAULT from="value" value="3 - Medium" />
+        <ALLOWEDVALUES expanditems="true">
+          <LISTITEM value="1 - Critical" />
+          <LISTITEM value="2 - High" />
+          <LISTITEM value="3 - Medium" />
+          <LISTITEM value="4 - Low" />
+        </ALLOWEDVALUES>
+      </FIELD>
+      <FIELD name="Found In Release" refname="Osiris.FoundInRelease" type="String" />
+      <FIELD name="Blocked" refname="Microsoft.VSTS.CMMI.Blocked" type="String" reportable="dimension">
+        <DEFAULT from="value" value="No" />
+        <ALLOWEDVALUES expanditems="true">
+          <LISTITEM value="No" />
+          <LISTITEM value="Yes" />
+        </ALLOWEDVALUES>
+      </FIELD>
+      <FIELD name="Original Estimate" refname="Microsoft.VSTS.Scheduling.OriginalEstimate" type="Double" reportable="measure" formula="sum">
+        <HELPTEXT>Initial value for Remaining Work - set once, when work begins</HELPTEXT>
+      </FIELD>
+      <FIELD name="Stack Rank" refname="Microsoft.VSTS.Common.StackRank" type="Double" reportable="dimension">
+        <HELPTEXT>Work first on items with lower-valued stack rank. Set in triage.</HELPTEXT>
+      </FIELD>
+      <FIELD name="Activity" refname="Microsoft.VSTS.Common.Activity" type="String" reportable="dimension">
+        <HELPTEXT>Type of work involved</HELPTEXT>
+        <SUGGESTEDVALUES expanditems="true">
+          <LISTITEM value="Deployment" />
+          <LISTITEM value="Design" />
+          <LISTITEM value="Development" />
+          <LISTITEM value="Documentation" />
+          <LISTITEM value="Requirements" />
+          <LISTITEM value="Testing" />
+        </SUGGESTEDVALUES>
+      </FIELD>
+      <FIELD name="Proposed Fix" refname="Microsoft.VSTS.CMMI.ProposedFix" type="HTML" />
+      <FIELD name="Root Cause" refname="Microsoft.VSTS.CMMI.RootCause" type="String">
+        <DEFAULT from="value" value="Unknown" />
+        <ALLOWEDVALUES expanditems="true">
+          <LISTITEM value="Coding Error" />
+          <LISTITEM value="Communication Error" />
+          <LISTITEM value="Design Error" />
+          <LISTITEM value="Specification Error" />
+          <LISTITEM value="Unknown" />
+        </ALLOWEDVALUES>
+      </FIELD>
+      <FIELD name="How Found" refname="Microsoft.VSTS.CMMI.HowFound" type="String" />
+      <FIELD name="Comment" refname="Osiris.Comment" type="PlainText" />
+      <FIELD name="Stack Trace" refname="Osiris.Exception.StackTrace" type="PlainText" />
+      <FIELD name="Source" refname="Osiris.Exception.Source" type="String" />
+      <FIELD name="Class Name" refname="Osiris.Exception.ClassName" type="String" />
+      <FIELD name="Message" refname="Osiris.Exception.Message" type="String">
+        <HELPTEXT>A message that describes the Exception</HELPTEXT>
+      </FIELD>
+      <FIELD name="Type" refname="Osiris.Exception.Type" type="String" />
+      <FIELD name="Code Module" refname="Osiris.Code.Module" type="String" />
+      <FIELD name="Exception Method Name" refname="Osiris.Exception.MethodName" type="String" />
+      <FIELD name="StackChecksum" refname="Osiris.Exception.StackChecksum" type="Integer" />
+      <FIELD name="Exception Reporter" refname="Osiris.Exception.ExceptionReporter" type="String" />
+      <FIELD name="Build Version" refname="Osiris.Exception.BuildVersion" type="String" reportable="dimension" />
+      <FIELD name="Incident Count" refname="Osiris.Exception.IncidentCount" type="Integer" reportable="measure" formula="sum" />
+      <FIELD name="Application" refname="Osiris.Application" type="String">
+        <HELPTEXT>The name of the main application (not the assembly) from where this exception where reported. Should match second level of the Area (after team project name)</HELPTEXT>
+      </FIELD>
+      <FIELD name="Suspended By (KM)" refname="KM.Simulation.SuspendedBy" type="String" />
+      <FIELD name="Suspended Date (KM)" refname="KM.Simulation.SuspendedDate" type="DateTime" />
+      <FIELD name="Developed in Branch (KM)" refname="KM.Simulation.DevelopedInBranch" type="String" reportable="dimension">
+        <HELPTEXT>The branch where the task shall be implemented</HELPTEXT>
+        <ALLOWEDVALUES expanditems="true">
+          <LISTITEM value="Baseline" />
+          <LISTITEM value="Nemo v1.0" />
+          <LISTITEM value="Nemo v1.1" />
+          <LISTITEM value="Nemo v1.2" />
+          <LISTITEM value="Nemo v1.3" />
+          <LISTITEM value="Nemo v1.4" />
+          <LISTITEM value="Nemo v1.5" />
+          <LISTITEM value="Nemo v1.6" />
+          <LISTITEM value="Nemo v1.7" />
+          <LISTITEM value="Polaris v7.1" />
+          <LISTITEM value="Polaris v7.2" />
+          <LISTITEM value="Polaris v7.3" />
+          <LISTITEM value="Nemo v1.8" />
+          <LISTITEM value="Nemo v1.9" />
+          <LISTITEM value="Nemo v2.0" />
+          <LISTITEM value="Nemo v2.1" />
+          <LISTITEM value="Polaris v7.4" />
+          <LISTITEM value="Nemo v2.0.1" />
+        </ALLOWEDVALUES>
+      </FIELD>
+      <FIELD name="MessageEx" refname="Osiris.Exception.MessageEx" type="PlainText">
+        <HELPTEXT>A message that describes the Exception</HELPTEXT>
+      </FIELD>
+      <FIELD name="Project Reference" refname="KM.Simulation.Projects" type="String" reportable="dimension">
+        <HELPTEXT>Project name or customer name who is owner of this exception</HELPTEXT>
+        <ALLOWEDVALUES expanditems="true">
+          <LISTITEM value="Communication" />
+          <LISTITEM value="Navigation" />
+          <LISTITEM value="Offshore" />
+          <LISTITEM value="Platform and Tools" />
+          <LISTITEM value="SeaViewR6" />
+          <LISTITEM value="SMS" />
+          <LISTITEM value="Program" />
+          <LISTITEM value="Software Factory" />
+          <LISTITEM value="Architecture and SW QA" />
+          <LISTITEM value="SeaViewR5" />
+          <LISTITEM value="Polaris Maintenance" />
+          <LISTITEM value="Polaris LTSSP Support" />
+          <LISTITEM value="Polaris P&amp;I" />
+          <LISTITEM value="Maintenance" />
+          <LISTITEM value="Pilot Grade Model" />
+          <LISTITEM value="Model P&amp;I" />
+          <LISTITEM value="Model Development" />
+          <LISTITEM value="Test &amp; Release" />
+          <LISTITEM value="Mechanics &amp; Physics" />
+          <LISTITEM value="Heerema" />
+          <LISTITEM value="Standard Offshore Crane" />
+        </ALLOWEDVALUES>
+      </FIELD>
+      <FIELD name="Km AssemblyName" refname="Inmeta.AssemblyName" type="String" />
+      <FIELD name="AreaPath Validation" refname="KM.Simulation.AreaPathValidation" type="String">
+        <HELPTEXT>Show custom info regarding validation of Area Path</HELPTEXT>
+      </FIELD>
+      <FIELD name="Backlog Priority" refname="Microsoft.VSTS.Common.BacklogPriority" type="Double" reportable="detail" />
+      <FIELD name="Effort" refname="Microsoft.VSTS.Scheduling.Effort" type="Double" reportable="measure" formula="sum" />
+      <FIELD name="Acceptance Criteria" refname="Microsoft.VSTS.Common.AcceptanceCriteria" type="HTML" />
+      <FIELD name="Team (KM Sim)" refname="KM.Simulation.Team" type="String" reportable="dimension">
+        <HELPTEXT>Select name of TFS team</HELPTEXT>
+        <ALLOWEXISTINGVALUE />
+        <DEFAULT from="value" value="Simulation" />
+        <ALLOWEDVALUES expanditems="true">
+          <LISTITEM value="Test" />
+          <LISTITEM value="Architecture" />
+          <LISTITEM value="Algoryx" />
+          <LISTITEM value="Pivot" />
+          <LISTITEM value="Base Camp" />
+          <LISTITEM value="Serious Sim" />
+          <LISTITEM value="ConfigTool" />
+          <LISTITEM value="Seaview" />
+          <LISTITEM value="Simulation" />
+          <LISTITEM value="Process" />
+          <LISTITEM value="SW Factory" />
+          <LISTITEM value="Cranes" />
+          <LISTITEM value="Model Tools" />
+          <LISTITEM value="Exercise Area Tools" />
+          <LISTITEM value="Code Quality" />
+          <LISTITEM value="Sputnik" />
+          <LISTITEM value="Change Requests" />
+          <LISTITEM value="Project - Offshore" />
+          <LISTITEM value="Project - Navigation" />
+          <LISTITEM value="Project - Communication" />
+          <LISTITEM value="Project - Seaview" />
+          <LISTITEM value="Project - HydroDynamics" />
+          <LISTITEM value="Project - Mechanics and Physics" />
+          <LISTITEM value="Project - Model and Area Tools" />
+          <LISTITEM value="Project - Eagle Texas" />
+          <LISTITEM value="Blender Add-on" />
+          <LISTITEM value="Project - Heerema" />
+          <LISTITEM value="Project - Release and Test" />
+          <LISTITEM value="Project - Maintenance" />
+          <LISTITEM value="Project - Architecture and Technology" />
+          <LISTITEM value="Project - Software Quality" />
+          <LISTITEM value="Project - Platform and Tools" />
+        </ALLOWEDVALUES>
+      </FIELD>
+      <FIELD name="Release (KM Sim)" refname="KM.Simulation.Release" type="String" reportable="dimension">
+        <HELPTEXT>Planned release version</HELPTEXT>
+        <ALLOWEDVALUES expanditems="true">
+          <LISTITEM value="Spirit 2.4" />
+          <LISTITEM value="Spirit 2.2.0" />
+          <LISTITEM value="Spirit 2.2.1" />
+          <LISTITEM value="Spirit 2.2.2" />
+          <LISTITEM value="Spirit 2.3.0" />
+          <LISTITEM value="Polaris 7.5.0" />
+          <LISTITEM value="Polaris 7.5.1" />
+          <LISTITEM value="Polaris 7.6.0" />
+          <LISTITEM value="Spirit 2.2.3" />
+          <LISTITEM value="Spirit 2.2.4" />
+          <LISTITEM value="Spirit 2.5" />
+          <LISTITEM value="Spirit Legacy" />
+          <LISTITEM value="Spirit 2.3.1" />
+          <LISTITEM value="Polaris 8.0.0" />
+          <LISTITEM value="Spirit 2.6" />
+          <LISTITEM value="VMT 1.1" />
+          <LISTITEM value="VMT 1.2" />
+          <LISTITEM value="HDMT 10.2" />
+          <LISTITEM value="HDMT 10.3" />
+          <LISTITEM value="SeagenGIS 1.2" />
+          <LISTITEM value="SeagenGIS 1.3" />
+          <LISTITEM value="HDMT 12.1" />
+          <LISTITEM value="HDMT 12.2" />
+        </ALLOWEDVALUES>
+      </FIELD>
+      <FIELD name="ReflectedWorkItemId" refname="TfsMigrationTool.ReflectedWorkItemId" type="String" />
+      <FIELD name="Refinement Team" refname="KM.Spirit.RefinementTeam" type="String" reportable="dimension">
+        <HELPTEXT>Select the Team that you expect to do the refinement for this work item</HELPTEXT>
+        <ALLOWEXISTINGVALUE />
+        <ALLOWEDVALUES expanditems="true">
+          <LISTITEM value="Test" />
+          <LISTITEM value="Architecture" />
+          <LISTITEM value="SMS" />
+          <LISTITEM value="Algoryx" />
+          <LISTITEM value="Pivot" />
+          <LISTITEM value="Base Camp" />
+          <LISTITEM value="Serious Sim" />
+          <LISTITEM value="ConfigTool" />
+          <LISTITEM value="Seaview" />
+          <LISTITEM value="Model Factory" />
+          <LISTITEM value="Simulation" />
+          <LISTITEM value="Process" />
+          <LISTITEM value="SW Factory" />
+          <LISTITEM value="Cranes" />
+          <LISTITEM value="Model Tools" />
+          <LISTITEM value="Exercise Area Tools" />
+          <LISTITEM value="Code Quality" />
+          <LISTITEM value="Sputnik" />
+          <LISTITEM value="Blender Add-on" />
+        </ALLOWEDVALUES>
+      </FIELD>
+      <FIELD name="Product Advisor" refname="KM.Spirit.ProductAdvisor" type="String" syncnamechanges="true" reportable="dimension">
+        <HELPTEXT>Product advisor who is responsible for refining this feature</HELPTEXT>
+        <ALLOWEXISTINGVALUE />
+        <VALIDUSER />
+      </FIELD>
+      <FIELD name="Release Change Date" refname="KM.Simulation.Release.ChangedDate" type="DateTime">
+        <HELPTEXT>When release field changed</HELPTEXT>
+        <WHENCHANGED field="KM.Simulation.Release">
+          <SERVERDEFAULT from="clock" />
+        </WHENCHANGED>
+      </FIELD>
+      <FIELD name="Release Changed By" refname="KM.Simulation.Release.ChangedBy" type="String" syncnamechanges="true">
+        <HELPTEXT>Release changed by user</HELPTEXT>
+        <ALLOWEXISTINGVALUE />
+        <VALIDUSER />
+        <WHENCHANGED field="KM.Simulation.Release">
+          <ALLOWEXISTINGVALUE />
+          <SERVERDEFAULT from="currentuser" />
+        </WHENCHANGED>
+      </FIELD>
+      <FIELD name="Repro Steps" refname="Microsoft.VSTS.TCM.ReproSteps" type="HTML" />
+    </FIELDS>
+    <WORKFLOW>
+      <STATES>
+        <STATE value="Approved">
+          <FIELDS>
+            <FIELD refname="Microsoft.VSTS.Common.ClosedDate">
+              <EMPTY />
+            </FIELD>
+          </FIELDS>
+        </STATE>
+        <STATE value="New">
+          <FIELDS>
+            <FIELD refname="Microsoft.VSTS.Common.ClosedDate">
+              <EMPTY />
+            </FIELD>
+          </FIELDS>
+        </STATE>
+        <STATE value="Done">
+          <FIELDS>
+            <FIELD refname="Microsoft.VSTS.Scheduling.RemainingWork">
+              <READONLY />
+            </FIELD>
+          </FIELDS>
+        </STATE>
+        <STATE value="Committed">
+          <FIELDS>
+            <FIELD refname="Microsoft.VSTS.Common.ClosedDate">
+              <EMPTY />
+            </FIELD>
+          </FIELDS>
+        </STATE>
+        <STATE value="Removed" />
+      </STATES>
+      <TRANSITIONS>
+        <TRANSITION from="New" to="Approved">
+          <REASONS>
+            <DEFAULTREASON value="Approved by the Product Owner" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Done" to="Approved">
+          <REASONS>
+            <DEFAULTREASON value="Additional work found" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Committed" to="Approved">
+          <REASONS>
+            <DEFAULTREASON value="Work stopped" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="" to="New">
+          <REASONS>
+            <DEFAULTREASON value="New exception reported" />
+            <REASON value="ExceptionService" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Approved" to="New">
+          <REASONS>
+            <DEFAULTREASON value="Moved to the backlog" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Removed" to="New">
+          <REASONS>
+            <DEFAULTREASON value="Reconsidering backlog item" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Done" to="New">
+          <REASONS>
+            <DEFAULTREASON value="Moved to the backlog" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Committed" to="New">
+          <REASONS>
+            <DEFAULTREASON value="Moved to the backlog" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Approved" to="Removed">
+          <REASONS>
+            <DEFAULTREASON value="Removed from the backlog" />
+            <REASON value="Duplicate" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="New" to="Removed">
+          <REASONS>
+            <DEFAULTREASON value="Removed from the backlog" />
+            <REASON value="Duplicate" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Approved" to="Done">
+          <REASONS>
+            <DEFAULTREASON value="Work finished" />
+          </REASONS>
+          <FIELDS>
+            <FIELD refname="Microsoft.VSTS.Common.ClosedDate">
+              <SERVERDEFAULT from="clock" />
+            </FIELD>
+          </FIELDS>
+        </TRANSITION>
+        <TRANSITION from="New" to="Done">
+          <REASONS>
+            <DEFAULTREASON value="Work finished" />
+          </REASONS>
+          <FIELDS>
+            <FIELD refname="Microsoft.VSTS.Common.ClosedDate">
+              <SERVERDEFAULT from="clock" />
+            </FIELD>
+          </FIELDS>
+        </TRANSITION>
+        <TRANSITION from="Committed" to="Done">
+          <REASONS>
+            <DEFAULTREASON value="Work finished" />
+          </REASONS>
+          <FIELDS>
+            <FIELD refname="Microsoft.VSTS.Common.ClosedDate">
+              <SERVERDEFAULT from="clock" />
+            </FIELD>
+          </FIELDS>
+        </TRANSITION>
+        <TRANSITION from="Approved" to="Committed">
+          <REASONS>
+            <DEFAULTREASON value="Commitment made by the team" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="New" to="Committed">
+          <REASONS>
+            <DEFAULTREASON value="Commitment made by the team" />
+          </REASONS>
+        </TRANSITION>
+        <TRANSITION from="Done" to="Committed">
+          <REASONS>
+            <DEFAULTREASON value="Additional work found" />
+          </REASONS>
+        </TRANSITION>
+      </TRANSITIONS>
+    </WORKFLOW>
+    <FORM>
+      <Layout HideControlBorders="true" HideReadOnlyEmptyFields="true">
+        <Group Margin="(4,0,0,0)">
+          <Column PercentWidth="100">
+            <Control FieldName="System.Title" Type="FieldControl" LabelPosition="Top" ControlFontSize="large" EmptyText="&lt;Enter title here&gt;" />
+          </Column>
+        </Group>
+        <Group Margin="(10,0,0,0)">
+          <Column PercentWidth="100">
+            <Control FieldName="System.IterationPath" Type="WorkItemClassificationControl" Label="Ite&amp;ration" LabelPosition="Left" />
+          </Column>
+        </Group>
+        <Group Margin="(10,0,0,0)">
+          <Column PercentWidth="50">
+            <Group Label="Status">
+              <Column PercentWidth="100">
+                <Control FieldName="System.AssignedTo" Type="FieldControl" Label="Assi&amp;gned To" LabelPosition="Left" />
+                <Control FieldName="System.State" Type="FieldControl" Label="&amp;State" LabelPosition="Left" />
+                <Control FieldName="System.AreaPath" Type="WorkItemClassificationControl" Label="&amp;Area" LabelPosition="Left" />
+                <Control FieldName="System.Reason" Type="FieldControl" Label="&amp;Reason" LabelPosition="Left" />
+              </Column>
+            </Group>
+          </Column>
+          <Column PercentWidth="50">
+            <Group Label="Details">
+              <Column PercentWidth="100">
+                <Control FieldName="Microsoft.VSTS.Scheduling.Effort" Type="FieldControl" Label="Effort" LabelPosition="Left" />
+                <Control FieldName="Microsoft.VSTS.Scheduling.RemainingWork" Type="FieldControl" Label="Remaining Work" LabelPosition="Left" />
+                <Control FieldName="Microsoft.VSTS.Common.Activity" Type="FieldControl" Label="Activity" LabelPosition="Left" />
+                <Control FieldName="Microsoft.VSTS.Common.Severity" Type="FieldControl" Label="Se&amp;verity" LabelPosition="Left" />
+                <Control FieldName="Microsoft.VSTS.Common.BacklogPriority" Type="FieldControl" Label="Backlog Priority" LabelPosition="Left" />
+                <Control FieldName="KM.Simulation.Release" Type="FieldControl" Label="Planned Release" LabelPosition="Left" />
+                <Control FieldName="KM.Spirit.RefinementTeam" Type="FieldControl" Label="Refinement Team" LabelPosition="Left" />
+                <Control FieldName="KM.Spirit.ProductAdvisor" Type="FieldControl" Label="Product Advisor" LabelPosition="Left" />
+              </Column>
+            </Group>
+          </Column>
+        </Group>
+        <Group Label="" Margin="(10,0,0,0)">
+          <Column PercentWidth="50">
+            <Group Label="Description">
+              <Column PercentWidth="100">
+                <Control FieldName="Osiris.Exception.ExceptionReporter" Type="FieldControl" Label="Reporter" LabelPosition="Left" ReadOnly="True" />
+                <Control FieldName="Osiris.Exception.IncidentCount" Type="FieldControl" Label="Incident Count" LabelPosition="Left" ReadOnly="True" />
+                <Control FieldName="Osiris.Application" Type="FieldControl" Label="Application" LabelPosition="Left" ReadOnly="True" />
+                <Control FieldName="Osiris.Exception.Type" Type="FieldControl" Label="Type" LabelPosition="Left" ReadOnly="True" />
+              </Column>
+            </Group>
+          </Column>
+        </Group>
+        <Group Margin="(10,0,0,0)">
+          <Column PercentWidth="50">
+            <TabGroup>
+              <Tab Label="Description">
+                <Control FieldName="System.Description" Type="HtmlFieldControl" Label="" LabelPosition="Left" Dock="Fill" />
+              </Tab>
+              <Tab Label="Details">
+                <Group>
+                  <Column PercentWidth="100">
+                    <Control FieldName="Microsoft.VSTS.CMMI.RootCause" Type="FieldControl" Label="&amp;Root cause" LabelPosition="Left" />
+                  </Column>
+                  <Column PercentWidth="100">
+                    <Control FieldName="Osiris.Exception.BuildVersion" Type="FieldControl" Label="Build Version" LabelPosition="Left" />
+                  </Column>
+                </Group>
+                <Group Label="">
+                  <Column PercentWidth="100">
+                    <Control FieldName="Osiris.Exception.MessageEx" Type="HtmlFieldControl" Label="Message" LabelPosition="Top" ReadOnly="True" />
+                    <Control FieldName="Osiris.Exception.StackTrace" Type="HtmlFieldControl" Label="Stack Trace" LabelPosition="Top" ReadOnly="True" />
+                  </Column>
+                </Group>
+              </Tab>
+              <Tab Label="Test Cases">
+                <Control Type="LinksControl" Label="Test &amp;Cases testing this Bug" LabelPosition="Top" Name="TestedBy">
+                  <LinksControlOptions>
+                    <LinkColumns>
+                      <LinkColumn RefName="System.ID" />
+                      <LinkColumn RefName="System.WorkItemType" />
+                      <LinkColumn RefName="System.Title" />
+                      <LinkColumn RefName="System.AssignedTo" />
+                      <LinkColumn RefName="System.State" />
+                      <LinkColumn LinkAttribute="System.Links.Comment" />
+                    </LinkColumns>
+                    <WorkItemLinkFilters FilterType="include">
+                      <Filter LinkType="Microsoft.VSTS.Common.TestedBy" FilterOn="forwardname" />
+                    </WorkItemLinkFilters>
+                    <ExternalLinkFilters FilterType="excludeAll" />
+                    <WorkItemTypeFilters FilterType="include">
+                      <Filter WorkItemType="Test Case" />
+                    </WorkItemTypeFilters>
+                  </LinksControlOptions>
+                </Control>
+              </Tab>
+              <Tab Label="Tasks">
+                <Control Type="LinksControl" LabelPosition="Top" Name="TaskLinks">
+                  <LinksControlOptions>
+                    <LinkColumns>
+                      <LinkColumn RefName="System.Id" />
+                      <LinkColumn RefName="System.WorkItemType" />
+                      <LinkColumn RefName="System.Title" />
+                      <LinkColumn RefName="System.AssignedTo" />
+                      <LinkColumn RefName="System.State" />
+                    </LinkColumns>
+                    <WorkItemLinkFilters FilterType="include">
+                      <Filter LinkType="System.LinkTypes.Hierarchy" FilterOn="forwardname" />
+                    </WorkItemLinkFilters>
+                    <ExternalLinkFilters FilterType="excludeAll" />
+                    <WorkItemTypeFilters FilterType="include">
+                      <Filter WorkItemType="Task" />
+                    </WorkItemTypeFilters>
+                  </LinksControlOptions>
+                </Control>
+              </Tab>
+              <Tab Label="Purgatory">
+                <Control Type="LabelControl" Label="THESE FIELDS ARE DEPRICATED AND WILL BE REMOVED" LabelPosition="Left" ControlFontSize="large" LabelFontSize="large" />
+                <Control FieldName="KM.Simulation.Team" Type="FieldControl" Label="Team:" LabelPosition="Left" />
+                <Control FieldName="KM.Simulation.Projects" Type="FieldControl" Label="Projects:" LabelPosition="Left" />
+              </Tab>
+            </TabGroup>
+          </Column>
+          <Column PercentWidth="50">
+            <TabGroup>
+              <Tab Label="Acceptance Criteria">
+                <Control FieldName="Microsoft.VSTS.Common.AcceptanceCriteria" Type="HtmlFieldControl" LabelPosition="Top" Dock="Fill" MinimumSize="(100,200)" />
+              </Tab>
+              <Tab Label="History">
+                <Control FieldName="System.History" Type="WorkItemLogControl" Label="" LabelPosition="Left" Dock="Fill" />
+              </Tab>
+              <Tab Label="Links">
+                <Control Type="LinksControl" LabelPosition="Top" Name="GeneralLinks">
+                  <LinksControlOptions>
+                    <LinkColumns>
+                      <LinkColumn RefName="System.ID" />
+                      <LinkColumn RefName="System.WorkItemType" />
+                      <LinkColumn RefName="System.Title" />
+                      <LinkColumn RefName="System.AssignedTo" />
+                      <LinkColumn RefName="System.State" />
+                      <LinkColumn LinkAttribute="System.Links.Comment" />
+                    </LinkColumns>
+                    <WorkItemLinkFilters FilterType="includeAll" />
+                    <ExternalLinkFilters FilterType="includeAll" />
+                    <WorkItemTypeFilters FilterType="includeAll" />
+                  </LinksControlOptions>
+                </Control>
+              </Tab>
+              <Tab Label="Attachments">
+                <Control Type="AttachmentsControl" LabelPosition="Top" />
+              </Tab>
+            </TabGroup>
+          </Column>
+        </Group>
+      </Layout>
+      <WebLayout ShowEmptyReadOnlyFields="false">
+        <SystemControls>
+          <Control Type="FieldControl" FieldName="System.Title" EmptyText="&lt;Enter title here&gt;" />
+          <Control Label="Ite&amp;ration" Type="WorkItemClassificationControl" FieldName="System.IterationPath" />
+          <Control Label="Assi&amp;gned To" Type="FieldControl" FieldName="System.AssignedTo" />
+          <Control Label="&amp;State" Type="FieldControl" FieldName="System.State" />
+          <Control Label="&amp;Area" Type="WorkItemClassificationControl" FieldName="System.AreaPath" />
+          <Control Label="&amp;Reason" Type="FieldControl" FieldName="System.Reason" />
+          <Control Label="Links" Type="LinksControl" Name="Links" />
+          <Control Label="History" Type="WorkItemLogControl" FieldName="System.History" />
+          <Control Label="Attachments" Type="AttachmentsControl" Name="Attachments" />
+        </SystemControls>
+        <Page Label="Details" LayoutMode="FirstColumnWide">
+          <Section>
+            <Group Label="Message">
+              <Control Label="Message" Type="HtmlFieldControl" FieldName="Osiris.Exception.MessageEx" ReadOnly="True" />
+            </Group>
+            <Group Label="Stack Trace">
+              <Control Label="Stack Trace" Type="HtmlFieldControl" FieldName="Osiris.Exception.StackTrace" ReadOnly="True" />
+            </Group>
+            <Group Label="Description">
+              <Control Type="HtmlFieldControl" FieldName="System.Description" />
+            </Group>
+            <Group Label="Acceptance Criteria">
+              <Control Type="HtmlFieldControl" FieldName="Microsoft.VSTS.Common.AcceptanceCriteria" />
+            </Group>
+          </Section>
+          <Section>
+            <Group Label="Status">
+              <Control Label="&amp;Reason" Type="FieldControl" FieldName="System.Reason" />
+            </Group>
+            <Group Label="Description">
+              <Control Label="Reporter" Type="FieldControl" FieldName="Osiris.Exception.ExceptionReporter" ReadOnly="True" />
+              <Control Label="Incident Count" Type="FieldControl" FieldName="Osiris.Exception.IncidentCount" ReadOnly="True" />
+              <Control Label="Application" Type="FieldControl" FieldName="Osiris.Application" ReadOnly="True" />
+              <Control Label="Type" Type="FieldControl" FieldName="Osiris.Exception.Type" ReadOnly="True" />
+            </Group>
+          </Section>
+          <Section>
+            <Group Label="Development">
+              <Control Type="LinksControl" Name="Development">
+                <LinksControlOptions ViewMode="Dynamic" ZeroDataExperience="Development" ShowCallToAction="true">
+                  <ListViewOptions GroupLinks="false"></ListViewOptions>
+                  <LinkFilters>
+                    <ExternalLinkFilter Type="Build" />
+                    <ExternalLinkFilter Type="Integrated in build" />
+                    <ExternalLinkFilter Type="Pull Request" />
+                    <ExternalLinkFilter Type="Branch" />
+                    <ExternalLinkFilter Type="Fixed in Commit" />
+                    <ExternalLinkFilter Type="Fixed in Changeset" />
+                    <ExternalLinkFilter Type="Source Code File" />
+                    <ExternalLinkFilter Type="Found in build" />
+                  </LinkFilters>
+                </LinksControlOptions>
+              </Control>
+            </Group>
+            <Group Label="Related Work">
+              <Control Type="LinksControl" Name="Related Work">
+                <LinksControlOptions>
+                  <LinkFilters>
+                    <WorkItemLinkFilter Type="System.LinkTypes.Duplicate-Reverse" />
+                    <WorkItemLinkFilter Type="System.LinkTypes.Hierarchy-Reverse" />
+                    <WorkItemLinkFilter Type="Microsoft.VSTS.Common.TestedBy-Forward" />
+                    <WorkItemLinkFilter Type="Microsoft.VSTS.Common.TestedBy-Reverse" />
+                    <WorkItemLinkFilter Type="System.LinkTypes.Hierarchy-Forward" />
+                    <WorkItemLinkFilter Type="System.LinkTypes.Duplicate-Forward" />
+                    <WorkItemLinkFilter Type="System.LinkTypes.Dependency" />
+                    <WorkItemLinkFilter Type="System.LinkTypes.Related" />
+                  </LinkFilters>
+                  <Columns>
+                    <Column Name="System.State" />
+                    <Column Name="System.ChangedDate" />
+                    <Column Name="System.Links.Comment" />
+                  </Columns>
+                </LinksControlOptions>
+              </Control>
+            </Group>
+            <Group Label="Details">
+              <Control Label="Effort" Type="FieldControl" FieldName="Microsoft.VSTS.Scheduling.Effort" />
+              <Control Label="Remaining Work" Type="FieldControl" FieldName="Microsoft.VSTS.Scheduling.RemainingWork" />
+              <Control Label="Activity" Type="FieldControl" FieldName="Microsoft.VSTS.Common.Activity" />
+              <Control Label="Se&amp;verity" Type="FieldControl" FieldName="Microsoft.VSTS.Common.Severity" />
+              <Control Label="Backlog Priority" Type="FieldControl" FieldName="Microsoft.VSTS.Common.BacklogPriority" />
+              <Control Label="Planned Release" Type="FieldControl" FieldName="KM.Simulation.Release" />
+              <Control Label="Refinement Team" Type="FieldControl" FieldName="KM.Spirit.RefinementTeam" />
+              <Control Label="Product Advisor" Type="FieldControl" FieldName="KM.Spirit.ProductAdvisor" />
+              <Control Label="&amp;Root cause" Type="FieldControl" FieldName="Microsoft.VSTS.CMMI.RootCause" />
+              <Control Label="Build Version" Type="FieldControl" FieldName="Osiris.Exception.BuildVersion" />
+            </Group>
+            <Group Label="Purgatory">
+              <Control Label="THESE FIELDS ARE DEPRICATED AND WILL BE REMOVED" Type="LabelControl" />
+              <Control Label="Team:" Type="FieldControl" FieldName="KM.Simulation.Team" />
+              <Control Label="Projects:" Type="FieldControl" FieldName="KM.Simulation.Projects" />
+            </Group>
+          </Section>
+        </Page>
+      </WebLayout>
+    </FORM>
+  </WORKITEMTYPE>
+</witd:WITD>

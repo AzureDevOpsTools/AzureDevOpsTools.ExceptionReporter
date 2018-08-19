@@ -8,20 +8,12 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
     {
         public static string GetAttributeValue(this XElement element, string key)
         {
-            Contract.Requires(element != null);
-            Contract.Requires(!string.IsNullOrEmpty(key));
-            Contract.Ensures(Contract.Result<string>() != null);
-
             var attribute = element.Attribute(key);
             return attribute != null && attribute.Value != null ? attribute.Value : string.Empty;
         }
 
         public static string GetElementValue(this XElement element, string key)
         {
-            Contract.Requires(element != null);
-            Contract.Requires(!string.IsNullOrEmpty(key));
-            Contract.Ensures(Contract.Result<string>() != null);
-
             var subelement = element.Element(key);
             return subelement != null && subelement.Value != null ? subelement.Value : string.Empty;
         }
@@ -34,10 +26,6 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         public ExceptionSettings(string applicationName, string settingsFile)
         {
-            Contract.Requires(!string.IsNullOrEmpty(settingsFile));
-            Contract.Ensures(TeamProject != null);
-
-
             this.applicationName = applicationName;
             this.settingsFile = settingsFile;
 
@@ -58,7 +46,6 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private XElement ReadApplicationIdSettings()
         {            
-            Contract.Requires(settingsFile != null);
             return (from a in XElement.Load(settingsFile).Elements("Application")
              where a.GetAttributeValue("Name") == applicationName
              select a).FirstOrDefault();
@@ -66,7 +53,6 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private XElement ReadDefaultSettings()
         {
-            Contract.Requires(settingsFile != null);
             return (from a in XElement.Load(settingsFile).Elements("Application")
                     where a.GetAttributeValue("Name") == "Default"
              select a).FirstOrDefault();
@@ -74,9 +60,6 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
 
         private void InitializeFromXElement(XElement app)
         {
-            Contract.Requires(app != null);
-            Contract.Ensures(TeamProject != null);
-
             ApplicationName = app.GetAttributeValue("Name");
             TfsServer = app.GetElementValue("TFSServer");
             Collection = app.GetElementValue("Collection");

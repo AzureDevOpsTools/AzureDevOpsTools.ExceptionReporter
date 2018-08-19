@@ -256,7 +256,7 @@ namespace Inmeta.Exception.Service.Common.Stores.TFS
             //new NetworkCredential(@"os-lab\oslabadmin", "Y67uJi)9");
             var credentials = CredentialCache.DefaultNetworkCredentials;//new NetworkCredential(@"partner\xNataliaA", "xNataliaA62");//
 
-            tfs = new TfsTeamProjectCollection(new Uri(applicationInfo.TfsServer + "/" + applicationInfo.Collection), credentials);
+            tfs = new TfsTeamProjectCollection(new Uri(applicationInfo.TfsServer + "/" + applicationInfo.TeamProject), credentials);
             tfs.EnsureAuthenticated();
             if (!tfs.HasAuthenticated)
             {
