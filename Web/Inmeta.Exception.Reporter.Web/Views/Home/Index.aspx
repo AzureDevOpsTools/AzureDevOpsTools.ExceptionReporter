@@ -6,6 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <form id="form1" runat="server">
     <h2>Upload exceptions</h2>
 
     <div id="dialog" title="View exception file">
@@ -71,10 +72,25 @@
         {
 %>     
             <%=Html.Hidden("filename", Model.FileName)%>
-            <p><input type="submit" value="Upload Exceptions" /></p> 
+            <p><input type="submit" value="Upload Exceptions" />
+                
+        </p> 
         <%
         }
 %>
+        
+        <%  using (Html.BeginForm("Test", "Home", FormMethod.Post))
+            {
+        %>    <p>
+            <asp:Button ID="SendTestException" runat="server" Text="Send Test Exception" ToolTip="Sends a test exception to NemoTest project" />
+        </p> 
+        <%
+            }
+        %>
+        
+
+
+    </form>
 
 </asp:Content>
 

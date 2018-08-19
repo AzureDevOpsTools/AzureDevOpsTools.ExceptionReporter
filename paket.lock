@@ -1,7 +1,7 @@
 NUGET
   remote: http://www.nuget.org/api/v2
     Antlr (3.5.0.2) - restriction: >= net45
-    bootstrap (4.1.1) - restriction: >= net45
+    bootstrap (4.1.3) - restriction: >= net45
       jQuery (>= 3.0 < 4.0)
       popper.js (>= 1.14 < 2.0)
     EntityFramework (6.2)
@@ -21,12 +21,27 @@ NUGET
     Microsoft.AspNet.Web.Optimization (1.1.3) - restriction: >= net45
       Microsoft.Web.Infrastructure (>= 1.0)
       WebGrease (>= 1.5.2)
+    Microsoft.AspNet.WebApi.Client (5.2.6) - restriction: >= net45
+      Newtonsoft.Json (>= 6.0.4) - restriction: || (>= net45) (&& (< netstandard2.0) (>= portable-net45+win8+wp8+wp81+wpa81))
     Microsoft.AspNet.WebPages (3.2.6) - restriction: >= net45
       Microsoft.AspNet.Razor (>= 3.2.6 < 3.3)
       Microsoft.Web.Infrastructure (>= 1.0)
     Microsoft.jQuery.Unobtrusive.Validation (3.2.10) - restriction: >= net45
       jQuery (>= 1.8)
       jQuery.Validation (>= 1.8.0.1)
+    Microsoft.TeamFoundation.DistributedTask.Common (15.112.1) - restriction: >= net45
+      Microsoft.Tpl.Dataflow (>= 4.5.24) - restriction: >= net45
+      Microsoft.VisualStudio.Services.Client (15.112.1) - restriction: >= net45
+      Newtonsoft.Json (>= 8.0.3) - restriction: >= net45
+    Microsoft.TeamFoundationServer.Client (15.112.1)
+      Microsoft.AspNet.WebApi.Client (>= 5.2.2) - restriction: >= net45
+      Microsoft.TeamFoundation.DistributedTask.Common (15.112.1) - restriction: >= net45
+      Microsoft.VisualStudio.Services.Client (15.112.1) - restriction: >= net45
+      Newtonsoft.Json (>= 8.0.3) - restriction: >= net45
+    Microsoft.Tpl.Dataflow (4.5.24) - restriction: >= net45
+    Microsoft.VisualStudio.Services.Client (15.112.1)
+      Microsoft.AspNet.WebApi.Client (>= 5.2.2) - restriction: >= net45
+      Newtonsoft.Json (>= 8.0.3) - restriction: >= net45
     Microsoft.Web.Infrastructure (1.0) - restriction: >= net45
     Modernizr (2.8.3)
     Newtonsoft.Json (11.0.2) - restriction: >= net45

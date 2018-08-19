@@ -56,7 +56,7 @@ namespace DebugServiceReaderTool
                         //    wb.Security.Transport.ClientCredentialType = ServiceSettings.ClientCredentials;
                         //    //wb.MaxBufferSize = int.MaxValue;
                         //    wb.MaxReceivedMessageSize = int.MaxValue;
-                            
+
                         //}
 
                         //if (channelFactory.Credentials != null)
@@ -64,7 +64,7 @@ namespace DebugServiceReaderTool
                         //    channelFactory.Credentials.Windows.ClientCredential.Domain   = ServiceSettings.Domain;
                         //    channelFactory.Credentials.Windows.ClientCredential.Password = ServiceSettings.Password;
                         //    channelFactory.Credentials.Windows.ClientCredential.UserName = ServiceSettings.Username;
-                            
+
                         //    channelFactory.Credentials.UserName.UserName = (!String.IsNullOrEmpty(ServiceSettings.Domain) ? ServiceSettings.Domain + "\\" : String.Empty) + ServiceSettings.Username;
                         //    channelFactory.Credentials.UserName.Password = ServiceSettings.Password;
                         //}
@@ -72,7 +72,7 @@ namespace DebugServiceReaderTool
                         //var channel = channelFactory.CreateChannel();
 
                         var channel = GetChannel(ServiceSettings);
-                        
+
                         PrintResult(channel);
                     }
                 }
@@ -90,12 +90,12 @@ namespace DebugServiceReaderTool
             exc.Value.ToList().ForEach((exp) => Console.WriteLine(exp.ToString()));
             foreach (var exceptionData in exc.Value)
             {
-                using (var registrator = new TFSStoreWithException())
-                    registrator.RegisterException(exceptionData,
-                                                  new ExceptionSettings(exceptionData.ApplicationName,
-                                                                        Path.Combine(
-                                                                            AppDomain.CurrentDomain.BaseDirectory,
-                                                                            "Applications.xml")));
+                var registrator = new TfsStoreWithException();
+                registrator.RegisterException(exceptionData,
+                                              new ExceptionSettings(exceptionData.ApplicationName,
+                                                                    Path.Combine(
+                                                                        AppDomain.CurrentDomain.BaseDirectory,
+                                                                        "Applications.xml")));
             }
             Console.WriteLine(exc.Key + " : " + channel.AckDelivery(exc.Key));
         }

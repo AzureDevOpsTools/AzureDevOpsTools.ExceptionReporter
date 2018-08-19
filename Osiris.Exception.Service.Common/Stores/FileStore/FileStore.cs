@@ -81,7 +81,8 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             }
             catch (System.Exception ex)
             {
-                ServiceLog.DefaultLog.Error("Failed to clean up old exceptions. Due to exception: " + System.Environment.NewLine + ex);
+                ServiceLog.Error(
+                    $"Failed to clean up old exceptions. Due to exception: {System.Environment.NewLine}{ex}");
             }
 
             //all successfull entities
@@ -125,7 +126,7 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             }
             catch (System.Exception ex)
             {
-                ServiceLog.DefaultLog.Error("Failed to clean up old exceptions. Due to exception: " + System.Environment.NewLine + ex);
+                ServiceLog.Error("Failed to clean up old exceptions. Due to exception: " + System.Environment.NewLine + ex);
             }
 
             //all successfull entities
@@ -140,7 +141,7 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
 
                 if (Directory.Exists(GetFolder(GetFailedExceptionFolder(key))))
                 {
-                    ServiceLog.DefaultLog.Error("Ack delivery recieved, failed exception for session found." + System.Environment.NewLine);
+                    ServiceLog.Error("Ack delivery recieved, failed exception for session found." + System.Environment.NewLine);
                     res = false;
                 }
 
@@ -160,7 +161,7 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             }
             catch (System.Exception ex)
             {
-                ServiceLog.DefaultLog.Error("Failed to clean up old exceptions. Due to exception: " + System.Environment.NewLine + ex);
+                ServiceLog.Error("Failed to clean up old exceptions. Due to exception: " + System.Environment.NewLine + ex);
             }
             return res;
         }
@@ -204,10 +205,10 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
                             return ser.Deserialize(reader) as ExceptionEntity;
                         }
                         catch (InvalidOperationException ex)
-                        {
-                            ServiceLog.DefaultLog.Error("Failed to deserialized exceptions: File moved to failed folder. " 
+                        {              
+                            ServiceLog.Error("Failed to deserialized exceptions: File moved to failed folder. " 
                                 + System.Environment.NewLine + "Content: " 
-                                + System.Environment.NewLine + entity, ex);
+                                + System.Environment.NewLine + entity+ ex);
                             failed.Add(entity);
                         }
                         return null;
@@ -233,7 +234,7 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             catch (System.Exception ex)
             {
                 //failed to move erronous xml to failed exceptions.
-                ServiceLog.DefaultLog.Error("Failed to move erronous XML to failed file = " + FailedExceptionsFileName , ex);
+                ServiceLog.Error("Failed to move erronous XML to failed file = " + FailedExceptionsFileName + ex);
             }
         }
 
@@ -250,7 +251,7 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             catch (System.Exception ex)
             {
                 //failed to move erronous xml to failed exceptions.
-                ServiceLog.DefaultLog.Error("Failed to move erronous XML to failed file = " + FailedExceptionsFileName, ex);
+                ServiceLog.Error("Failed to move erronous XML to failed file = " + FailedExceptionsFileName+ ex);
             }
         }
 
@@ -269,7 +270,7 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             catch (UnauthorizedAccessException)
             {
                 //failed to read exceptions probably due to issues with file access.
-                ServiceLog.DefaultLog.Warn("Tried to read exceptions file with result access denied. File = " +
+                ServiceLog.Warning("Tried to read exceptions file with result access denied. File = " +
                                            filename);
             }
 
@@ -303,7 +304,7 @@ namespace Inmeta.Exception.Service.Common.Stores.FileStore
             }
             catch (System.Exception ex)
             {
-                ServiceLog.DefaultLog.Error("Failed to clean up failed files folder : ", ex);
+                ServiceLog.Error("Failed to clean up failed files folder : "+ ex);
             }
         }
 

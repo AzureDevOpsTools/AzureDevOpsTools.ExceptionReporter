@@ -3,6 +3,7 @@ using System.Configuration;
 using System.IO;
 using System.Web.Mvc;
 using Inmeta.Exception.Reporter.Web.Models;
+using Inmeta.Exception.Service.Common;
 using Inmeta.Exception.Service.Common.Stores;
 using Inmeta.Exception.Service.Common.Stores.FileStore;
 
@@ -28,7 +29,7 @@ namespace Inmeta.Exception.Reporter.Web.Controllers
             {
                 var file = Request.Files[inputTagName];
 
-                if (file != null && file.ContentLength != 0 && !String.IsNullOrEmpty(file.FileName))
+                if (file != null && file.ContentLength != 0 && !string.IsNullOrEmpty(file.FileName))
                 {
                     //make unique filename.
                     fileName = Path.GetFileName(file.FileName) + Path.GetRandomFileName();
@@ -42,8 +43,8 @@ namespace Inmeta.Exception.Reporter.Web.Controllers
 
         private string GetPath(string fileName)
         {
-            var path = String.IsNullOrEmpty(fileName)
-                        ? String.Empty
+            var path = string.IsNullOrEmpty(fileName)
+                        ? string.Empty
                         : Path.Combine(Path.GetTempPath(), fileName);
             return path; 
         }
@@ -52,9 +53,9 @@ namespace Inmeta.Exception.Reporter.Web.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Commit(string filename)
         {
-            if (String.IsNullOrEmpty(filename))
+            if (string.IsNullOrEmpty(filename))
             {
-                return RedirectToAction("Index", new {filename = String.Empty});
+                return RedirectToAction("Index", new {filename = string.Empty});
             }
 
 
@@ -62,8 +63,7 @@ namespace Inmeta.Exception.Reporter.Web.Controllers
             var exceptions = new FileStore().ParseExcpetions(GetPath(filename)).Item1;
 
             //send to store.
-            bool storeIsTFS = true;
-            bool.TryParse(ConfigurationManager.AppSettings["UseTFS"], out storeIsTFS);
+            bool.TryParse(ConfigurationManager.AppSettings["UseTFS"], out var storeIsTFS);
 
             Uri serviceUri = null;
             try
@@ -88,8 +88,22 @@ namespace Inmeta.Exception.Reporter.Web.Controllers
                 //this is just a clean up...ignore if failure.
             }
 
-            return RedirectToAction("Index", new { filename = String.Empty });
+            return RedirectToAction("Index", new { filename = string.Empty });
         }
+
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Test()
+        {
+
+            var te = new TestException();
+            te.SendException();
+
+
+            return RedirectToAction("Index", new { filename = string.Empty });
+        }
+
+
     }
 
 }

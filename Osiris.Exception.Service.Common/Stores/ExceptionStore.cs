@@ -8,14 +8,14 @@ namespace Inmeta.Exception.Service.Common.Stores
 {
     public class ExceptionStore
     {
-        private bool _storeIsTFS { get; set;}
-        private Uri _serverForwardingService { get; set; }
+        private bool StoreIsTfs { get; set;}
+        private Uri ServerForwardingService { get; set; }
 
-        public ExceptionStore(Uri serverForwardingService = null, bool useTFS = true)
+        public ExceptionStore(Uri serverForwardingService = null, bool useTfs = true)
         {
-            _serverForwardingService = serverForwardingService;
+            ServerForwardingService = serverForwardingService;
             //default true
-            _storeIsTFS = useTFS;
+            StoreIsTfs = useTfs;
         }
 
         public void StoreException(List<ExceptionEntity> exceptions, string applicationLocation)
@@ -38,34 +38,34 @@ namespace Inmeta.Exception.Service.Common.Stores
                // ServiceLog.DefaultLog.Error("Failed to save exception to local file.", ex);
             }
 #endif
-            _storeIsTFS = true;
+            StoreIsTfs = true;
             //STORE IN TFS
-            if (_storeIsTFS)
+            if (StoreIsTfs)
             {
                 try
                 {
-                    using (var registrator = new TFSStoreWithBug())
-                    {
-                        registrator.RegisterException(exp, settings);
-                    }
+                    var registrator = new TfsStoreWithException();
+                    
+                    registrator.RegisterException(exp, settings);
+                    
                 }
                 catch (System.Exception ex)
                 {
-                    ServiceLog.DefaultLog.Error("Failed to register Exception in TFS: ", ex);
+                    ServiceLog.Error($"Failed to register Exception in TFS: {ex}");
                     throw;
                 }
             }
 
             return;
             //forward to server.
-            try
-            {
-                new ForwardStore.ForwardStore(_serverForwardingService).Forward(exp);
-            }
-            catch (System.Exception ex)
-            {
-                ServiceLog.DefaultLog.Error("Failed to forward exception to : " + _serverForwardingService.ToString(), ex);
-            }
+            //try
+            //{
+            //    new ForwardStore.ForwardStore(ServerForwardingService).Forward(exp);
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    ServiceLog.Error("Failed to forward exception to : " + ServerForwardingService.ToString(), ex);
+            //}
         }
     }
 }

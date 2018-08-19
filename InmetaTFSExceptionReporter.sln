@@ -30,8 +30,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		build.json = build.json
 		build.ps1 = build.ps1
+		Exception.xml = Exception.xml
 		KongsbergCSharpRules.ruleset = KongsbergCSharpRules.ruleset
 		KongsbergCSharpRules4Test.ruleset = KongsbergCSharpRules4Test.ruleset
+		paket.dependencies = paket.dependencies
+		paket.lock = paket.lock
 		Readme.md = Readme.md
 		version.txt = version.txt
 	EndProjectSection

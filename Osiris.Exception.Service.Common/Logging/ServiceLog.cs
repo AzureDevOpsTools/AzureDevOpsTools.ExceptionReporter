@@ -1,23 +1,27 @@
 ﻿using log4net;
+using log4net.Core;
 
 namespace Inmeta.Exception.Common
 {
 
-	public class ServiceLog
-	{
-		private static ILog log;
+    public class ServiceLog
+    {
 
-		public static ILog DefaultLog
-		{
-			get
-			{
-				if (log == null)
-				{
-					log4net.Config.XmlConfigurator.Configure(); 
-					log = LogManager.GetLogger("Exception Reporting");
-				}
-				return log;
-			}
-		}
-	}
+        public static void Error(string s)
+        {
+            System.Diagnostics.Trace.TraceError(s);
+        }
+
+        public static void Warning(string s)
+        {
+            System.Diagnostics.Trace.TraceWarning(s);
+        }
+
+        public static void Information(string s)
+        {
+            System.Diagnostics.Trace.TraceInformation(s);
+        }
+
+       
+    }
 }

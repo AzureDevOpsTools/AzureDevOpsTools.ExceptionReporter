@@ -37,7 +37,7 @@ namespace Inmeta.Exception.Service.Proxy.Reader
             if (!int.TryParse(ConfigurationManager.AppSettings["pollintervall"], out interval))
                 interval = 60 * 1000;
             else
-                interval = interval*1000;
+                interval = interval * 1000;
 
             var webSecurityMode = WebHttpSecurityMode.TransportCredentialOnly;
             Enum.TryParse(ConfigurationManager.AppSettings["httpSecurityMode"], out webSecurityMode);
@@ -59,7 +59,7 @@ namespace Inmeta.Exception.Service.Proxy.Reader
 
             ServiceName = "Inmeta Exception Reader Service";
             AutoLog = false;
-            
+
             bool.TryParse(ConfigurationManager.AppSettings["SendMailNotificationOnParseFailure"], out _sendMails);
         }
 
@@ -130,8 +130,8 @@ namespace Inmeta.Exception.Service.Proxy.Reader
                 try
                 {
                     //EventLogger.LogInformation(EventLog, "Call RegisterException");
-                    using (var registrator = new TFSStoreWithException())
-                        registrator.RegisterException(exceptionData, new ExceptionSettings(exceptionData.ApplicationName, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Applications.xml")));
+                    var registrator = new TfsStoreWithException();
+                    registrator.RegisterException(exceptionData, new ExceptionSettings(exceptionData.ApplicationName, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Applications.xml")));
                 }
                 catch (System.Exception ex)
                 {

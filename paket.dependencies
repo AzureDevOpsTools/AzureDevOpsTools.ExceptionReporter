@@ -1,5 +1,3 @@
-source http://partner14.partner.master.int/NuGetSim/nuget
-source c:\nuget
 source http://nuget.org/api/v2/
 source http://www.nuget.org/api/v2/
 
@@ -17,6 +15,7 @@ nuget Microsoft.AspNet.Razor >= 3.2.0 restriction: >= net45
 nuget Microsoft.AspNet.Web.Optimization >= 1.1.3 restriction: >= net45
 nuget Microsoft.AspNet.WebPages >= 3.2.0 restriction: >= net45
 nuget Microsoft.jQuery.Unobtrusive.Validation >= 3.2.0 restriction: >= net45
+nuget Microsoft.TeamFoundationServer.Client
 nuget Microsoft.Web.Infrastructure >= 1.0.0.0 restriction: >= net45
 nuget Modernizr >= 2.6.2
 nuget Newtonsoft.Json >= 6.0.3 restriction: >= net45
@@ -24,3 +23,4 @@ nuget NUnit >= 3.10.1 restriction: >= net45
 nuget NUnit3TestAdapter >= 3.10.0 restriction: >= net45
 nuget Respond >= 1.2.0 restriction: >= net45
 nuget WebGrease >= 1.5.2 restriction: >= net45
+nuget Microsoft.VisualStudio.Services.Client
