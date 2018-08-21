@@ -7,7 +7,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <form id="form1" runat="server">
-    <h2>Upload exceptions</h2>
+    <h2>Upload exceptions - v2.0-preview</h2>
 
     <div id="dialog" title="View exception file">
         <% Html.BeginForm("Upload", "Home", FormMethod.Post, new {enctype = "multipart/form-data"});
@@ -82,7 +82,7 @@
         <%  using (Html.BeginForm("Test", "Home", FormMethod.Post))
             {
         %>    <p>
-            <asp:Button ID="SendTestException" runat="server" Text="Send Test Exception" ToolTip="Sends a test exception to NemoTest project" />
+            <input type="submit"  value="SendTestException"  Text="Send Test Exception" ToolTip="Sends a test exception to NemoTest project" />
         </p> 
         <%
             }
