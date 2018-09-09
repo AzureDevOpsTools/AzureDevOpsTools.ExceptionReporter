@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Kongsberg.Nemo.ExceptionReporter.Plugin.UI.ReportFormUI"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-        x:ClassModifier="internal" WindowStartupLocation="CenterScreen"
+        x:ClassModifier="Public" WindowStartupLocation="CenterScreen"
         Title="Report Exception" Height="500" Width="700" Topmost="True">
     <Grid Margin="10">
         <Grid.RowDefinitions>

@@ -3,9 +3,9 @@ using System.Reflection;
 using System;
 using System.Diagnostics.Contracts;
 using System.Text;
-using Inmeta.Exception.Reporter.TFSExeptionService;
+using AzureDevOps.Exception.Reporter.TFSExeptionService;
 
-namespace Inmeta.ExceptionReporter.Km
+namespace AzureDevOps.ExceptionReporter.Km
 {
     /// <summary>
     /// This class allows you to post exception reports over the internet.

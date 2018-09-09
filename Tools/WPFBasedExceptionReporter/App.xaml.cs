@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
-using Inmeta.Exception.Reporter;
-using Inmeta.Exception.Service.Common;
+using AzureDevOps.Exception.Reporter;
+using AzureDevOps.Exception.Service.Common;
 using System.Configuration;
 
 namespace WPFBasedExceptionReporter

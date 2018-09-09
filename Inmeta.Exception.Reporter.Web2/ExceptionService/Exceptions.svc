@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="Inmeta.Exception.Reporter.Web.ExceptionService.Exceptions" CodeBehind="Exceptions.svc.cs" Factory="System.ServiceModel.Activation.WebServiceHostFactory" %>

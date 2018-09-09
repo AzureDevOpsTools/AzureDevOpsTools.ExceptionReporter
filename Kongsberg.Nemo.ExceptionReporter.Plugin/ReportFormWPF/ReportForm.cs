@@ -2,10 +2,10 @@
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Threading;
-using Inmeta.Exception.Reporter;
+using AzureDevOps.Exception.Reporter;
 using Kongsberg.Nemo.ExceptionReporter.Plugin.UI;
 
-namespace Inmeta.ExceptionReporter.Km
+namespace AzureDevOps.ExceptionReporter.Km
 {
     public class ReportForm 
     {
@@ -88,7 +88,7 @@ namespace Inmeta.ExceptionReporter.Km
                 args.Exception.Message.Contains("Dispatcher processing has been suspended, but messages are still being processed.");
         }
 
-        internal ReportFormUI Window { get; set; }
+        public ReportFormUI Window { get; set; }
 
         public bool ShowException(string errorText, ReportException report)
         {

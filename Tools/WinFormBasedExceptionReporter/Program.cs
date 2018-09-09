@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Configuration;
 using System.Windows.Forms;
-using Inmeta.Exception.Reporter;
-using Inmeta.Exception.Service.Common;
+using AzureDevOps.Exception.Reporter;
+using AzureDevOps.Exception.Service.Common;
 
 namespace ExceptionReporterTestApp
 {

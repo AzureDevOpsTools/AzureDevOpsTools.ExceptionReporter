@@ -3,14 +3,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
-using Inmeta.Exception.Reporter.TFSExeptionService;
+using AzureDevOps.Exception.Reporter.TFSExeptionService;
 using log4net;
 using log4net.Repository.Hierarchy;
 using System.Xml;
 using log4net.Config;
 using System.Reflection;
 
-namespace Inmeta.ExceptionReporter.Km
+namespace AzureDevOps.ExceptionReporter.Km
 {
     internal class KmReportLogger
     {

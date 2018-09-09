@@ -2,11 +2,12 @@
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Threading;
-using Inmeta.Exception.Reporter;
-using Inmeta.Exception.Reporter.TFSExeptionService;
+using AzureDevOps.Exception.Reporter;
+using AzureDevOps.Exception.Reporter.TFSExeptionService;
+using AzureDevOps.ExceptionReporter.Km;
 using Kongsberg.Nemo.ExceptionReporter.Plugin.UI;
 
-namespace Inmeta.ExceptionReporter.Km
+namespace AzureDevOps.ExceptionReporter.Km
 {
     [Export(typeof(IExceptionHandler))]
     public class KmExceptionHandler : IExceptionHandler

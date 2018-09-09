@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 
-namespace Inmeta.ExceptionReporter.Km
+namespace AzureDevOps.ExceptionReporter.Km
 {
     internal static class TFSStringUtil
     {

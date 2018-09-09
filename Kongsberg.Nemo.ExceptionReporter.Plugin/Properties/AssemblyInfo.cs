@@ -7,9 +7,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Kongsberg.Nemo.ExceptionReporter.Plugin")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Inmeta Crayon")]
+[assembly: AssemblyCompany("Azure DevOps")]
 [assembly: AssemblyProduct("Kongsberg.Nemo.ExceptionReporter.Plugin")]
-[assembly: AssemblyCopyright("Copyright © Inmeta Crayon 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

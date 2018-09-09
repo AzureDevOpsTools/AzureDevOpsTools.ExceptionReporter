@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Windows;
 
-namespace Inmeta.ExceptionReporter.Km
+namespace AzureDevOps.ExceptionReporter.Km
 {
     internal class ThreadedReportWindow
     {
