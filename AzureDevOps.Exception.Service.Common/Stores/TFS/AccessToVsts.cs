@@ -13,10 +13,10 @@ namespace AzureDevOps.Exception.Service.Common.Stores.TFS
         public string Project { get; }
         protected AccessToVsts()
         {
-            const string uri = "https://maritimesim.visualstudio.com";
+            const string uri = "https://whateveryousay.visualstudio.com";
             Uri = new Uri(uri);
-            PersonalAccessToken = "l3srtawoyhgd6fltu7sgd72rqncajgzdczapnludslninfqnqn4q";
-            Project = "NemoTest";
+            PersonalAccessToken = "xxxx";
+            Project = "Project";
         }
 
         public VssBasicCredential Credentials => new VssBasicCredential("", PersonalAccessToken);

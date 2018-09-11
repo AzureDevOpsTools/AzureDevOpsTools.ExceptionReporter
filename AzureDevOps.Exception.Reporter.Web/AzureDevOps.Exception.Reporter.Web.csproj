@@ -136,10 +136,6 @@
     <None Include="Properties\PublishProfiles\ExceptionServer - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AzureDevOps.Exception.Reporter\AzureDevOps.Exception.Reporter.csproj">
-      <Project>{5012c512-6add-4b9c-ba4e-1713e9b1b766}</Project>
-      <Name>AzureDevOps.Exception.Reporter</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AzureDevOps.Exception.Service.Common\AzureDevOps.Exception.Service.Common.csproj">
       <Project>{3024D413-23B3-49F5-A70F-1CC8201BF2C3}</Project>
       <Name>AzureDevOps.Exception.Service.Common</Name>
