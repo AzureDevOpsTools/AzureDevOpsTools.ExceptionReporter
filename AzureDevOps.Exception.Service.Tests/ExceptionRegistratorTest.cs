@@ -44,9 +44,11 @@ namespace AzureDevOps.Exception.Tests
         /// </summary>
         [Test]
         [Category("Integration")]
+        [Ignore("Integration")]
+
         public void TFSExceptionRegistrator_Creation_with_new_line()
         {
-            var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
+            var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName);
             var registrator = new TfsStoreWithException();
             var exceptionEntity = ExceptionEntityTestData.ExceptionEntityWithNewline;
 
@@ -70,9 +72,11 @@ namespace AzureDevOps.Exception.Tests
         /// </summary>
         [Test]
         [Category("Integration")]
+        [Ignore("Integration")]
+
         public void TFSExceptionRegistrator_Creation_with_message_GT_255()
         {
-            var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
+            var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName);
             var registrator = new TfsStoreWithException();
             var exceptionEntity = ExceptionEntityTestData.MyExceptionEntityMessageGt255;
 
@@ -95,9 +99,11 @@ namespace AzureDevOps.Exception.Tests
         /// </summary>
         [Test]
         [Category("Integration")]
+        [Ignore("Integration")]
+
         public void TFSExceptionRegistrator_Creation_with_Tab()
         {
-            var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
+            var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName);
             var registrator = new TfsStoreWithException();
             var exceptionEntity = ExceptionEntityTestData.ExceptionEntityWithTabulator;
 
@@ -121,9 +127,10 @@ namespace AzureDevOps.Exception.Tests
         /// </summary>
         [Test]
         [Category("Integration")]
+        [Ignore("Integration")]
         public void TFSExceptionRegistrator_Creation_with_Carriage_return()
         {
-            var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
+            var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName);
             var registrator = new TfsStoreWithException();
             var exceptionEntity = ExceptionEntityTestData.ExceptionEntityWithCarriageReturn;
 
@@ -146,9 +153,10 @@ namespace AzureDevOps.Exception.Tests
         /// </summary>
         [Test]
         [Category("Integration")]
+        [Ignore("Integration")]
         public void TFSExceptionRegistrator_with_message_With_LineShift()
         {
-            var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName, SettingsFileUri);
+            var settings = new ExceptionSettings(ExceptionEntityTestData.MyExceptionEntity.ApplicationName);
             var registrator = new TfsStoreWithException();
             var exceptionEntity = ExceptionEntityTestData.ExceptionEntityWithlineshift;
 

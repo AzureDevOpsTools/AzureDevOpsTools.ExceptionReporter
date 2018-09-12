@@ -6,7 +6,7 @@
         private readonly string applicationName;
 
         public ExceptionSettings(string applicationName)
-        {
+        {   
             this.applicationName = applicationName;
 
             this.TfsServer = "https://whateveryousay.visualstudio.com";

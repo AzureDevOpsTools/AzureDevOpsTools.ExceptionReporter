@@ -66,24 +66,9 @@ namespace AzureDevOps.ExceptionService.TFS.Utils.Tests
         [Test]
         public void ExceptionSettingsConstructorTest()
         {
-            var settings = new ExceptionSettings(string.Empty, SettingsFileUri);
+            var settings = new ExceptionSettings(string.Empty);
             Assert.IsNotNull(settings);
         }
 
-        [Test]
-        public void AssignedTo_Is_Default_User_When_Exception_Has_No_Id()
-        {
-            var target = new ExceptionSettings(string.Empty, SettingsFileUri);
-
-            Assert.AreEqual("Default user", target.AssignedTo);
-        }
-
-        [Test]
-        public void AssignedTo_Is_Jakob_Ehn_When_Application_Is_MyApp()
-        {
-            var target = new ExceptionSettings("My.App", SettingsFileUri);
-
-            Assert.AreEqual("Jakob Ehn", target.AssignedTo);
-        }
     }
 }
