@@ -177,12 +177,6 @@
   <ItemGroup>
     <None Include="Properties\PublishProfiles\ExceptionServer - Web Deploy.pubxml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AzureDevOps.Exception.Service.Common\AzureDevOps.Exception.Service.Common.csproj">
-      <Project>{3024D413-23B3-49F5-A70F-1CC8201BF2C3}</Project>
-      <Name>AzureDevOps.Exception.Service.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

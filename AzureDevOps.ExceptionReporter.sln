@@ -9,17 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Exception.xml = Exception.xml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureDevOps.Exception.Service", "AzureDevOps.Exception.Service\AzureDevOps.Exception.Service.csproj", "{E2123002-25E9-44E3-A3DC-DC58C84E84E5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureDevOps.Exception.Service.Common", "AzureDevOps.Exception.Service.Common\AzureDevOps.Exception.Service.Common.csproj", "{3024D413-23B3-49F5-A70F-1CC8201BF2C3}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DCE03BB7-AAF5-4AC4-BF7E-24199722719C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureDevOps.Exception.Service.Common.Tests", "AzureDevOps.Exception.Service.Common.Tests\AzureDevOps.Exception.Service.Common.Tests.csproj", "{D436ED0B-D040-40C8-B015-82152DAAB458}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureDevOps.Exception.Common", "AzureDevOps.Exception.Common\AzureDevOps.Exception.Common.csproj", "{1EB70C1C-3F66-4203-ACAB-4B4BFEB2E3DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureDevOps.Exception.Tests", "AzureDevOps.Exception.Tests\AzureDevOps.Exception.Tests.csproj", "{860ECC19-A4A2-4E22-BCE0-939F5DCC516E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureDevOps.Exception.Service", "AzureDevOps.Exception.Service\AzureDevOps.Exception.Service.csproj", "{A049A6F5-E2F5-4259-80B9-DA76B1008C46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureDevOps.Exception.Reporter.Web", "AzureDevOps.Exception.Reporter.Web\AzureDevOps.Exception.Reporter.Web.csproj", "{A259F218-627E-472E-BE73-8265DBE5CEC1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureDevOps.Exception.Service.Tests", "AzureDevOps.Exception.Service.Tests\AzureDevOps.Exception.Service.Tests.csproj", "{D535BC12-3B15-4EF2-AD0B-6FD5A6E436FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,33 +23,24 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E2123002-25E9-44E3-A3DC-DC58C84E84E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E2123002-25E9-44E3-A3DC-DC58C84E84E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E2123002-25E9-44E3-A3DC-DC58C84E84E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E2123002-25E9-44E3-A3DC-DC58C84E84E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3024D413-23B3-49F5-A70F-1CC8201BF2C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3024D413-23B3-49F5-A70F-1CC8201BF2C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3024D413-23B3-49F5-A70F-1CC8201BF2C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3024D413-23B3-49F5-A70F-1CC8201BF2C3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D436ED0B-D040-40C8-B015-82152DAAB458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D436ED0B-D040-40C8-B015-82152DAAB458}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D436ED0B-D040-40C8-B015-82152DAAB458}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D436ED0B-D040-40C8-B015-82152DAAB458}.Release|Any CPU.Build.0 = Release|Any CPU
-		{860ECC19-A4A2-4E22-BCE0-939F5DCC516E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{860ECC19-A4A2-4E22-BCE0-939F5DCC516E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{860ECC19-A4A2-4E22-BCE0-939F5DCC516E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{860ECC19-A4A2-4E22-BCE0-939F5DCC516E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A259F218-627E-472E-BE73-8265DBE5CEC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EB70C1C-3F66-4203-ACAB-4B4BFEB2E3DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EB70C1C-3F66-4203-ACAB-4B4BFEB2E3DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EB70C1C-3F66-4203-ACAB-4B4BFEB2E3DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EB70C1C-3F66-4203-ACAB-4B4BFEB2E3DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A049A6F5-E2F5-4259-80B9-DA76B1008C46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A049A6F5-E2F5-4259-80B9-DA76B1008C46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A049A6F5-E2F5-4259-80B9-DA76B1008C46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A049A6F5-E2F5-4259-80B9-DA76B1008C46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D535BC12-3B15-4EF2-AD0B-6FD5A6E436FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D535BC12-3B15-4EF2-AD0B-6FD5A6E436FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D535BC12-3B15-4EF2-AD0B-6FD5A6E436FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D535BC12-3B15-4EF2-AD0B-6FD5A6E436FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{D436ED0B-D040-40C8-B015-82152DAAB458} = {DCE03BB7-AAF5-4AC4-BF7E-24199722719C}
-		{860ECC19-A4A2-4E22-BCE0-939F5DCC516E} = {DCE03BB7-AAF5-4AC4-BF7E-24199722719C}
+		{D535BC12-3B15-4EF2-AD0B-6FD5A6E436FC} = {DCE03BB7-AAF5-4AC4-BF7E-24199722719C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {25F2FA7E-3970-4F9A-8EAF-6F94B9F9C85A}
