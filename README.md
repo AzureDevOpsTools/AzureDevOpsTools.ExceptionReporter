@@ -1,6 +1,6 @@
 # AzureDevOpsTools.ExceptionReporter
 
-https://dev.azure.com/WhateverYouSay/AzureDevOpsTools/_apis/build/status/ExceptionReporter
+[![Build Status](https://dev.azure.com/WhateverYouSay/AzureDevOpsTools/_apis/build/status/ExceptionReporter)](https://dev.azure.com/WhateverYouSay/AzureDevOpsTools/_build/latest?definitionId=1)
 
 Getting information about failures and unhandled exceptions from your applications running in the wild is critical. You need as much information as possible about the actual failure, and then you need a process to make sure that this particular error is fixed, deployed and not reappearing again later on.
 
