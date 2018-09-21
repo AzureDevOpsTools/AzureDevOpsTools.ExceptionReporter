@@ -17,6 +17,7 @@ namespace AzureDevOps.Exception.Service.Api
 
         }
 
+        [HttpGet]
         public string Get()
         {
             return "Hello";
