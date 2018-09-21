@@ -39,7 +39,7 @@ namespace AzureDevOps.Exception.Service
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "ExceptionReporter", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "AzureDevOpsTools.ExceptionService", Version = "v1" });
             });
         }
 
@@ -61,7 +61,7 @@ namespace AzureDevOps.Exception.Service
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ExceptionReporter");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "AzureDevOpsTools.ExceptionService");
             });
 
             app.UseHttpsRedirection();
