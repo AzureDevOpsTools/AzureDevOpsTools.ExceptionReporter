@@ -15,6 +15,7 @@ RUN dotnet build "AzureDevOps.Exception.Service.csproj" -c Release -o /app
 FROM build AS publish
 RUN dotnet publish "AzureDevOps.Exception.Service.csproj" -c Release -o /app
 
+
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
