@@ -4,7 +4,6 @@ using AzureDevOpsTools.ExceptionService.Common.Stores.TFS;
 using AzureDevOpsTools.ExceptionService.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace AzureDevOpsTools.ExceptionService.Web
 {
@@ -21,7 +20,7 @@ namespace AzureDevOpsTools.ExceptionService.Web
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] ExceptionEntity exception)
+            public IActionResult Post([FromBody] ExceptionEntity exception)
         {
             //TODO: Move this check into a custom middleware handler
             var apiKey = Request.Headers["X-ApiKey"];
