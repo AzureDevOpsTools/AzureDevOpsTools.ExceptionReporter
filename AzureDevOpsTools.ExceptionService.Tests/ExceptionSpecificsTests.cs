@@ -1,10 +1,36 @@
-﻿using AzureDevOpsTools.ExceptionService.Common.Stores.TFS;
+﻿using AzureDevOpsTools.Exception.Common.Stores.TFS;
+using AzureDevOpsTools.ExceptionService.Common.Stores.TFS;
+using AzureDevOpsTools.ExceptionService.Configuration;
 using NUnit.Framework;
+using System.Linq;
 
 namespace AzureDevOpsTools.ExceptionService.Common.Tests
 {
     public class ExceptionSpecificsTests
     {
+        [Test]
+        public void InsertConfiguration()
+        {
+            var c = new ConfigurationStoreCosmosDB();
+            c.CreateConfiguration("jakob@ehn.nu").Wait();
+        }
+
+        [Test]
+        public void GetAccountsTest()
+        {
+            try
+            { 
+                var c = new TfsStoreWithException();
+                var accounts = c.GetAccounts("").Result;
+                System.Console.WriteLine(accounts.Count());
+            }
+            catch( System.Exception ex)
+            {
+                Assert.Fail(ex.ToString());
+            }
+        }
+
+
         [Test]
         public void ThatConstructionWithStringsWorks()
         {
