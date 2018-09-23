@@ -2,12 +2,14 @@
 using AzureDevOpsTools.ExceptionService.Common;
 using AzureDevOpsTools.ExceptionService.Common.Stores.TFS;
 using AzureDevOpsTools.ExceptionService.Configuration;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace AzureDevOpsTools.ExceptionService.Web
 {
     [Route("api/[controller]")]
+    [AllowAnonymous]
     [ApiController]
     public class ExceptionController : ControllerBase
     {
@@ -19,9 +21,16 @@ namespace AzureDevOpsTools.ExceptionService.Web
         }
 
         [HttpPost]
-        public void Post([FromBody] ExceptionEntity exception)
+        public IActionResult Post([FromBody] ExceptionEntity exception)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            //TODO: Move this check into a custom middleware handler
+            var apiKey = Request.Headers["X-ApiKey"];
+            if( string.IsNullOrEmpty(apiKey))
+                return Unauthorized();
+
+            var userId = this.configuration.GetUserByApiKey(apiKey);
+            if( string.IsNullOrEmpty(userId))
+                return Unauthorized();
 
             var registrator = new TfsStoreWithException();
             //registrator = new TFSStoreWithBug();
@@ -33,6 +42,8 @@ namespace AzureDevOpsTools.ExceptionService.Web
             settings.TfsServer = configuration.AzureDevOpsServicesAccountUrl;
 
             registrator.RegisterException(exception, settings);
+
+            return Ok();
         }
 
         [HttpGet]
