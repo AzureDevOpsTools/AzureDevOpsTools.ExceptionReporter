@@ -1,0 +1,50 @@
+﻿@model AzureDevOpsTools.ExceptionService.Web.Models.ConfigurationViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<h4>ConfigurationViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="AccountUrl" class="control-label"></label>
+                <input asp-for="AccountUrl" class="form-control" />
+                <span asp-validation-for="AccountUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TeamProject" class="control-label"></label>
+                <input asp-for="TeamProject" class="form-control" />
+                <span asp-validation-for="TeamProject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AreaPath" class="control-label"></label>
+                <input asp-for="AreaPath" class="form-control" />
+                <span asp-validation-for="AreaPath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonalAccessToken" class="control-label"></label>
+                @Html.PasswordFor(m => m.PersonalAccessToken, new { value = "dummy_password", @class="form-control" })
+                <span asp-validation-for="PersonalAccessToken" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

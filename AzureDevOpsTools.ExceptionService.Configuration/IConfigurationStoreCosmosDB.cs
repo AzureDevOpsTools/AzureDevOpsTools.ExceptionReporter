@@ -5,7 +5,7 @@ namespace AzureDevOpsTools.ExceptionService.Configuration
 {
     public interface IConfigurationStore
     {
-        Task CreateConfiguration(string userId);
-        Task<IEnumerable<AccountConfiguration>> GetConfigurations(string userId);
+        Task CreateOrUpdateConfiguration(AccountConfiguration configuration);
+        AccountConfiguration GetConfiguration(string userId);
     }
 }

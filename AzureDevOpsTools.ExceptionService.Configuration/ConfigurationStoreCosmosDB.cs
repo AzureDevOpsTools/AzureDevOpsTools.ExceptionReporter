@@ -13,38 +13,30 @@ namespace AzureDevOpsTools.ExceptionService.Configuration
         private const string PrimaryKey = "yVF6eE0bzNZ22V4Ygi0Qd8LlPaQJQGq1N8fQAPvf62Cr9thbUUiEWuUp9NvgcZHFVmeTp0AsjjsAJYnFNYKaow==";
         private DocumentClient client;
 
-        public async Task CreateConfiguration(string userId)
+        public async Task CreateOrUpdateConfiguration(AccountConfiguration configuration)
         {
-            var config = new AccountConfiguration()
-            {
-                UserId = userId,
-                AzureDevOpsServicesAccountUrl = "https:/dev.azure.com/whateveryousay",
-                TeamProject = "ExceptionTest",
-                TargetAreaPath = "ExceptionTest",
-                AccessToken = "fvyhrnwxewehe2nyak6bylm3xpssot2k2iz5rkeabkik36ng776q"
-            };
+
+            //var config = new AccountConfiguration()
+            //{
+            //    UserId = userId,
+            //    AzureDevOpsServicesAccountUrl = "https:/dev.azure.com/whateveryousay",
+            //    TeamProject = "ExceptionTest",
+            //    TargetAreaPath = "ExceptionTest",
+            //    PersonalAccessToken = "fvyhrnwxewehe2nyak6bylm3xpssot2k2iz5rkeabkik36ng776q"
+            //};
 
             this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
-
-            await this.client.CreateDocumentAsync(UriFactory.CreateDocumentCollectionUri("Configuration", "Accounts"), config);
+            await this.client.UpsertDocumentAsync(UriFactory.CreateDocumentCollectionUri("Configuration", "Accounts"), configuration);
         }
 
-        public async Task<IEnumerable<AccountConfiguration>> GetConfigurations(string userId)
+        public AccountConfiguration GetConfiguration(string userId)
         {
             this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
 
-            var query = client.CreateDocumentQuery<AccountConfiguration>(
+            return client.CreateDocumentQuery<AccountConfiguration>(
                 UriFactory.CreateDocumentCollectionUri("Configuration", "Accounts"))
-                .Where(c => c.UserId == userId)
-                .AsDocumentQuery();
-
-            var results = new List<AccountConfiguration>();
-            while (query.HasMoreResults)
-            {
-                results.AddRange(await query.ExecuteNextAsync<AccountConfiguration>());
-            }
-
-            return results;
+                .Where(c => c.Id == userId)
+                .Take(1).AsEnumerable().SingleOrDefault();
         }
     }
 }

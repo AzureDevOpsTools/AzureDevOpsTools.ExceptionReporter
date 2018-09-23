@@ -1,11 +1,15 @@
-﻿namespace AzureDevOpsTools.ExceptionService.Configuration
+﻿using Newtonsoft.Json;
+
+namespace AzureDevOpsTools.ExceptionService.Configuration
 {
     public class AccountConfiguration
     {
-        public string UserId { get; set; }
+        [JsonProperty(PropertyName ="id")]
+        public string Id { get; set; }
         public string AzureDevOpsServicesAccountUrl { get; set; }
         public string TeamProject { get; set; }
-        public string AccessToken { get; set; }
+        public string PersonalAccessToken { get; set; }
         public string TargetAreaPath { get; set; }
     }
+
 }

@@ -12,7 +12,6 @@ namespace AzureDevOpsTools.ExceptionService.Common.Tests
         public void InsertConfiguration()
         {
             var c = new ConfigurationStoreCosmosDB();
-            c.CreateConfiguration("jakob@ehn.nu").Wait();
         }
 
         [Test]
