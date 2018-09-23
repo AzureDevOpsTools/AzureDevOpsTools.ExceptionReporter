@@ -9,22 +9,6 @@ namespace AzureDevOpsTools.ExceptionService.Common.Tests
     public class ExceptionSpecificsTests
     {
         [Test]
-        public void GetAccountsTest()
-        {
-            try
-            { 
-                var c = new TfsStoreWithException();
-                var accounts = c.GetAccounts("").Result;
-                System.Console.WriteLine(accounts.Count());
-            }
-            catch( System.Exception ex)
-            {
-                Assert.Fail(ex.ToString());
-            }
-        }
-
-
-        [Test]
         public void ThatConstructionWithStringsWorks()
         {
             var sut = new ExceptionSpecifics

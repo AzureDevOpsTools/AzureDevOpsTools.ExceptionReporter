@@ -20,7 +20,7 @@ namespace AzureDevOpsTools.ExceptionService.Web
         }
 
         [HttpPost]
-            public IActionResult Post([FromBody] ExceptionEntity exception)
+            public IActionResult Post([FromBody] ExceptionEntity ex)
         {
             //TODO: Move this check into a custom middleware handler
             var apiKey = Request.Headers["X-ApiKey"];
@@ -31,16 +31,14 @@ namespace AzureDevOpsTools.ExceptionService.Web
             if( string.IsNullOrEmpty(userId))
                 return Unauthorized();
 
-            var registrator = new TfsStoreWithException();
             //registrator = new TFSStoreWithBug();
-            var configuration = this.configuration.GetConfiguration(userId);
-            var settings = new ExceptionSettings(exception.ApplicationName);
-            settings.Area = configuration.TargetAreaPath;
-            settings.AssignedTo = configuration.AssignedTo;
-            settings.TeamProject = configuration.TeamProject;
-            settings.TfsServer = configuration.AzureDevOpsServicesAccountUrl;
+            var c = this.configuration.GetConfiguration(userId);
+            var settings = new ExceptionSettings(ex.ApplicationName, 
+                c.AzureDevOpsServicesAccountUrl, 
+                c.TeamProject, c.TargetAreaPath, c.AssignedTo, c.PersonalAccessToken);
 
-            registrator.RegisterException(exception, settings);
+            var registrator = new TfsStoreWithException(settings);
+            registrator.RegisterException(ex);
 
             return Ok();
         }
@@ -50,6 +48,5 @@ namespace AzureDevOpsTools.ExceptionService.Web
         {
             return "Hello World!";
         }
-
     }
 }

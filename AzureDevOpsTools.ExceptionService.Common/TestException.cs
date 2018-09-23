@@ -4,6 +4,10 @@ namespace AzureDevOpsTools.ExceptionService.Common
 {
     public class TestException : AccessToVsts, IApplicationInfo
     {
+        public TestException(IApplicationInfo applicationInfo)
+            : base(applicationInfo)
+        {
+        }
         public void SendException()
         {
             var ex = new ExceptionEntity
@@ -29,7 +33,7 @@ namespace AzureDevOpsTools.ExceptionService.Common
 
         public string ApplicationName => "Whatever";
 
-        public string TfsServer => "Don't care";
+        public string AccountUri => "Don't care";
 
         public string Collection => "";
 
@@ -38,5 +42,7 @@ namespace AzureDevOpsTools.ExceptionService.Common
         public string Area =>"NotSure";
 
         public string AssignedTo => "Some One";
+
+        public string PersonalAccessToken => throw new System.NotImplementedException();
     }
 }

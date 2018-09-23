@@ -60,15 +60,6 @@ namespace AzureDevOpsTools.ExceptionService.TFS.Utils.Tests
         }
 
 
-        /// <summary>
-        ///A test for ExceptionSettings Constructor
-        ///</summary>
-        [Test]
-        public void ExceptionSettingsConstructorTest()
-        {
-            var settings = new ExceptionSettings(string.Empty);
-            Assert.IsNotNull(settings);
-        }
 
     }
 }

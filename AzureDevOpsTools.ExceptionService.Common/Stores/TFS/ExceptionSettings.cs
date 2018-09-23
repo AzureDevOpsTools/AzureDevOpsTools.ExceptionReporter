@@ -3,23 +3,20 @@
  
     public class ExceptionSettings : IApplicationInfo
     {
-        private readonly string applicationName;
-
-        public ExceptionSettings(string applicationName)
+        public ExceptionSettings(string applicationName, string accountUri, string teamProject, string area, string assignedTo, string personalAccessToken)
         {   
-            this.applicationName = applicationName;
-
-            this.TfsServer = "https://whateveryousay.visualstudio.com";
-  //          this.Collection = "DefaultCollection";
-            this.TeamProject = "ExceptionTest";
-            this.Area = "ExceptionTest";
-            this.AssignedTo = "jakob@ehn.nu";
+            this.ApplicationName = applicationName;
+            this.AccountUri = accountUri;
+            this.TeamProject = teamProject;
+            this.PersonalAccessToken = personalAccessToken;
+            this.Area = area;
+            this.AssignedTo = assignedTo;
         }
 
         public string ApplicationName { get; set; }
-        public string TfsServer { get; set; }
-//        public string Collection { get; set; }
+        public string AccountUri { get; set; }
         public string TeamProject{ get; set; }
+        public string PersonalAccessToken { get; }
         public string Area { get; set; }
         public string AssignedTo { get; set; }
     }

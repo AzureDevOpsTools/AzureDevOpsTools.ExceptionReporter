@@ -29,15 +29,16 @@ namespace AzureDevOpsTools.Exception.Common.Stores.TFS
         private const string StackChecksumFieldName = "ExceptionStackTraceChecksum";
         private const string AssemblyName = "ExceptionAssemblyName";
 
-        public TfsStoreWithException() : base()
+        public TfsStoreWithException(IApplicationInfo applicationInfo) 
+            : base(applicationInfo)
         {
         }
 
-        public void RegisterException(ExceptionEntity exceptionEntity, IApplicationInfo applicationInfo)
+        public void RegisterException(ExceptionEntity exceptionEntity)
         {
             WorkItem wi = null;
             WorkItem linkedWi = null;
-            var workItems = new ExceptionWorkItemCollection(exceptionEntity);
+            var workItems = new ExceptionWorkItemCollection(exceptionEntity, this.ApplicationInfo);
 
             if (!workItems.HasOpenWorkItems)
             {
@@ -69,7 +70,7 @@ namespace AzureDevOpsTools.Exception.Common.Stores.TFS
 
             if (wi == null)
             {
-                var json = CreateNewException(exceptionEntity, applicationInfo);
+                var json = CreateNewException(exceptionEntity, this.ApplicationInfo);
                 SendException(json);
                 return;
             }
@@ -304,9 +305,9 @@ namespace AzureDevOpsTools.Exception.Common.Stores.TFS
         //    GC.SuppressFinalize(this);
         //}
 
-        public ExceptionEntity GetWorkItem(ExceptionEntity exceptionEntity, ExceptionSettings applicationInfo)
+        public ExceptionEntity GetWorkItem(ExceptionEntity exceptionEntity)
         {
-            var workItems = new ExceptionWorkItemCollection(exceptionEntity);
+            var workItems = new ExceptionWorkItemCollection(exceptionEntity, this.ApplicationInfo);
             var wi = workItems.OpenWorkItems.FirstOrDefault();
 
             if (wi == null)

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using AzureDevOpsTools.Exception.Common;
@@ -12,16 +13,17 @@ namespace AzureDevOpsTools.ExceptionService.Common.Stores.TFS
     {
         private IEnumerable<WorkItem> workItems;
         private readonly ExceptionEntity exception;
-    
+        private readonly IApplicationInfo applicationInfo;
+
         private string TeamProject
         {
             get;
         }
-
        
-        public ExceptionWorkItemCollection(ExceptionEntity exceptionEntity)
+        public ExceptionWorkItemCollection(ExceptionEntity exceptionEntity, IApplicationInfo applicationInfo)
+            : base(applicationInfo)
         {
-            TeamProject = Project;
+            this.applicationInfo = applicationInfo;
             exception = exceptionEntity;
 
             workItems = new List<WorkItem>();
@@ -73,7 +75,7 @@ namespace AzureDevOpsTools.ExceptionService.Common.Stores.TFS
             string query = "SELECT [System.ID],[StackTrace], [System.Title] from WorkItems where [System.TeamProject] = @project AND "
                                  + "[System.WorkItemType]='Exception' and [StackChecksum] = " + crc;
             var wiql = new Wiql {Query = query};
-            using (var workItemTrackingHttpClient = new WorkItemTrackingHttpClient(Uri, Credentials))
+            using (var workItemTrackingHttpClient = new WorkItemTrackingHttpClient(new Uri(this.ApplicationInfo.AccountUri), Credentials))
             {
                 var items = workItemTrackingHttpClient.QueryByWiqlAsync(wiql).Result;
                 if (items == null || !items.WorkItems.Any())
