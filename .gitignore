@@ -315,3 +315,5 @@ ASALocalRun/
 Inmeta.Exception.Reporter.Web2/Content/
 Inmeta.Exception.Reporter.Web2/Scripts/
 Inmeta.Exception.Reporter.Web2/Scripts/
+
+set-secrets.bat
