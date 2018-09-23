@@ -3,7 +3,7 @@ using AzureDevOpsTools.ExceptionService.Common;
 using AzureDevOpsTools.ExceptionService.Common.Stores.TFS;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AzureDevOpsTools.ExceptionService.Api
+namespace AzureDevOpsTools.ExceptionService.Web
 {
     [Route("api/[controller]")]
     [ApiController]

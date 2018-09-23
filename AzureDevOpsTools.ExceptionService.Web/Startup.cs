@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace AzureDevOpsTools.ExceptionService.Web
 {
@@ -85,6 +86,12 @@ namespace AzureDevOpsTools.ExceptionService.Web
             })
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "AzureDevOpsTools.ExceptionService", Version = "v1" });
+            });
+
             services.AddTransient<IConfigurationStore>(c => new ConfigurationStoreCosmosDB());
         }
 
@@ -100,6 +107,14 @@ namespace AzureDevOpsTools.ExceptionService.Web
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            app.UseSwagger();
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "AzureDevOpsTools.ExceptionService");
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

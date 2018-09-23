@@ -16,8 +16,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureDevOpsTools.ExceptionS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureDevOpsTools.ExceptionService.Common", "AzureDevOpsTools.ExceptionService.Common\AzureDevOpsTools.ExceptionService.Common.csproj", "{94CA8128-0193-4FCC-AA17-6D46C1A82457}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureDevOpsTools.ExceptionService", "AzureDevOpsTools.ExceptionService\AzureDevOpsTools.ExceptionService.csproj", "{2D33B89B-3E80-4F5F-9C87-326B0F667A73}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureDevOpsTools.ExceptionService.Configuration", "AzureDevOpsTools.ExceptionService.Configuration\AzureDevOpsTools.ExceptionService.Configuration.csproj", "{4A22A23B-7EA0-4B8E-8A10-EB181FC064DE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureDevOpsTools.ExceptionService.Web", "AzureDevOpsTools.ExceptionService.Web\AzureDevOpsTools.ExceptionService.Web.csproj", "{310720D2-BA97-4D2B-A759-135746B9C7BF}"
@@ -36,10 +34,6 @@ Global
 		{94CA8128-0193-4FCC-AA17-6D46C1A82457}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94CA8128-0193-4FCC-AA17-6D46C1A82457}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94CA8128-0193-4FCC-AA17-6D46C1A82457}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2D33B89B-3E80-4F5F-9C87-326B0F667A73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2D33B89B-3E80-4F5F-9C87-326B0F667A73}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2D33B89B-3E80-4F5F-9C87-326B0F667A73}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2D33B89B-3E80-4F5F-9C87-326B0F667A73}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4A22A23B-7EA0-4B8E-8A10-EB181FC064DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4A22A23B-7EA0-4B8E-8A10-EB181FC064DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A22A23B-7EA0-4B8E-8A10-EB181FC064DE}.Release|Any CPU.ActiveCfg = Release|Any CPU

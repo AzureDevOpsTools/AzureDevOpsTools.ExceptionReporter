@@ -17,7 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\AzureDevOpsTools.ExceptionService.Common\AzureDevOpsTools.ExceptionService.Common.csproj" />
     <ProjectReference Include="..\AzureDevOpsTools.ExceptionService.Configuration\AzureDevOpsTools.ExceptionService.Configuration.csproj" />
-    <ProjectReference Include="..\AzureDevOpsTools.ExceptionService\AzureDevOpsTools.ExceptionService.csproj" />
   </ItemGroup>
 
 </Project>
