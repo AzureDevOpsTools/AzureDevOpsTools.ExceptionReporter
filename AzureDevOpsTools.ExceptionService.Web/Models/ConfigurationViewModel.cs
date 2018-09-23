@@ -26,9 +26,8 @@ namespace AzureDevOpsTools.ExceptionService.Web.Models
         [DisplayName("Assigned To")]
         public string AssignedTo { get; set; }
 
-        [Required]
-        [MinLength(6)]
-        [DisplayName("Api key (Used by client applications. Must be at least 6 characters)")]
+        [ReadOnly(true)]
+        [DisplayName("Api key (Generated)")]
         public string ApiKey { get; set; }
     }
 }

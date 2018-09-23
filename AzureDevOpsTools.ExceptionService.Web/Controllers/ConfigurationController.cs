@@ -3,8 +3,6 @@ using AzureDevOpsTools.ExceptionService.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -67,9 +65,18 @@ namespace AzureDevOpsTools.ExceptionService.Web.Controllers
                 Id = userId
             };
             await this.configuration.CreateOrUpdateConfiguration(config);
+            if( string.IsNullOrEmpty(model.ApiKey))
+            {
+                model.ApiKey = GenerateApiKey();
+            }
             await this.configuration.SetApiKey(userId, model.ApiKey);
 
             return RedirectToAction("Index");
+        }
+
+        private string GenerateApiKey()
+        {
+            return Guid.NewGuid().ToString();
         }
     }
 }
