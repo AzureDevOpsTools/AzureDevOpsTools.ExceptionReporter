@@ -10,7 +10,7 @@
 <h4>ConfigurationViewModel</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form asp-action="Post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -30,8 +30,19 @@
                 <span asp-validation-for="AreaPath" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="AssignedTo" class="control-label"></label>
+                <input asp-for="AssignedTo" class="form-control" />
+                <span asp-validation-for="AssignedTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApiKey" class="control-label"></label>
+                <input asp-for="ApiKey" class="form-control" />
+                <span asp-validation-for="ApiKey" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 <label asp-for="PersonalAccessToken" class="control-label"></label>
-                @Html.PasswordFor(m => m.PersonalAccessToken, new { value = "dummy_password", @class="form-control" })
+                @Html.PasswordFor(m => m.PersonalAccessToken, new { value = "dummy_password", @class = "form-control" })
                 <span asp-validation-for="PersonalAccessToken" class="text-danger"></span>
             </div>
             <div class="form-group">

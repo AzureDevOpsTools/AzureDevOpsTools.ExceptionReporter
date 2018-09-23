@@ -9,12 +9,6 @@ namespace AzureDevOpsTools.ExceptionService.Common.Tests
     public class ExceptionSpecificsTests
     {
         [Test]
-        public void InsertConfiguration()
-        {
-            var c = new ConfigurationStoreCosmosDB();
-        }
-
-        [Test]
         public void GetAccountsTest()
         {
             try
@@ -64,10 +58,7 @@ namespace AzureDevOpsTools.ExceptionService.Common.Tests
                 Assert.That(sut2.Source, Is.EqualTo(sut.Source));
                 Assert.That(sut2.ExceptionMessage,Is.EqualTo($"{sut.ExceptionMessage}->->->{sut.ExceptionMessageEx}"));
                 Assert.That(sut2.ExceptionMessageEx.Length,Is.EqualTo(0));
-
-
             });
-
         }
 
         [Test]

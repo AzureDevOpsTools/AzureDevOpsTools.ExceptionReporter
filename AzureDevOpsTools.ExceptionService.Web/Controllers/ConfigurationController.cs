@@ -24,6 +24,7 @@ namespace AzureDevOpsTools.ExceptionService.Web.Controllers
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var model = configuration.GetConfiguration(userId);
+            var apiKey = configuration.GetApiKey(userId);
 
             if(model != null)
             {
@@ -32,6 +33,8 @@ namespace AzureDevOpsTools.ExceptionService.Web.Controllers
                     AccountUrl = model.AzureDevOpsServicesAccountUrl,
                     TeamProject = model.TeamProject,
                     AreaPath = model.TargetAreaPath,
+                    AssignedTo = model.AssignedTo,
+                    ApiKey = apiKey
                 };
                 return View(viewModel);
             }
@@ -59,10 +62,12 @@ namespace AzureDevOpsTools.ExceptionService.Web.Controllers
                 AzureDevOpsServicesAccountUrl = model.AccountUrl,
                 TargetAreaPath = model.AreaPath,
                 TeamProject = model.TeamProject,
+                AssignedTo = model.AssignedTo,
                 PersonalAccessToken = model.PersonalAccessToken,
                 Id = userId
             };
             await this.configuration.CreateOrUpdateConfiguration(config);
+            await this.configuration.SetApiKey(userId, model.ApiKey);
 
             return RedirectToAction("Index");
         }

@@ -7,7 +7,7 @@ namespace AzureDevOpsTools.ExceptionService.Common.Stores.TFS
     {
         string ApplicationName { get; }
         string TfsServer { get; }
-        string Collection { get; }
+//        string Collection { get; }
         string TeamProject { get; }
         string Area { get; }
         string AssignedTo { get; }
@@ -24,11 +24,6 @@ namespace AzureDevOpsTools.ExceptionService.Common.Stores.TFS
             }
 
             string IApplicationInfo.TfsServer
-            {
-                get { return string.Empty; }
-            }
-
-            string IApplicationInfo.Collection
             {
                 get { return string.Empty; }
             }

@@ -10,6 +10,13 @@ namespace AzureDevOpsTools.ExceptionService.Configuration
         public string TeamProject { get; set; }
         public string PersonalAccessToken { get; set; }
         public string TargetAreaPath { get; set; }
+        public string AssignedTo { get; set; }
     }
 
-}
+    public class UserAccount
+    {
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
+        public string ApiKey { get; set; }
+    }
+    }

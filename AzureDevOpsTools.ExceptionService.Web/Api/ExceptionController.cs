@@ -1,7 +1,9 @@
 ﻿using AzureDevOpsTools.Exception.Common.Stores.TFS;
 using AzureDevOpsTools.ExceptionService.Common;
 using AzureDevOpsTools.ExceptionService.Common.Stores.TFS;
+using AzureDevOpsTools.ExceptionService.Configuration;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace AzureDevOpsTools.ExceptionService.Web
 {
@@ -9,22 +11,28 @@ namespace AzureDevOpsTools.ExceptionService.Web
     [ApiController]
     public class ExceptionController : ControllerBase
     {
-        // POST: api/Exception
+        private readonly IConfigurationStore configuration;
+
+        public ExceptionController(IConfigurationStore configuration)
+        {
+            this.configuration = configuration;
+        }
+
         [HttpPost]
         public void Post([FromBody] ExceptionEntity exception)
         {
-            try
-            {
-                //if (_storeIsTFS)
-                StoreInTFS(exception);
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-                //StoreInFile(exceptionEntity);
-            }
-            catch (System.Exception ex)
-            {
-                //ServiceLog.Error("Error adding new Exception: " + ex.ToString());
-                throw;
-            }
+            var registrator = new TfsStoreWithException();
+            //registrator = new TFSStoreWithBug();
+            var configuration = this.configuration.GetConfiguration(userId);
+            var settings = new ExceptionSettings(exception.ApplicationName);
+            settings.Area = configuration.TargetAreaPath;
+            settings.AssignedTo = configuration.AssignedTo;
+            settings.TeamProject = configuration.TeamProject;
+            settings.TfsServer = configuration.AzureDevOpsServicesAccountUrl;
+
+            registrator.RegisterException(exception, settings);
         }
 
         [HttpGet]
@@ -32,15 +40,6 @@ namespace AzureDevOpsTools.ExceptionService.Web
         {
             return "Hello World!";
         }
-
-        private void StoreInTFS(ExceptionEntity exception)
-        {
-            var registrator = new TfsStoreWithException();
-            //registrator = new TFSStoreWithBug();
-            var settings = new ExceptionSettings(exception.ApplicationName);
-            registrator.RegisterException(exception, settings);
-        }
-
 
     }
 }
