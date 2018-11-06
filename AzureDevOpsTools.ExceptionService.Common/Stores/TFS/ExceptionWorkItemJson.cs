@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.Services.WebApi.Patch.Json;
 
 namespace AzureDevOpsTools.ExceptionService.Common.Stores.TFS
 {
-    public class WorkItemJson
+    public class ExceptionWorkItemJson
     {
         private const string Application = "ExceptionApplication";
         private const string AssignedToFieldName = "System.AssignedTo";
@@ -25,7 +25,7 @@ namespace AzureDevOpsTools.ExceptionService.Common.Stores.TFS
 
         public JsonPatchDocument Json { get; }
 
-        public WorkItemJson(ExceptionEntity exception, IApplicationInfo applicationInfo)
+        public ExceptionWorkItemJson(ExceptionEntity exception, IApplicationInfo applicationInfo)
         {
             Json = new JsonPatchDocument();
             Add("System.Title", TFSStringUtil.GenerateValidTFSStringType(exception.ExceptionTitle));

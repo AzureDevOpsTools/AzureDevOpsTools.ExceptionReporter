@@ -14,24 +14,31 @@ namespace AzureDevOpsTools.Exception.Common.Stores.TFS
         private const string ExceptionWorkItemType = "Exception";
 
         //Workitem-fields:
-        private const string Application = "ExceptionApplication";
-        private const string AssignedToFieldName = "System.AssignedTo";
-        private const string CommentFieldName = "System.Description";
-        private const string RefCountFieldName = "ExceptionIncidentCount";
-        private const string ExceptionReporterFieldName = "ExceptionReporter";
-        private const string BuildVersionFieldName = "ExceptionBuildVersion";
-        private const string ExceptionMessageFieldName = "ExceptionMessage";
-        private const string ExceptionTypeFieldName = "ExceptionType";
-        private const string ClassFieldName = "ExceptionClass";
-        private const string MethodFieldName = "ExceptionMethod";
-        private const string SourceFieldName = "ExceptionSource";
-        private const string StackTraceFieldName = "ExceptionStackTrace";
-        private const string StackChecksumFieldName = "ExceptionStackTraceChecksum";
-        private const string AssemblyName = "ExceptionAssemblyName";
+        public const string Application = "ExceptionApplication";
+        public const string AssignedToFieldName = "System.AssignedTo";
+        public const string CommentFieldName = "System.Description";
+        public const string RefCountFieldName = "ExceptionIncidentCount";
+        public const string ExceptionReporterFieldName = "ExceptionReporter";
+        public const string BuildVersionFieldName = "ExceptionBuildVersion";
+        public const string ExceptionMessageFieldName = "ExceptionMessage";
+        public const string ExceptionTypeFieldName = "ExceptionType";
+        public const string ClassFieldName = "ExceptionClass";
+        public const string MethodFieldName = "ExceptionMethod";
+        public const string SourceFieldName = "ExceptionSource";
+        public const string StackTraceFieldName = "ExceptionStackTrace";
+        public const string StackChecksumFieldName = "ExceptionStackTraceChecksum";
+        public const string AssemblyName = "ExceptionAssemblyName";
 
         public TfsStoreWithException(IApplicationInfo applicationInfo) 
             : base(applicationInfo)
         {
+        }
+        public ExceptionWorkItemJson CreateNewException(ExceptionEntity exception, IApplicationInfo applicationInfo)
+        {
+            //ensure no problem with string NG 255
+            var wi = new ExceptionWorkItemJson(exception, applicationInfo);
+
+            return wi;
         }
 
         public void RegisterException(ExceptionEntity exceptionEntity)
@@ -71,7 +78,7 @@ namespace AzureDevOpsTools.Exception.Common.Stores.TFS
             if (wi == null)
             {
                 var json = CreateNewException(exceptionEntity, this.ApplicationInfo);
-                SendException(json);
+                SendException(json.Json, ExceptionWorkItemType);
                 return;
             }
             else

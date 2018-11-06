@@ -31,13 +31,13 @@ namespace AzureDevOpsTools.ExceptionService.Web
             if( string.IsNullOrEmpty(userId))
                 return Unauthorized();
 
-            //registrator = new TFSStoreWithBug();
             var c = this.configuration.GetConfiguration(userId);
             var settings = new ExceptionSettings(ex.ApplicationName, 
                 c.AzureDevOpsServicesAccountUrl, 
                 c.TeamProject, c.TargetAreaPath, c.AssignedTo, c.PersonalAccessToken);
 
             var registrator = new TfsStoreWithException(settings);
+            //var registrator = new TFSStoreWithBug();
             registrator.RegisterException(ex);
 
             return Ok();

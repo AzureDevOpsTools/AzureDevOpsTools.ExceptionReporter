@@ -2,6 +2,7 @@
 using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
 using Microsoft.VisualStudio.Services.Common;
 using Microsoft.VisualStudio.Services.WebApi;
+using Microsoft.VisualStudio.Services.WebApi.Patch.Json;
 
 namespace AzureDevOpsTools.ExceptionService.Common.Stores.TFS
 {
@@ -16,20 +17,13 @@ namespace AzureDevOpsTools.ExceptionService.Common.Stores.TFS
 
         public VssBasicCredential Credentials => new VssBasicCredential("", this.ApplicationInfo.PersonalAccessToken);
 
-        protected void SendException(WorkItemJson json)
+        protected void SendException(JsonPatchDocument json, string workItemType)
         {
             var connection = new VssConnection(new Uri(this.ApplicationInfo.AccountUri), Credentials);
             var workItemTrackingHttpClient = connection.GetClient<WorkItemTrackingHttpClient>();
 
-            var result = workItemTrackingHttpClient.CreateWorkItemAsync(json.Json, this.ApplicationInfo.TeamProject, "Exception").Result;
+            var result = workItemTrackingHttpClient.CreateWorkItemAsync(json, this.ApplicationInfo.TeamProject, workItemType).Result;
         }
 
-        public WorkItemJson CreateNewException(ExceptionEntity exception, IApplicationInfo applicationInfo)
-        {
-            //ensure no problem with string NG 255
-            var wi = new WorkItemJson(exception, applicationInfo);
-
-            return wi;
-        }
     }
 }

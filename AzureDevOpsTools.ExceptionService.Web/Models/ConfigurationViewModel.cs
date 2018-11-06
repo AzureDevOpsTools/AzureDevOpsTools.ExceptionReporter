@@ -26,6 +26,11 @@ namespace AzureDevOpsTools.ExceptionService.Web.Models
         [DisplayName("Assigned To")]
         public string AssignedTo { get; set; }
 
+        [Required]
+        [DisplayName("Use custom Exception work item type")]
+        public string UseExceptionWorkitemType { get; set; }
+
+
         [ReadOnly(true)]
         [DisplayName("Api key (Generated)")]
         public string ApiKey { get; set; }

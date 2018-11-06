@@ -27,8 +27,8 @@ namespace AzureDevOpsTools.ExceptionService.Common
 
 
             };
-            var json = CreateNewException(ex, this);
-            SendException(json);
+            //var json = "";CreateNewException(ex, this);
+            //SendException(json);
         }
 
         public string ApplicationName => "Whatever";

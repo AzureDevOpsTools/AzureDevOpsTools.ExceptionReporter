@@ -8,6 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
+    <PackageReference Include="Microsoft.TeamFoundation.DistributedTask.Common.Contracts" Version="16.139.0-preview" />
+    <PackageReference Include="Microsoft.TeamFoundationServer.Client" Version="16.139.0-preview" />
+    <PackageReference Include="Microsoft.VisualStudio.Services.Client" Version="16.139.0-preview" />
+    <PackageReference Include="Microsoft.VisualStudio.Services.Notifications.WebApi" Version="16.139.0-preview" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.3.2" />
     <PackageReference Include="MSTest.TestFramework" Version="1.3.2" />
     <PackageReference Include="NUnit" Version="3.10.1" />

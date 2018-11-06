@@ -1,5 +1,14 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using AzureDevOpsTools.Exception.Common.Stores.TFS;
 using AzureDevOpsTools.ExceptionService.Common.Stores.TFS;
+using Microsoft.TeamFoundation.WorkItemTracking.Process.WebApi;
+using Microsoft.TeamFoundation.WorkItemTracking.Process.WebApi.Models;
+using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
+using Microsoft.VisualStudio.Services.Common;
+using Microsoft.VisualStudio.Services.WebApi;
 using NUnit.Framework;
 
 
@@ -51,6 +60,33 @@ namespace AzureDevOpsTools.ExceptionService.TFS.Utils.Tests
             var writer = finfo.CreateText();
             writer.Write(XmlContent);
             writer.Close();
+        }
+
+        [Test]
+        public async Task CreateWorkItemType()
+        {
+            var pt = new ProcessTemplate("https://whateveryousay.visualstudio.com", "gvdiglh3bcvi3silg5hgkqhqia5b6635ff6ek64vcubullzfldvq");
+            var process = await pt.GetProcessByName("AgileWithExceptions");
+            await pt.EnsureExceptionWorkItemType(process.TypeId, "AgileWithExceptions", "Exception6");
+        }
+
+        [Test]
+        public async Task GetWorkItemType()
+        {
+            var pt = new ProcessTemplate("https://whateveryousay.visualstudio.com", "gvdiglh3bcvi3silg5hgkqhqia5b6635ff6ek64vcubullzfldvq");
+            var process = await pt.GetProcessByName("AgileWithExceptions");
+            ProcessWorkItemType wit = await pt.GetWorkItemType(process.TypeId, "AgileWithExceptions.Bug");
+            ProcessWorkItemType witBug = await pt.GetWorkItemType(process.TypeId, "AgileWithExceptions.Bug");
+
+//            FormLayout layout = witProcessClient.GetFormLayoutAsync(processId, workItemTypeReferenceName).Result;
+        }
+
+        [Test]
+        public async Task DeleteWorkItemType()
+        {
+            var pt = new ProcessTemplate("https://whateveryousay.visualstudio.com", "gvdiglh3bcvi3silg5hgkqhqia5b6635ff6ek64vcubullzfldvq");
+            var process = await pt.GetProcessByName("AgileWithExceptions");
+            await pt.DeleteExceptionWorkItemType(process.TypeId, "AgileWithExceptions.Exception6");
         }
 
         [TearDown]

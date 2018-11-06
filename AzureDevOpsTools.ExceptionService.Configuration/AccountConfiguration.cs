@@ -11,6 +11,7 @@ namespace AzureDevOpsTools.ExceptionService.Configuration
         public string PersonalAccessToken { get; set; }
         public string TargetAreaPath { get; set; }
         public string AssignedTo { get; set; }
+        public bool UseExceptionWorkItemType { get; set; }
     }
 
     public class UserAccount
