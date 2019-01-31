@@ -11,6 +11,7 @@ namespace AzureDevOpsTools.ExceptionService.Configuration
         }
         public AccountConfiguration(string id)
         {
+            this.Id = id;
             this.PartitionKey = id;
             this.RowKey = id;
         }
@@ -32,6 +33,7 @@ namespace AzureDevOpsTools.ExceptionService.Configuration
         }
         public UserAccount(string id)
         {
+            this.Id = id;
             this.PartitionKey = id;
             this.RowKey = id;
         }

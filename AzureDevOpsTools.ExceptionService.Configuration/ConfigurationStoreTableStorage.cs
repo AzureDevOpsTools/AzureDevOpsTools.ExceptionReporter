@@ -54,10 +54,10 @@ namespace AzureDevOpsTools.ExceptionService.Configuration
         {
             var query = new TableQuery<UserAccount>();
             TableContinuationToken token = null;
-            var users = await accountsTable.ExecuteQuerySegmentedAsync<UserAccount>(query, token);
+            var users = await usersTable.ExecuteQuerySegmentedAsync(query, token);
             var user = users.Results.FirstOrDefault(u => u.ApiKey == apiKey);
             if( user != null)
-                return user.Id;
+                return user.PartitionKey;
             return null;
         }
 
