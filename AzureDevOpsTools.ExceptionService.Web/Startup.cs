@@ -94,7 +94,9 @@ namespace AzureDevOpsTools.ExceptionService.Web
             var endPointUri = Configuration["CosmosDB:EndpointUri"];
             var primaryKey = Configuration["CosmosDB:PrimaryKey"];
 
-            services.AddTransient<IConfigurationStore>(c => new ConfigurationStoreCosmosDB(endPointUri, primaryKey));
+            var storageConnectionString = Configuration["TableStorage:ConnectionString"];
+            services.AddTransient<IConfigurationStore>(c => new ConfigurationStoreTableStorage(storageConnectionString));
+            //services.AddTransient<IConfigurationStore>(c => new ConfigurationStoreCosmosDB(endPointUri, primaryKey));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

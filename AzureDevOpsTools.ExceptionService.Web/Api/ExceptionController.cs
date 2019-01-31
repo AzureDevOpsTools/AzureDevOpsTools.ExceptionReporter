@@ -4,6 +4,7 @@ using AzureDevOpsTools.ExceptionService.Common.Stores.TFS;
 using AzureDevOpsTools.ExceptionService.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace AzureDevOpsTools.ExceptionService.Web
 {
@@ -20,18 +21,18 @@ namespace AzureDevOpsTools.ExceptionService.Web
         }
 
         [HttpPost]
-            public IActionResult Post([FromBody] ExceptionEntity ex)
+        public async Task<IActionResult> Post([FromBody] ExceptionEntity ex)
         {
             //TODO: Move this check into a custom middleware handler
             var apiKey = Request.Headers["X-ApiKey"];
             if( string.IsNullOrEmpty(apiKey))
                 return Unauthorized();
 
-            var userId = this.configuration.GetUserByApiKey(apiKey);
+            var userId = await this.configuration.GetUserByApiKey(apiKey);
             if( string.IsNullOrEmpty(userId))
                 return Unauthorized();
 
-            var c = this.configuration.GetConfiguration(userId);
+            var c = await this.configuration.GetConfiguration(userId);
             var settings = new ExceptionSettings(ex.ApplicationName, 
                 c.AzureDevOpsServicesAccountUrl, 
                 c.TeamProject, c.TargetAreaPath, c.AssignedTo, c.PersonalAccessToken);

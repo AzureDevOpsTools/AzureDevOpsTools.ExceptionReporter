@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace AzureDevOpsTools.ExceptionService.Configuration
 {
+
     public class ConfigurationStoreCosmosDB : IConfigurationStore
     {
         private DocumentClient client;
@@ -23,14 +24,14 @@ namespace AzureDevOpsTools.ExceptionService.Configuration
             await this.client.UpsertDocumentAsync(accountUri, account);
         }
 
-        public AccountConfiguration GetConfiguration(string userId)
+        public async Task<AccountConfiguration> GetConfiguration(string userId)
         {
             return client.CreateDocumentQuery<AccountConfiguration>(accountUri)
                 .Where(c => c.Id == userId)
                 .Take(1).AsEnumerable().SingleOrDefault();
         }
 
-        public string GetUserByApiKey(string apiKey)
+        public async Task<string> GetUserByApiKey(string apiKey)
         {
             var userAccount = client.CreateDocumentQuery<UserAccount>(userUri)
                 .Where(c => c.ApiKey == apiKey)
@@ -39,7 +40,7 @@ namespace AzureDevOpsTools.ExceptionService.Configuration
             return userAccount != null ? userAccount.Id: string.Empty;
         }
 
-        public string GetApiKey(string userId)
+        public async Task<string> GetApiKey(string userId)
         {
             var userAccount = client.CreateDocumentQuery<UserAccount>(userUri)
                 .Where(c => c.Id == userId)
@@ -50,9 +51,8 @@ namespace AzureDevOpsTools.ExceptionService.Configuration
 
         public async Task SetApiKey(string userId, string apiKey)
         {
-            var userAccount = new UserAccount()
+            var userAccount = new UserAccount(userId)
             {
-                Id = userId,
                 ApiKey = apiKey
             };
 

@@ -18,11 +18,11 @@ namespace AzureDevOpsTools.ExceptionService.Web.Controllers
             this.configuration = configuration;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var model = configuration.GetConfiguration(userId);
-            var apiKey = configuration.GetApiKey(userId);
+            var model = await configuration.GetConfiguration(userId);
+            var apiKey = await configuration.GetApiKey(userId);
 
             if(model != null)
             {
@@ -48,14 +48,14 @@ namespace AzureDevOpsTools.ExceptionService.Web.Controllers
 
             if( model.PersonalAccessToken == "dummy_password")
             {
-                var existing = this.configuration.GetConfiguration(userId);
+                var existing = await this.configuration.GetConfiguration(userId);
                 if( existing != null)
                 {
                     model.PersonalAccessToken = existing.PersonalAccessToken;
                 }
             }
 
-            var config = new AccountConfiguration()
+            var config = new AccountConfiguration(userId)
             {
                 AzureDevOpsServicesAccountUrl = model.AccountUrl,
                 TargetAreaPath = model.AreaPath,

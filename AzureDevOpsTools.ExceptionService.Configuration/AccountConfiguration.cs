@@ -1,9 +1,19 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.WindowsAzure.Storage.Table;
+using Newtonsoft.Json;
 
 namespace AzureDevOpsTools.ExceptionService.Configuration
 {
-    public class AccountConfiguration
+    public class AccountConfiguration : TableEntity
     {
+        public AccountConfiguration()
+        {
+
+        }
+        public AccountConfiguration(string id)
+        {
+            this.PartitionKey = id;
+            this.RowKey = id;
+        }
         [JsonProperty(PropertyName ="id")]
         public string Id { get; set; }
         public string AzureDevOpsServicesAccountUrl { get; set; }
@@ -14,8 +24,17 @@ namespace AzureDevOpsTools.ExceptionService.Configuration
         public bool UseExceptionWorkItemType { get; set; }
     }
 
-    public class UserAccount
+    public class UserAccount : TableEntity
     {
+        public UserAccount()
+        {
+
+        }
+        public UserAccount(string id)
+        {
+            this.PartitionKey = id;
+            this.RowKey = id;
+        }
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
         public string ApiKey { get; set; }
